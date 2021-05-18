@@ -1,12 +1,34 @@
+import { gql } from '@apollo/client'
 import Head from 'next/head'
 import { useContext, useEffect } from 'react'
+import client from '../src/apollo/apolloClient'
 import BouncingBall from '../src/components/bouncingBall/BouncingBall'
+import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls'
 import PageHeader from '../src/components/PageHeader'
 import { PageContext } from '../src/contexts/pageContext'
+import useGetRandomPosition from '../src/hooks/useGetRandomPosition'
+import useMaybe from '../src/hooks/useMaybe'
 
 
-export default function Home() {
+interface props {
+  data: AllProjectData
+}
+
+export default function Home({ data: projects }: props) {
   const [page, setPage] = useContext(PageContext);
+
+  useEffect(() => {
+    console.log("set page", projects);
+    // const projectsPlusPosition: ProjectPlus[] = projects.allProject.map((p: Project) => {
+    //   const project: ProjectPlus = { ...p, ...useGetRandomPosition() };
+    //   return project;
+    // })
+    // setPage(prev => ({ ...prev, projects: projectsPlusPosition }))
+
+    projects.allProject.forEach((p: Project) => {
+      setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, ...useGetRandomPosition() } } }))
+    })
+  }, [])
   var timeout;
   var flag = false;
 
@@ -17,7 +39,7 @@ export default function Home() {
       flag = true
       console.log("setting slowmo to true", page.slowMo);
       setPage(prev => ({ ...prev, slowMo: true }));
-      setTimeout(() => { flag = false }, 5000);
+      setTimeout(() => { flag = false }, 2000);
     }
 
 
@@ -27,11 +49,12 @@ export default function Home() {
     timeout = setTimeout(function () {
       console.log("setting slowmo to false", page.slowMo);
       setPage(prev => ({ ...prev, slowMo: false }));
-    }, 5000);
+    }, 2000);
 
   }
 
   useEffect(() => {
+
     window.addEventListener('mousemove', onMouseMoveEventHandler);
     () => {
       window.removeEventListener('mousemove', onMouseMoveEventHandler);
@@ -51,14 +74,7 @@ export default function Home() {
 
       <main>
         <PageHeader>Anthon Wellsjö</PageHeader>
-        <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <BouncingBall color={"red"} />
-          <BouncingBall color={"blue"} />
-          <BouncingBall color={"yellow"} />
-          <BouncingBall color={"green"} />
-        </div>
-
-
+        <BouncingBalls />
       </main>
 
       <footer>
@@ -66,4 +82,23 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+
+export async function getStaticProps(context) {
+  const { data } = await client.query({
+    query: gql`
+      query project{
+        allProject {
+          title
+          projectColor
+          _id
+        }
+      }
+    `,
+  });
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  }
 }

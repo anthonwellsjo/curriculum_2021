@@ -6,6 +6,8 @@ interface PageContextData {
     position: { left: string, top: string }
   },
   somethingHovering: boolean,
+  showProjects: boolean, 
+  currentProject: Project | null
 }
 
 interface Project {
@@ -13,11 +15,6 @@ interface Project {
   _id: string;
   title: string;
   projectColor: string;
-  mainImage: {
-    asset: {
-      url: string
-    }
-  }
 }
 
 interface ProjectPlus {

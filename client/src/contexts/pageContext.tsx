@@ -10,7 +10,9 @@ const PageProvider: React.FC = ({ children }) => {
     slowMo: false,
     splashASprut: { letsDoIt: false, position: { left: "", top: "" } },
     projects: [],
-    somethingHovering: false
+    somethingHovering: false,
+    showProjects: false,
+    currentProject: null
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

@@ -44,6 +44,7 @@ export default function Home({ data: projects }: props) {
           <h1>X</h1>
         </Knapp>
         <BouncingBalls />
+        
       </main>
 
       <footer>
@@ -62,39 +63,6 @@ export async function getStaticProps(context) {
           title
           projectColor
           _id
-          mainImage {
-            asset {
-              originalFilename
-              label
-              title
-              description
-              altText
-              sha1hash
-              extension
-              mimeType
-              size
-              assetId
-              path
-              url
-              metadata {
-                location {
-                  lat
-                  lng
-                  alt
-                }
-                dimensions {
-                  height
-                  width
-                  aspectRatio
-                }
-              }
-              source {
-                name
-                id
-                url
-              }
-            }
-          }
         }
       }
     `,

@@ -5,14 +5,8 @@ import { animated } from 'react-spring';
 import { PageContext } from '../../contexts/pageContext';
 import useGetRandomPosition from '../../hooks/useGetRandomPosition';
 import classes from './BouncingBall.module.scss';
-import CSS from 'csstype';
 import useMaybe from '../../hooks/useMaybe';
-import Dragon from '../dragon/Dragon';
-import Image from 'next/image';
-import { useNextSanityImage } from 'next-sanity-image';
-import { mySanityClient } from '../../sanity/sanityClient';
-import client from '../../apollo/apolloClient';
-import { gql } from '@apollo/client';
+import ToProjectsFromBallTransition from '../toProjectsFromBallTransition/toProjectsFromBallTransition';
 
 
 interface state {
@@ -25,14 +19,13 @@ interface props {
 }
 
 const BouncingBall = ({ project }: props) => {
-  if (project.mainImage) { console.log("project", project.mainImage.asset.url); }
 
 
   const [hovering, setHovering] = useState(false);
-  const [awakenDragon, setAwakenDragon] = useState(false);
+  const [showProject, setShowProject] = useState(false);
+  const [page, setPage] = useContext(PageContext);
   const splashStrut = useMaybe();
   const randomPosition = useGetRandomPosition();
-  const [page, setPage] = useContext(PageContext);
   const firstPosition = { left: "50%", top: "50%" };
   const spanStyle = useSpring({
     to: { opacity: page.slowMo || hovering ? 1 : 0 },
@@ -60,32 +53,27 @@ const BouncingBall = ({ project }: props) => {
   const onMouseLeaveEventHandler = () => {
     setHovering(false);
     setPage(prev => ({ ...prev, somethingHovering: false }));
+  }
 
+  const onClickEventHandler = () => {
+    setPage(prev => ({ ...prev, showProjects: true, currentProject: project }));
+    setShowProject(true);
   }
 
   return (
     <animated.div style={{ ...styles, position: "fixed", }}>
       <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <div>
-          <animated.div onClick={() => setAwakenDragon(true)} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
+          <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
             style={{
               backgroundColor: page.slowMo || hovering ? project.projectColor : "black",
               transform: page.slowMo || hovering ? "scale(7)" : "scale(1)",
-              cursor: "pointer",
-              overflow: "hidden",
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center"
+              cursor: "pointer"
             }}
             className={classes.ball} >
-            {project.mainImage !== null && (page.slowMo || hovering) && <div style={{
-              position: "absolute",
-            }}>
-              <img src={`${project.mainImage.asset.url}`} width="10px" height="10px" />
-            </div>}
+            {page.showProjects && showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
           </animated.div>
         </div>
-        {awakenDragon && <Dragon project={project} />}
         <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
           <span >{project.title}</span>
         </animated.div>

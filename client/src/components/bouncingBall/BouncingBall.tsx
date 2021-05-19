@@ -7,10 +7,9 @@ import useGetRandomPosition from '../../hooks/useGetRandomPosition';
 import classes from './BouncingBall.module.scss';
 import CSS from 'csstype';
 import useMaybe from '../../hooks/useMaybe';
+import Dragon from '../dragon/Dragon';
+import Image from 'next/image';
 
-const spanStyle: CSS.Properties = {
-  transform: "rotate(90deg 90deg)"
-}
 
 interface state {
   position: { top: string, left: string },
@@ -22,11 +21,14 @@ interface props {
 }
 
 const BouncingBall = ({ project }: props) => {
+  const [hovering, setHovering] = useState(false);
+  const [awakenDragon, setAwakenDragon] = useState(false);
+  const splashStrut = useMaybe();
+  const randomPosition = useGetRandomPosition();
   const [page, setPage] = useContext(PageContext);
   const firstPosition = { left: "50%", top: "50%" };
   const spanStyle = useSpring({
-    reverse: !page.slowMo,
-    to: { opacity: page.slowMo ? 1 : 0 },
+    to: { opacity: page.slowMo || hovering ? 1 : 0 },
     from: { opacity: 0 }
   })
   const styles = useSpring({
@@ -38,18 +40,32 @@ const BouncingBall = ({ project }: props) => {
     config: {
       mass: 1,
       friction: 20,
-      tension: page.slowMo ? 2 : 400,
+      tension: page.slowMo || hovering ? 2 : 300,
     },
     delay: Math.floor(Math.random() * 4000),
-    onRest: () => setPage(prev => ({ ...prev, splashASprut: useMaybe(), projects: { ...prev.projects, [`${project._id}`]: { ...project, ...useGetRandomPosition() } } })),
+    onRest: () => setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })),
   })
+
+  const onMouseEnterEventHandler = () => {
+    setHovering(true);
+    setPage(prev => ({ ...prev, somethingHovering: true }));
+  }
+  const onMouseLeaveEventHandler = () => {
+    setHovering(false);
+    setPage(prev => ({ ...prev, somethingHovering: false }));
+
+  }
 
   return (
     <animated.div style={{ ...styles, position: "fixed", }}>
       <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <div>
-          <animated.div style={{ backgroundColor: page.slowMo ? project.projectColor : "black", transform: page.slowMo ? "scale(6)" : "scale(1)", cursor: "pointer" }} className={classes.ball} />
+          <animated.div onClick={() => setAwakenDragon(true)} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ backgroundColor: page.slowMo || hovering ? project.projectColor : "black", transform: page.slowMo || hovering ? "scale(7)" : "scale(1)", cursor: "pointer" }}
+            className={classes.ball} >
+              <Image src="/ball.png" height="100px" width="100px" alt="hal"/>
+            </animated.div>
         </div>
+        {awakenDragon && <Dragon project={project} />}
         <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
           <span >{project.title}</span>
         </animated.div>

@@ -2,12 +2,11 @@ import { gql } from '@apollo/client'
 import Head from 'next/head'
 import { useContext, useEffect } from 'react'
 import client from '../src/apollo/apolloClient'
-import BouncingBall from '../src/components/bouncingBall/BouncingBall'
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls'
+import Knapp from '../src/components/knapp/Knapp'
 import PageHeader from '../src/components/PageHeader'
 import { PageContext } from '../src/contexts/pageContext'
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition'
-import useMaybe from '../src/hooks/useMaybe'
 
 
 interface props {
@@ -18,13 +17,6 @@ export default function Home({ data: projects }: props) {
   const [page, setPage] = useContext(PageContext);
 
   useEffect(() => {
-    console.log("set page", projects);
-    // const projectsPlusPosition: ProjectPlus[] = projects.allProject.map((p: Project) => {
-    //   const project: ProjectPlus = { ...p, ...useGetRandomPosition() };
-    //   return project;
-    // })
-    // setPage(prev => ({ ...prev, projects: projectsPlusPosition }))
-
     projects.allProject.forEach((p: Project) => {
       setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, ...useGetRandomPosition() } } }))
     })
@@ -33,33 +25,7 @@ export default function Home({ data: projects }: props) {
   var flag = false;
 
 
-  const onMouseMoveEventHandler = (e: MouseEvent) => {
 
-    if (!flag) {
-      flag = true
-      console.log("setting slowmo to true", page.slowMo);
-      setPage(prev => ({ ...prev, slowMo: true }));
-      setTimeout(() => { flag = false }, 2000);
-    }
-
-
-
-
-    clearTimeout(timeout);
-    timeout = setTimeout(function () {
-      console.log("setting slowmo to false", page.slowMo);
-      setPage(prev => ({ ...prev, slowMo: false }));
-    }, 2000);
-
-  }
-
-  useEffect(() => {
-
-    window.addEventListener('mousemove', onMouseMoveEventHandler);
-    () => {
-      window.removeEventListener('mousemove', onMouseMoveEventHandler);
-    }
-  }, [])
 
 
   return (
@@ -74,6 +40,9 @@ export default function Home({ data: projects }: props) {
 
       <main>
         <PageHeader>Anthon Wellsjö</PageHeader>
+        <Knapp aktiv={page.slowMo} clicky={() => { setPage(prev => ({ ...prev, slowMo: !prev.slowMo })) }}>
+          <h1>X</h1>
+        </Knapp>
         <BouncingBalls />
       </main>
 

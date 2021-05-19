@@ -8,8 +8,9 @@ const PageContext = createContext([page, setPage])
 const PageProvider: React.FC = ({ children }) => {
   const [page, setPage] = useState<PageContextData>({
     slowMo: false,
-    splashASprut: false,
-    projects: []
+    splashASprut: { letsDoIt: false, position: { left: "", top: "" } },
+    projects: [],
+    somethingHovering: false
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

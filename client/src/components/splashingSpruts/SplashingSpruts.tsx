@@ -10,19 +10,19 @@ const SplashingSpruts: React.FC = () => {
     positions.push({ left: project.left, top: project.top })
   });
   const style = useSpring({
-    from: { ...positions[0] },
-    to: [...positions.map((p, i) => { if (i != 0) return { left: p.left, top: p.top } })],
+    from: { transform: "scale(1)", opacity: 0 },
+    to: [{ opacity: 1 }, { opacity: 0 }],
     config: {
-      duration: 1000
+      duration: 300
     }
   })
 
 
   return (
-    <animated.div style={{ ...style, position: "fixed", }}>
+    <animated.div style={{ ...style, position: "fixed", top: page.splashASprut.position.top, left: page.splashASprut.position.left, transformOrigin: "top" }}>
       <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "-30px" }}>
         <div>
-          <animated.div style={{ width: "40px", height: "40px", borderRadius:"40px", border: "1px solid black", position: "fixed", backgroundColor: "white" }} />
+          <animated.div style={{ width: "40px", height: "40px", borderRadius: "40px", position: "fixed", border: "1px dotted black" }} />
         </div>
       </div>
     </animated.div>

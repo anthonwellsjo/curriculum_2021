@@ -9,7 +9,7 @@ const BouncingBalls: React.FC = () => {
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      {/* {page.splashASprut && !page.slowMo && <SplashingSpruts />} */}
+      {page.splashASprut && !page.slowMo && <SplashingSpruts />}
       {Object.keys(page.projects).map((p) => {
         const project: Project = page.projects[p] as Project;
         return <BouncingBall key={project._id} project={project} />

@@ -1,7 +1,11 @@
 interface PageContextData {
   slowMo: boolean,
   projects: ProjectPlus[],
-  splashASprut: boolean
+  splashASprut: {
+    letsDoIt: boolean,
+    position: { left: string, top: string }
+  },
+  somethingHovering: boolean,
 }
 
 interface Project {

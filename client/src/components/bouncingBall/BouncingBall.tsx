@@ -9,6 +9,10 @@ import CSS from 'csstype';
 import useMaybe from '../../hooks/useMaybe';
 import Dragon from '../dragon/Dragon';
 import Image from 'next/image';
+import { useNextSanityImage } from 'next-sanity-image';
+import { mySanityClient } from '../../sanity/sanityClient';
+import client from '../../apollo/apolloClient';
+import { gql } from '@apollo/client';
 
 
 interface state {
@@ -21,6 +25,9 @@ interface props {
 }
 
 const BouncingBall = ({ project }: props) => {
+  if (project.mainImage) { console.log("project", project.mainImage.asset.url); }
+
+
   const [hovering, setHovering] = useState(false);
   const [awakenDragon, setAwakenDragon] = useState(false);
   const splashStrut = useMaybe();
@@ -60,10 +67,23 @@ const BouncingBall = ({ project }: props) => {
     <animated.div style={{ ...styles, position: "fixed", }}>
       <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <div>
-          <animated.div onClick={() => setAwakenDragon(true)} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ backgroundColor: page.slowMo || hovering ? project.projectColor : "black", transform: page.slowMo || hovering ? "scale(7)" : "scale(1)", cursor: "pointer" }}
+          <animated.div onClick={() => setAwakenDragon(true)} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
+            style={{
+              backgroundColor: page.slowMo || hovering ? project.projectColor : "black",
+              transform: page.slowMo || hovering ? "scale(7)" : "scale(1)",
+              cursor: "pointer",
+              overflow: "hidden",
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center"
+            }}
             className={classes.ball} >
-              <Image src="/ball.png" height="100px" width="100px" alt="hal"/>
-            </animated.div>
+            {project.mainImage !== null && (page.slowMo || hovering) && <div style={{
+              position: "absolute",
+            }}>
+              <img src={`${project.mainImage.asset.url}`} width="10px" height="10px" />
+            </div>}
+          </animated.div>
         </div>
         {awakenDragon && <Dragon project={project} />}
         <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
@@ -73,5 +93,6 @@ const BouncingBall = ({ project }: props) => {
     </animated.div>
   )
 }
+
 
 export default BouncingBall;

@@ -13,6 +13,11 @@ interface Project {
   _id: string;
   title: string;
   projectColor: string;
+  mainImage: {
+    asset: {
+      url: string
+    }
+  }
 }
 
 interface ProjectPlus {

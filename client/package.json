@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.18",
+    "@sanity/client": "^2.8.0",
     "csstype": "^3.0.8",
     "graphql": "^15.5.0",
     "next": "10.2.0",
+    "next-sanity-image": "^3.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-spring": "^9.1.2",

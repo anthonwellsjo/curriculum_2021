@@ -37,14 +37,12 @@ export default function Home({ data: projects }: props) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Trochut:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></link>
       </Head>
-
       <main>
-        <PageHeader>Anthon Wellsjö</PageHeader>
+        <PageHeader/>
         <Knapp aktiv={page.slowMo} clicky={() => { setPage(prev => ({ ...prev, slowMo: !prev.slowMo })) }}>
-          <h1>X</h1>
+          <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clipRule="evenodd"></path></svg>
         </Knapp>
         <BouncingBalls />
-        
       </main>
 
       <footer>

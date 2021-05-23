@@ -1,5 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import CSS from 'csstype';
+import { PageContext } from '../../contexts/pageContext';
+import useSound from 'use-sound';
 
 const btnStyle: CSS.Properties = {
   height: "50px",
@@ -9,20 +11,25 @@ const btnStyle: CSS.Properties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  cursor:"pointer"
+  cursor: "pointer"
 }
 
 interface props {
-  clicky: () => void,
   children: ReactNode,
-  aktiv: boolean,
-
 }
 
 
-const Knapp = ({ clicky, children, aktiv }: props) => {
+const Knapp = ({ children }: props) => {
+  const [page, setPage] = useContext(PageContext);
+  const [playClick] = useSound("/click.wav");
+
+  const onClickEventHandler = () => {
+    setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
+    playClick();
+  }
+
   return (
-    <div style={btnStyle} onClick={clicky}>
+    <div style={btnStyle} onClick={onClickEventHandler}>
       {children}
     </div>
   )

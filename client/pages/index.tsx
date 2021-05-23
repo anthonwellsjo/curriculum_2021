@@ -1,12 +1,13 @@
-import { gql } from '@apollo/client'
-import Head from 'next/head'
-import { useContext, useEffect } from 'react'
-import client from '../src/apollo/apolloClient'
-import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls'
-import Knapp from '../src/components/knapp/Knapp'
-import PageHeader from '../src/components/PageHeader'
-import { PageContext } from '../src/contexts/pageContext'
-import useGetRandomPosition from '../src/hooks/useGetRandomPosition'
+import { gql } from '@apollo/client';
+import Head from 'next/head';
+import { useContext, useEffect } from 'react';
+import client from '../src/apollo/apolloClient';
+import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
+import Knapp from '../src/components/knapp/Knapp';
+import PageHeader from '../src/components/PageHeader';
+import { PageContext } from '../src/contexts/pageContext';
+import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
+import useSound from 'use-sound';
 
 
 interface props {
@@ -39,7 +40,7 @@ export default function Home({ data: projects }: props) {
       </Head>
       <main>
         <PageHeader/>
-        <Knapp aktiv={page.slowMo} clicky={() => { setPage(prev => ({ ...prev, slowMo: !prev.slowMo })) }}>
+        <Knapp>
           <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clipRule="evenodd"></path></svg>
         </Knapp>
         <BouncingBalls />

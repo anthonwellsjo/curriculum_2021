@@ -8,6 +8,8 @@ import PageHeader from '../src/components/PageHeader';
 import { PageContext } from '../src/contexts/pageContext';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
+import FullProject from '../src/components/fullProject/FullProject';
+
 
 
 interface props {
@@ -16,21 +18,34 @@ interface props {
 
 export default function Home({ data: projects }: props) {
   const [page, setPage] = useContext(PageContext);
-
+  const [playClick] = useSound("/click.wav");
   useEffect(() => {
     projects.allProject.forEach((p: Project) => {
       setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, ...useGetRandomPosition() } } }))
     })
   }, [])
-  var timeout;
-  var flag = false;
 
+  useEffect(() => {
+    if (page.currentProject && page.showBalls) {
+      setTimeout(() => {
+        setPage(prev => ({ ...prev, showBalls: false }))
+        setPage(prev => ({ ...prev, showProjects: true }))
+      }, 300)
+    }
+    if (!page.currentProject && !page.showBalls) {
+      setPage(prev => ({ ...prev, showBalls: true }))
+    }
+  }, [page.currentProject])
 
+  const onClickEventHandler = () => {
+    setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
+    playClick();
+  }
 
 
 
   return (
-    <div>
+    <div onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh",overflow: "hidden", cursor: "pointer" }}>
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
@@ -38,13 +53,11 @@ export default function Home({ data: projects }: props) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Trochut:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></link>
       </Head>
-      <main>
-        <PageHeader/>
-        <Knapp>
-          <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="2em" width="2em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clipRule="evenodd"></path></svg>
-        </Knapp>
-        <BouncingBalls />
-      </main>
+
+      <PageHeader />
+      {page.showProjects && <FullProject />}
+      {page.showBalls && <BouncingBalls />}
+
 
       <footer>
 

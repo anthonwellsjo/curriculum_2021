@@ -10,9 +10,7 @@ const ToProjectsFromBallTransition = ({ color }: props) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("use effect");
-    console.log("routing");
-    router.push("/projects/");
+    
   }, []);
 
   const styles = useSpring({

@@ -7,7 +7,8 @@ interface PageContextData {
   },
   somethingHovering: boolean,
   showProjects: boolean, 
-  currentProject: Project | null
+  currentProject: Project | null,
+  showBalls: boolean
 }
 
 interface Project {

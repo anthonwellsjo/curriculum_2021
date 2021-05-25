@@ -7,7 +7,6 @@ import useGetRandomPosition from '../../hooks/useGetRandomPosition';
 import classes from './BouncingBall.module.scss';
 import useMaybe from '../../hooks/useMaybe';
 import ToProjectsFromBallTransition from '../toProjectsFromBallTransition/ToProjectsFromBallTransition';
-import useSound from 'use-sound';
 
 
 interface state {
@@ -20,8 +19,6 @@ interface props {
 }
 
 const BouncingBall = ({ project }: props) => {
-
-  const [useBoop] = useSound("/boop.wav", {volume:0.2});
   const [hovering, setHovering] = useState(false);
   const [showProject, setShowProject] = useState(false);
   const [page, setPage] = useContext(PageContext);
@@ -43,8 +40,6 @@ const BouncingBall = ({ project }: props) => {
       friction: 20,
       tension: page.slowMo || hovering ? 2 : 300,
     },
-    onStart: () => useBoop({ playbackRate: page.slowMo ? 0.4 : Math.random() + 3.5
-  }),
     delay: Math.floor(Math.random() * 4000),
       onRest: () => setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })),
   })
@@ -58,13 +53,14 @@ const onMouseLeaveEventHandler = () => {
   setPage(prev => ({ ...prev, somethingHovering: false }));
 }
 
-const onClickEventHandler = () => {
-  setPage(prev => ({ ...prev, showProjects: true, currentProject: project }));
+const onClickEventHandler = (event) => {
+  event.stopPropagation();
+  setPage(prev => ({ ...prev, currentProject: project }));
   setShowProject(true);
 }
 
 return (
-  <animated.div style={{ ...styles, position: "fixed", }}>
+  <animated.div style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
     <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
       <div>
         <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
@@ -74,7 +70,7 @@ return (
             cursor: "pointer"
           }}
           className={classes.ball} >
-          {page.showProjects && showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
+          {showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
         </animated.div>
       </div>
       <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>

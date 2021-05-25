@@ -22,7 +22,7 @@ const SplashingSpruts: React.FC = () => {
     <animated.div style={{ ...style, position: "fixed", top: page.splashASprut.position.top, left: page.splashASprut.position.left, transformOrigin: "top" }}>
       <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "-30px" }}>
         <div>
-          <animated.div style={{ width: "40px", height: "40px", borderRadius: "40px", position: "fixed", border: "1px dotted black" }} />
+          <animated.div style={{ width: "40px", height: "40px", borderRadius: "40px", position: "fixed", border: "1px dotted orange" }} />
         </div>
       </div>
     </animated.div>

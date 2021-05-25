@@ -10,12 +10,15 @@ const ToProjectsFromBallTransition = ({ color }: props) => {
   const router = useRouter();
 
   useEffect(() => {
-    
+
   }, []);
 
   const styles = useSpring({
-    to: [{ transform: "scale(200)" },],
-    from: { transform: "scale(1)" }
+    to: [{ transform: "scale(100)" },],
+    from: { transform: "scale(1)" },
+    config: {
+      mass: 5
+    }
   })
 
   return (

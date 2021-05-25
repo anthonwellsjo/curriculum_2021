@@ -17,6 +17,7 @@ interface props {
 }
 
 export default function Home({ data: projects }: props) {
+  console.log("data", projects);
   const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/click.wav");
   useEffect(() => {
@@ -28,9 +29,12 @@ export default function Home({ data: projects }: props) {
   useEffect(() => {
     if (page.currentProject && page.showBalls) {
       setTimeout(() => {
-        setPage(prev => ({ ...prev, showBalls: false }))
         setPage(prev => ({ ...prev, showProjects: true }))
       }, 300)
+      setTimeout(() => {
+        setPage(prev => ({ ...prev, showBalls: false }))
+      }, 1000)
+
     }
     if (!page.currentProject && !page.showBalls) {
       setPage(prev => ({ ...prev, showBalls: true }))
@@ -45,7 +49,7 @@ export default function Home({ data: projects }: props) {
 
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh",overflow: "hidden", cursor: "pointer" }}>
+    <div onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer" }}>
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
@@ -75,6 +79,9 @@ export async function getStaticProps(context) {
           title
           projectColor
           _id
+          descriptionRaw
+          slug{current}
+          deployUrl
         }
       }
     `,

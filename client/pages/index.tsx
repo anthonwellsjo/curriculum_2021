@@ -17,7 +17,6 @@ interface props {
 }
 
 export default function Home({ data: projects }: props) {
-  console.log("data", projects);
   const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/click.wav");
   useEffect(() => {

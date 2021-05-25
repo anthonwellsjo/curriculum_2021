@@ -29,15 +29,17 @@ const FullProject = () => {
 
 
   return (
-    <animated.div onClick={onClickEventHandler} style={{ ...style, position: "absolute", left: 0, top: 0, right: 0, bottom: 0, backgroundColor: page.currentProject.projectColor, zIndex: 1, userSelect: "none" }}>
+    <animated.div onClick={onClickEventHandler} style={{ ...style, position: "absolute", left: 0, top: 0, right: 0, bottom: 0, backgroundColor: page.currentProject.projectColor, zIndex: 1, userSelect: "none", paddingLeft: "10%", paddingRight: "10%" }}>
       <animated.div style={{ ...titleStyle, textAlign: "center" }}>
         <h1 style={{ fontSize: "3em" }}>{(page.currentProject as Project).title}</h1>
       </animated.div>
-      <animated.div style={{ ...descStyle, textAlign: "center" }}>
+      <animated.div style={{ ...descStyle, textAlign: "justify" }}>
         {(page.currentProject as Project).descriptionRaw.map((b: BlockText) => {
-          React.createElement(b.style, b.children[0].text)
-)}
-        // <h1 style={{ fontSize: "3em" }}>{(page.currentProject as Project).}</h1>
+          // console.log(b.children[0]._type, b.children[0].text);
+          return React.createElement(b.children[0]._type, { key: b._key }, b.children[0].text);
+          // return React.createElement("h1",null, "apa");
+        })}
+
       </animated.div>
     </animated.div>
   )

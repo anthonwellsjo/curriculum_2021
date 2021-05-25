@@ -52,7 +52,7 @@ const PageHeader = () => {
   }
 
   return (
-    <div style={styles}>
+    <div onClick={(e) => e.stopPropagation()} style={styles}>
       <div onMouseEnter={onHoverEventHandler} onMouseLeave={onHoverOutEventHandler} style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>
         <div style={{ display: "flex", justifyContent: "space-between", position: "absolute", top: "50px", width: "400px" }}>

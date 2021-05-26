@@ -1,10 +1,13 @@
 import '../styles/globals.css';
-import {PageProvider} from '../src/contexts/pageContext';
+import { PageProvider } from '../src/contexts/pageContext';
+import { ViewportProvider } from '../src/hooks/useViewPort';
 
 function MyApp({ Component, pageProps }) {
   return (
     <PageProvider>
-      <Component {...pageProps} />
+      <ViewportProvider>
+        <Component {...pageProps} />
+      </ViewportProvider>
     </PageProvider>
   )
 }

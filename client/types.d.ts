@@ -9,7 +9,9 @@ interface PageContextData {
   showProjects: boolean,
   currentProject: Project | null,
   showBalls: boolean,
-  currentPage: "bio" | "main" | "projects"
+  currentPage: "bio" | "main" | "projects",
+  showHeaderButtons: boolean,
+  renderHeaderButtons: boolean
 }
 
 interface BlockTextChild {

@@ -6,14 +6,16 @@ body {
   overflow: hidden;
 }
 
-button, input[type="submit"], input[type="reset"] {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+button,
+input[type='submit'],
+input[type='reset'] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 a {
@@ -25,12 +27,11 @@ a {
   box-sizing: border-box;
 }
 
-.buttidybutt{
+.buttidybutt {
   cursor: pointer;
   height: 1em;
-  
 }
-.buttidybutt:hover{
+.buttidybutt:hover {
   color: coral;
 }
 
@@ -40,6 +41,10 @@ a {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .noScrollBar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.socialIcon:hover {
+  fill: orange;
 }

@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { ElementRef, useContext, useEffect, useRef } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
-import Knapp from '../src/components/knapp/Knapp';
 import PageHeader from '../src/components/PageHeader';
 import { PageContext } from '../src/contexts/pageContext';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
@@ -42,6 +41,15 @@ export default function Home({ data: projects }: props) {
       setPage(prev => ({ ...prev, showBalls: true }))
     }
   }, [page.currentProject])
+
+  useEffect(() => {
+    if (page.currentPage === "main" && page.showHeaderButtons) {
+      setPage(prev => ({ ...prev, showHeaderButtons: false }))
+      setTimeout(() => {
+        setPage(prev => ({ ...prev, renderHeaderButtons: false }))
+      }, 400)
+    }
+  }, [page.currentPage])
 
 
   const onClickEventHandler = () => {

@@ -10,6 +10,7 @@ import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
 import FullProject from '../src/components/fullProject/FullProject';
 import Bio from '../src/components/bio/Bio';
+import Social from '../src/components/social/Social';
 
 
 
@@ -64,6 +65,7 @@ export default function Home({ data: projects }: props) {
       {page.showProjects && <FullProject />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
+      {page.currentPage == "social" && <Social />}
 
 
       <footer>

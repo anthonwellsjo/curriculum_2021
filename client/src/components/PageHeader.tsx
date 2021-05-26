@@ -19,8 +19,8 @@ const styles: CSS.Properties = {
 }
 
 const PageHeader = () => {
-  const [playClose] = useSound("/closePage.wav");
-  const [playOpen] = useSound("/openPage.wav");
+  const [playClose] = useSound("/closepage.wav");
+  const [playOpen] = useSound("/openpage.wav");
   const [showHoverStuff, setShowHoverStuff] = useState(false);
   const [renderButtons, setRenderButtons] = useState(false);
   const [page, setPage] = useContext(PageContext);

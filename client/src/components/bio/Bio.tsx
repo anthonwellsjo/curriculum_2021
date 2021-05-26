@@ -9,7 +9,7 @@ import { useViewport } from '../../hooks/useViewPort';
 
 
 const Bio: React.FC = () => {
-  const [playClose] = useSound("/closePage.wav");
+  const [playClose] = useSound("/closepage.wav");
   const { width: viewWidth, height: viewHeight } = useViewport();
   const vwLimit = 565;
   const styles: CSS.Properties = {

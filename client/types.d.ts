@@ -8,7 +8,8 @@ interface PageContextData {
   somethingHovering: boolean,
   showProjects: boolean,
   currentProject: Project | null,
-  showBalls: boolean
+  showBalls: boolean,
+  currentPage: "bio" | "main" | "projects"
 }
 
 interface BlockTextChild {

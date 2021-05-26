@@ -3,6 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Trochut', cursive;
+  overflow: hidden;
 }
 
 button, input[type="submit"], input[type="reset"] {
@@ -26,6 +27,8 @@ a {
 
 .buttidybutt{
   cursor: pointer;
+  height: 1em;
+  
 }
 .buttidybutt:hover{
   color: coral;

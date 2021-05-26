@@ -39,9 +39,8 @@ const FullProject = () => {
           return React.createElement(b.children[0]._type, { key: b._key }, b.children[0].text);
           // return React.createElement("h1",null, "apa");
         })}
-
       </animated.div>
-    </animated.div>
+    </animated.div >
   )
 }
 

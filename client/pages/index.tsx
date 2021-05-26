@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Head from 'next/head';
-import { useContext, useEffect } from 'react';
+import { ElementRef, useContext, useEffect, useRef } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
 import Knapp from '../src/components/knapp/Knapp';
@@ -9,6 +9,7 @@ import { PageContext } from '../src/contexts/pageContext';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
 import FullProject from '../src/components/fullProject/FullProject';
+import Bio from '../src/components/bio/Bio';
 
 
 
@@ -18,6 +19,7 @@ interface props {
 
 export default function Home({ data: projects }: props) {
   const [page, setPage] = useContext(PageContext);
+  const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
   useEffect(() => {
     projects.allProject.forEach((p: Project) => {
@@ -40,6 +42,7 @@ export default function Home({ data: projects }: props) {
     }
   }, [page.currentProject])
 
+
   const onClickEventHandler = () => {
     setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
     playClick();
@@ -48,7 +51,7 @@ export default function Home({ data: projects }: props) {
 
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer" }}>
+    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer" }}>
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
@@ -59,7 +62,8 @@ export default function Home({ data: projects }: props) {
 
       <PageHeader />
       {page.showProjects && <FullProject />}
-      {page.showBalls && <BouncingBalls />}
+      {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
+      {page.currentPage == "bio" && <Bio />}
 
 
       <footer>

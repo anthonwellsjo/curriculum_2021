@@ -13,7 +13,8 @@ const PageProvider: React.FC = ({ children }) => {
     somethingHovering: false,
     showProjects: false,
     currentProject: null,
-    showBalls: true
+    showBalls: true,
+    currentPage: "main"
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

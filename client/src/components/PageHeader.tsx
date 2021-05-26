@@ -19,8 +19,8 @@ const styles: CSS.Properties = {
 }
 
 const PageHeader = () => {
-  const [playOpen] = useSound("/openPage.wav", { playbackRate: 1 });
-  const [playClose] = useSound("/closePage.wav", { playbackRate: 1.8 });
+  const [playClose] = useSound("/closePage.wav");
+  const [playOpen] = useSound("/openPage.wav");
   const [showHoverStuff, setShowHoverStuff] = useState(false);
   const [renderButtons, setRenderButtons] = useState(false);
   const [page, setPage] = useContext(PageContext);
@@ -59,12 +59,12 @@ const PageHeader = () => {
   const onBioClickEventHandler = () => {
 
     if (page.currentPage === "bio") {
+      playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
-      playClose();
     }
     if (page.currentPage !== "bio") {
+      playOpen({ playbackRate: 1 });
       setPage(prev => ({ ...prev, currentPage: "bio" }))
-      playOpen();
     }
   }
 

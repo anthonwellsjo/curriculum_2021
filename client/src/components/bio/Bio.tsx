@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { createRef, useContext, useEffect, useState } from 'react';
 import CSS from 'csstype';
 import useSound from 'use-sound';
 import { PageContext } from '../../contexts/pageContext';
@@ -10,6 +10,7 @@ import { useViewport } from '../../hooks/useViewPort';
 
 const Bio: React.FC = () => {
   const [playClose] = useSound("/closepage.wav");
+  const [showImage, setShowImage] = useState(false);
   const { width: viewWidth, height: viewHeight } = useViewport();
   const vwLimit = 565;
   const styles: CSS.Properties = {
@@ -32,13 +33,8 @@ const Bio: React.FC = () => {
   })
   const logoStyle = useSpring({
     reverse: closing,
-    to: { transform: showContent ? "translateY(0px) scale(1)" : "translateY(100px) scale(0)", opacity: showContent ? 1 : 0 },
+    to: { transform: showImage && showContent ? "translateY(0px) scale(1)" : "translateY(100px) scale(0)", opacity: showImage && showContent ? 1 : 0 },
     from: { transform: "translateY(100px) scale(0)", opacity: 0 }
-  })
-  const headerStyle = useSpring({
-    to: { transform: showContent ? "translateY(0px)" : "translateY(100px)", opacity: showContent ? 1 : 0 },
-    from: { transform: "translateY(100px)", opacity: 0 },
-    delay: 200
   })
   const textStyle = useSpring({
     to: { transform: showContent ? "translateY(0px)" : "translateY(100px)", opacity: showContent ? 1 : 0 },
@@ -67,21 +63,16 @@ const Bio: React.FC = () => {
   }, []);
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none" }}>
-      <animated.div style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
+    <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", }}>
+      <animated.div style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", }}>
         {showContent &&
           <>
-            <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", fontFamily: "Roboto", marginTop: viewHeight > 700 ? "0" : "50px" }}>
+            <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", fontFamily: "Roboto", marginTop: "50px" }}>
               <p><strong>Hej,</strong> my name is Anthon and I'm a swedish full stack web developer. Nowadays I live in Perugia, Italy with my wife and three kids.</p>
               <p>I speak four languages fluently (swedish, french, italian and english) and other than passionately developing the web, I love garden work, kite surfing and playing the guitar.</p>
               <p>If you consider hiring me, then you can count on an effective and open minded cooworker. I love learning, and arriving at the best solutions, no matter who hade the idea.</p>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
             </animated.div>
-            <animated.div style={{ ...hobbyStyle, position: "absolute", display: "flex", flexDirection: "row", width: "50%", justifyContent: "space-between", bottom: "20px" }}>
+            <animated.div style={{ ...hobbyStyle, display: "flex", flexDirection: "row", width: "50%", justifyContent: "space-between" }}>
               <div>
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M272.56 37.535c-2.73 9.522-7.43 19.245-13.263 29.092-10.537 17.786-25.074 35.97-40.424 52.674-15.35 16.705-31.498 31.88-45.318 43.393-1.636 1.363-3.232 2.664-4.797 3.92 73.788-1.87 129.856-10.404 172.217-21.527-16.666-35.65-38.964-71.863-68.414-107.55zm25.792 3.518c25.297 32.908 44.98 66.205 60.097 99.062 20.755-6.355 37.728-13.287 51.486-20.166 23.195-11.598 37.367-23.02 45.66-31.313.56-.56 1.02-1.055 1.523-1.578-24.93-3.32-85.136-14.01-158.768-46.007zm171.416 58.832c-.47.488-.944.98-1.444 1.478-9.707 9.707-25.535 22.285-50.34 34.688-14.265 7.133-31.51 14.208-52.26 20.673C385.457 204.35 399.3 267.8 402.54 315.27c3.912 62.24-4.2 114.432-13.243 149.023 6.263-8.047 12.805-17.732 19.22-28.805 15.812-27.3 31.415-62.77 43.772-102.18 22.904-73.052 34.377-159.596 17.478-233.423zm-121.395 61.86c-45.878 12.342-106.803 21.565-187.478 23.042 31.007 29.097 61.39 64.16 89.17 100.188-26.307 30.073-54.772 57.992-82.956 82.58-3.816 3.33-7.626 6.592-11.424 9.797l-8.08-17.502-22.487 2.498 2.497 22.488 15.117 3.24c-12.492 10.146-24.77 19.552-36.617 28.13l-4.922-16.608-22.613-.762-.762 22.615 13.672 5.075c-6.067 4.17-11.992 8.106-17.724 11.766-6.105 3.9-12 7.478-17.66 10.76l.238-15.46-21.354-7.483-7.482 21.354 13.086 10.132c-13.478 6.994-24.8 11.673-32.82 13.678l4.367 17.46c3.664-.916 7.605-2.17 11.78-3.718l-.146-.582c2.415-.604 5.167-1.5 8.19-2.647 5.216-2.243 10.77-4.91 16.607-7.945l-.258 16.88 21.354 7.48 7.484-21.352-14.133-10.942c6.522-3.762 13.337-7.91 20.433-12.44 2.273-1.452 4.58-2.956 6.902-4.484 4.84-3.31 9.815-6.832 14.893-10.527l5.352 18.06 22.615.762.762-22.615-15.776-5.853c12.51-9.533 25.545-20.078 38.827-31.473l8.07 17.488 22.49-2.498-2.5-22.488-15.634-3.352c4.477-3.976 8.97-8.032 13.473-12.183 63.37-58.424 128.223-133.68 166.674-209.6-.408-.986-.81-1.97-1.227-2.956zm9.815 25.288c-23.644 43.21-54.687 85.363-88.528 124.104 10.784 14.773 21.07 29.505 30.692 43.85 21.597 32.21 39.898 62.39 53.326 86.656 6.17 11.15 11.17 20.653 15.084 28.812 9.33-31.65 20.007-87.328 15.814-154.055-2.504-39.857-10.188-83.775-26.39-129.367z"></path></svg>
               </div>
@@ -95,12 +86,9 @@ const Bio: React.FC = () => {
           </>
         }
       </animated.div>
-      {showContent && <animated.div style={{ ...logoStyle, width: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", height: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", minHeight: "100px", borderRadius: "100%", top: "0px", position: "absolute", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey" }}>
-        <Image src={"/profile.jpg"} height="300px" width="300px" alt="Image of Anthon" />
-        {/* <iframe src="https://giphy.com/embed/6LJEZhdIcbBIhCs5TI" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/6LJEZhdIcbBIhCs5TI">via GIPHY</a></p> */}
+      <animated.div style={{ ...logoStyle, width: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", height: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", minHeight: "100px", borderRadius: "100%", top: "0px", position: "absolute", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey" }}>
+        <img onLoad={() => { setShowImage(true); }} src={"/profile.jpg"} style={{ height: "180px", width: "180px", marginTop:"20px" }} alt="Image of Anthon" />
       </animated.div>
-      }
-
     </div >
   )
 }

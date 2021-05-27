@@ -44,6 +44,11 @@ const PageHeader = () => {
     from: { opacity: 0, transform: "translateX(0px)" }
   })
 
+  const onClickHeaderEventHandler = () => {
+    if (page.currentPage === "main") {
+      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
+    }
+  }
   const onHoverEventHandler = () => {
     if (page.currentPage === "main") {
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
@@ -82,7 +87,7 @@ const PageHeader = () => {
 
   return (
     <div onClick={(e) => e.stopPropagation()} style={styles}>
-      <div onMouseEnter={onHoverEventHandler} onMouseLeave={onHoverOutEventHandler} style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
+      <div onClick={onClickHeaderEventHandler} onMouseEnter={onHoverEventHandler} onMouseLeave={onHoverOutEventHandler} style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>
         {page.renderHeaderButtons &&
           <div style={{ display: "flex", justifyContent: "space-between", position: "absolute", top: "50px", width: "400px" }}>

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Head from 'next/head';
-import { ElementRef, useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
 import PageHeader from '../src/components/PageHeader';
@@ -65,10 +65,8 @@ export default function Home({ data: projects }: props) {
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
         <link rel="icon" href="/ball.png" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Trochut:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></link>
       </Head>
-
       <PageHeader />
       {page.showProjects && <FullProject />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}

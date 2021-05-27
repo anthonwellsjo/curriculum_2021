@@ -7,7 +7,7 @@ import { useViewport } from '../../hooks/useViewPort';
 
 const Social: React.FC = () => {
   const { width, height } = useViewport();
-  const [playClose] = useSound("/closepage.wav");
+  const [playClose] = useSound("/closepage.wav", {volume: 0.4});
   const [playClick] = useSound("/click.wav");
   const [playPop] = useSound("/pop.wav");
   const [page, setPage] = useContext(PageContext);
@@ -19,34 +19,34 @@ const Social: React.FC = () => {
       friction: 15,
       tension: 100
     },
-    delay: 300,
-    onStart: () => playPop({ playbackRate: 0.7 })
+    delay: 500,
+    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
   const style2 = useSpring({
     to: { transform: "scale(1)" },
     from: { transform: "scale(0)" },
-    delay: 500,
+    delay: 800,
     config: {
       mass: 1,
       friction: 15,
       tension: 100
     },
-    onStart: () => playPop({ playbackRate: 0.9 })
+    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
   const style3 = useSpring({
     to: { transform: "scale(1)" },
     from: { transform: "scale(0)" },
-    delay: 1200,
+    delay: 100,
     config: {
       mass: 1,
       friction: 15,
       tension: 100
     },
-    onStart: () => playPop({ playbackRate: 1.2 })
+    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
 
   const onClickEventHandler = (e) => {
-    playClose({ playbackRate: 1.8 });
+    playClose();
     e.stopPropagation();
     setTimeout(() => {
       setPage(prev => ({ ...prev, currentPage: "main", slowMo: false }));

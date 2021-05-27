@@ -48,6 +48,7 @@ const PageHeader = () => {
 
   const onClickHeaderEventHandler = () => {
     if (page.currentPage === "main") {
+      playOpen();
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
   }

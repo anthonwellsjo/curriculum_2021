@@ -9,7 +9,7 @@ import { useViewport } from '../../hooks/useViewPort';
 
 
 const Bio: React.FC = () => {
-  const [playClose] = useSound("/closepage.wav");
+  const [playClose] = useSound("/closepage.wav", { volume: 0.4 });
   const [showImage, setShowImage] = useState(false);
   const { width: viewWidth, height: viewHeight } = useViewport();
   const vwLimit = 565;
@@ -47,7 +47,7 @@ const Bio: React.FC = () => {
     delay: 600
   })
   const onClickEventHandler = (e) => {
-    playClose({ playbackRate: 1.8 });
+    playClose();
     e.stopPropagation();
     setClosing(true);
     setTimeout(() => {
@@ -87,7 +87,7 @@ const Bio: React.FC = () => {
         }
       </animated.div>
       <animated.div style={{ ...logoStyle, width: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", height: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", minHeight: "100px", borderRadius: "100%", top: "0px", position: "absolute", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey" }}>
-        <img onLoad={() => { setShowImage(true); }} src={"/profile.jpg"} style={{ height: "180px", width: "180px", marginTop:"20px" }} alt="Image of Anthon" />
+        <img onLoad={() => { setShowImage(true); }} src={"/profile.jpg"} style={{ height: "180px", width: "180px", marginTop: "20px" }} alt="Image of Anthon" />
       </animated.div>
     </div >
   )

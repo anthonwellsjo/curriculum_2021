@@ -71,8 +71,6 @@ export default function Home({ data: projects }: props) {
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
-
-
       <footer>
 
       </footer>

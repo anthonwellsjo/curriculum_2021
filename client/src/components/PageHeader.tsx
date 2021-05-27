@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { createRef, useContext, useEffect, useRef, useState } from 'react';
 import CSS from 'csstype';
 import { useSpring } from '@react-spring/core';
 import { animated } from 'react-spring';
@@ -22,7 +22,9 @@ const PageHeader = () => {
   const [playClose] = useSound("/closepage.wav");
   const [playOpen] = useSound("/click.wav");
   const [showHoverStuff, setShowHoverStuff] = useState(false);
+  const headerRef = useRef(null);
   const [page, setPage] = useContext(PageContext);
+  let closeTimer;
 
   const style = useSpring({
     to: { transform: page.showHeaderButtons ? "translateY(-100px)" : "translateY(0px)" },
@@ -50,6 +52,7 @@ const PageHeader = () => {
     }
   }
   const onHoverEventHandler = () => {
+    clearTimeout(closeTimer);
     if (page.currentPage === "main") {
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
@@ -57,9 +60,9 @@ const PageHeader = () => {
   const onHoverOutEventHandler = () => {
     if (page.currentPage === "main") {
       setPage(prev => ({ ...prev, showHeaderButtons: false }))
-      setTimeout(() => {
+      closeTimer = setTimeout(() => {
         setPage(prev => ({ ...prev, renderHeaderButtons: false }))
-      }, 400)
+      }, 300)
     }
   }
 
@@ -85,9 +88,45 @@ const PageHeader = () => {
     }
   }
 
+  let flag = true;
+  const mouseHoveringOnHeaderEventHandler = (e: MouseEvent) => {
+    if (flag) {
+      flag = false;
+      if (e.target === headerRef.current && page.currentPage === "main") {
+        clearTimeout(closeTimer);
+        if (page.currentPage === "main") {
+          setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
+        }
+      }
+      if (e.clientY > 300 && page.currentPage === "main") {
+        setPage(prev => ({ ...prev, showHeaderButtons: false }))
+        closeTimer = setTimeout(() => {
+          setPage(prev => ({ ...prev, renderHeaderButtons: false }))
+        }, 300)
+      }
+      setTimeout(() => {
+        console.log("flag true");
+        flag = true;
+      }, 300);
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
+    () => {
+      document.removeEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
+    }
+  }, [])
+
   return (
     <div onClick={(e) => e.stopPropagation()} style={styles}>
-      <div onClick={onClickHeaderEventHandler} onMouseOver={onHoverEventHandler} onMouseEnter={onHoverEventHandler} onMouseLeave={onHoverOutEventHandler} style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
+      <div
+        ref={headerRef}
+        onClick={onClickHeaderEventHandler}
+        // onMouseOver={onHoverEventHandler}
+        // onMouseEnter={onHoverEventHandler}
+        // onMouseLeave={onHoverOutEventHandler} 
+        style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>
         {page.renderHeaderButtons &&
           <div style={{ display: "flex", justifyContent: "space-between", position: "absolute", top: "50px", width: "400px" }}>

@@ -51,20 +51,6 @@ const PageHeader = () => {
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
   }
-  const onHoverEventHandler = () => {
-    clearTimeout(closeTimer);
-    if (page.currentPage === "main") {
-      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
-    }
-  }
-  const onHoverOutEventHandler = () => {
-    if (page.currentPage === "main") {
-      setPage(prev => ({ ...prev, showHeaderButtons: false }))
-      closeTimer = setTimeout(() => {
-        setPage(prev => ({ ...prev, renderHeaderButtons: false }))
-      }, 300)
-    }
-  }
 
   const onBioClickEventHandler = () => {
 
@@ -88,28 +74,25 @@ const PageHeader = () => {
     }
   }
 
-  let flag = true;
+
   const mouseHoveringOnHeaderEventHandler = (e: MouseEvent) => {
-    if (flag) {
-      flag = false;
-      if (e.target === headerRef.current && page.currentPage === "main") {
-        clearTimeout(closeTimer);
-        if (page.currentPage === "main") {
-          setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
-        }
-      }
-      if (e.clientY > 300 && page.currentPage === "main") {
-        setPage(prev => ({ ...prev, showHeaderButtons: false }))
-        closeTimer = setTimeout(() => {
-          setPage(prev => ({ ...prev, renderHeaderButtons: false }))
-        }, 300)
-      }
-      setTimeout(() => {
-        console.log("flag true");
-        flag = true;
-      }, 300);
+    if (e.clientY < 150 && page.currentPage === "main" && !page.showHeaderButtons) {
+      clearTimeout(unrenderTimer);
+      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
+    }
+    if (e.clientY > 160 && page.currentPage === "main" && page.showHeaderButtons) {
+      setPage(prev => ({ ...prev, showHeaderButtons: false }));
     }
   }
+
+  let unrenderTimer;
+  useEffect(() => {
+    if (!page.showHeaderButtons) {
+      unrenderTimer = setTimeout(() => {
+        setPage(prev => ({ ...prev, renderHeaderButtons: false }))
+      }, 300)
+    }
+  }, [page.showHearButtons])
 
   useEffect(() => {
     document.addEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
@@ -123,9 +106,6 @@ const PageHeader = () => {
       <div
         ref={headerRef}
         onClick={onClickHeaderEventHandler}
-        // onMouseOver={onHoverEventHandler}
-        // onMouseEnter={onHoverEventHandler}
-        // onMouseLeave={onHoverOutEventHandler} 
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>
         {page.renderHeaderButtons &&

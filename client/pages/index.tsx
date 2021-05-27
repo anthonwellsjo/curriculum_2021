@@ -65,7 +65,6 @@ export default function Home({ data: projects }: props) {
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
         <link rel="icon" href="/ball.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Trochut:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"></link>
       </Head>
       <PageHeader />
       {page.showProjects && <FullProject />}

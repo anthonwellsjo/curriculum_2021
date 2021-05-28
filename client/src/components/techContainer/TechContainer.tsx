@@ -3,10 +3,11 @@ import { useTransition, animated } from 'react-spring'
 import useSound from 'use-sound';
 
 interface props {
-  tech: tech[]
+  tech: tech[],
+  onFinishedAnimation: () => void
 }
 
-const TechContainer = ({ tech }: props) => {
+const TechContainer = ({ tech, onFinishedAnimation }: props) => {
   const [items, setItems] = useState<tech[]>([]);
   const [playClick] = useSound("/pop.wav");
   let x = 0;
@@ -21,6 +22,9 @@ const TechContainer = ({ tech }: props) => {
       } else {
         clearInterval(interval);
       }
+      if (tech.length - 1 === x) {
+        onFinishedAnimation();
+      }
     }, 100);
 
     return () => { clearInterval(interval) };
@@ -30,7 +34,7 @@ const TechContainer = ({ tech }: props) => {
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
-    config: { mass: 1, tension:200 },
+    config: { mass: 1, tension: 200 },
     onStart: () => { playClick({ playbackRate: sound }); setSound(sound + 0.2) }
   })
 
@@ -38,12 +42,14 @@ const TechContainer = ({ tech }: props) => {
   return (
     <div style={{
       display: "grid",
+      height: `${Math.ceil(tech.length / 5) * 60}px`,
       maxWidth: "80%",
       minWidth: "300px",
       width: "400px",
       gridColumnGap: "10px",
       gridRowGap: "10px",
       gridTemplateColumns: "repeat(5, 1fr)",
+      gridTemplateRows: `repeat(${Math.ceil(tech.length / 5)}, 1fr)`,
       padding: "10px",
     }}>
       { transitions(({ opacity, transform }, items) => (

@@ -46,15 +46,8 @@ const PageHeader = () => {
     from: { opacity: 0, transform: "translateX(0px)" }
   })
 
-  const onClickHeaderEventHandler = () => {
-    if (page.currentPage === "main") {
-      playOpen();
-      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
-    }
-  }
-
-  const onBioClickEventHandler = () => {
-
+  const onBioClickEventHandler = (e) => {
+    e.stopPropagation();
     if (page.currentPage === "bio") {
       playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
@@ -64,7 +57,8 @@ const PageHeader = () => {
       setPage(prev => ({ ...prev, currentPage: "bio" }))
     }
   }
-  const onSocialClickEventHandler = () => {
+  const onSocialClickEventHandler = (e) => {
+    e.stopPropagation();
     if (page.currentPage === "social") {
       playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
@@ -74,7 +68,8 @@ const PageHeader = () => {
       setPage(prev => ({ ...prev, currentPage: "social" }))
     }
   }
-  const onWorkClickEventHandler = () => {
+  const onWorkClickEventHandler = (e) => {
+    e.stopPropagation();
     if (page.currentPage === "work") {
       playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
@@ -85,7 +80,13 @@ const PageHeader = () => {
     }
   }
 
-
+  const onClickHeaderEventHandler = () => {
+    if (page.currentPage === "main") {
+      clearInterval(unrenderTimer);
+      playOpen();
+      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
+    }
+  }
 
   const mouseHoveringOnHeaderEventHandler = (e: MouseEvent) => {
     if (e.clientY < 150 && !page.showHeaderButtons) {

@@ -38,7 +38,7 @@ export default function Work({ tech }: props) {
   return (
     <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none", marginTop: "100px" }}>
       <animated.h1 style={firstStyle}>Skills</animated.h1>
-      <TechContainer tech={tech.allTech}/>
+      <TechContainer tech={tech.allTech} />
       <animated.h1 style={headStyle}>Currently student at:</animated.h1>
       <animated.div style={{ ...logoStyle, backgroundColor: "black", padding: "10px" }}>
         <img style={{ width: "200px" }} src="/varnamo.svg"></img>

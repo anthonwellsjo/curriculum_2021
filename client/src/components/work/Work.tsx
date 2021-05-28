@@ -14,6 +14,11 @@ interface props {
 export default function Work({ tech }: props) {
   const [playClose] = useSound("/closepage.wav", { volume: 0.4 });
   const [techFin, setTechFin] = useState(false);
+  const lineStyle = useSpring({
+    to: { width: "60%", opacity: 1 },
+    from: { width: "0%", opacity: 0 },
+    delay: 100
+  })
   const firstStyle = useSpring({
     to: { transform: "translateY(0px)", opacity: 1 },
     from: { transform: "translateY(100px)", opacity: 0 },
@@ -25,7 +30,7 @@ export default function Work({ tech }: props) {
     delay: 300
   })
   const logoStyle = useSpring({
-    to: { transform: techFin ? "translateY(0px)" : "translateY(100px)", opacity: techFin ? 1 : 0},
+    to: { transform: techFin ? "translateY(0px)" : "translateY(100px)", opacity: techFin ? 1 : 0 },
     from: { transform: "translateY(100px)", opacity: 0 },
     delay: 500
   })
@@ -36,13 +41,20 @@ export default function Work({ tech }: props) {
     setPage(prev => ({ ...prev, currentPage: "main", slowMo: false }));
   }
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none", marginTop: "100px" }}>
+    <div className="noScrollBar" onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none", marginTop: "100px", overflowY: "scroll" }}>
+      <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <animated.div style={{ ...lineStyle, position: "fixed", top: "195px", height: "3px", backgroundColor: "black" }} />
+      </div>
       <animated.h1 style={firstStyle}>Skills</animated.h1>
       <TechContainer tech={tech.allTech} onFinishedAnimation={() => { setTechFin(true) }} />
       <animated.h1 style={{ ...headStyle, marginTop: "100px" }}>Currently student at:</animated.h1>
       <animated.div style={{ ...logoStyle, backgroundColor: "black", padding: "10px" }}>
         <img style={{ width: "200px" }} src="/varnamo.svg"></img>
       </animated.div>
+      <h1>jasjsajsadj</h1>
+      <h1>jasjsajsadj</h1>
+      <h1>jasjsajsadj</h1>
+      <h1>jasjsajsadj</h1>
     </div >
   )
 }

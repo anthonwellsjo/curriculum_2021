@@ -74,10 +74,21 @@ const PageHeader = () => {
       setPage(prev => ({ ...prev, currentPage: "social" }))
     }
   }
+  const onWorkClickEventHandler = () => {
+    if (page.currentPage === "work") {
+      playClose({ playbackRate: 1.8 });
+      setPage(prev => ({ ...prev, currentPage: "main" }))
+    }
+    if (page.currentPage !== "work") {
+      playOpen();
+      setPage(prev => ({ ...prev, currentPage: "work" }))
+    }
+  }
+
 
 
   const mouseHoveringOnHeaderEventHandler = (e: MouseEvent) => {
-    if (e.clientY < 150 && page.currentPage === "main" && !page.showHeaderButtons) {
+    if (e.clientY < 150 && !page.showHeaderButtons) {
       clearTimeout(unrenderTimer);
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
@@ -93,11 +104,11 @@ const PageHeader = () => {
         setPage(prev => ({ ...prev, renderHeaderButtons: false }))
       }, 300)
     }
-  }, [page.showHearButtons])
+  }, [page.showHeaderButtons])
 
   useEffect(() => {
     document.addEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
-    () => {
+    return () => {
       document.removeEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
     }
   }, [])
@@ -111,7 +122,7 @@ const PageHeader = () => {
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>
         {page.renderHeaderButtons &&
           <div style={{ display: "flex", justifyContent: "space-between", position: "absolute", top: "50px", width: "400px" }}>
-            <animated.div className="buttidybutt" style={{ ...styleLeft }}>
+            <animated.div onClick={onWorkClickEventHandler} className="buttidybutt" style={{ ...styleLeft }}>
               <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height=".8em" width=".8em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M17 7C17 5.34315 15.6569 4 14 4H10C8.34315 4 7 5.34315 7 7H6C4.34315 7 3 8.34315 3 10V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V10C21 8.34315 19.6569 7 18 7H17ZM14 6H10C9.44772 6 9 6.44772 9 7H15C15 6.44772 14.5523 6 14 6ZM6 9H18C18.5523 9 19 9.44772 19 10V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V10C5 9.44772 5.44772 9 6 9Z" fill="currentColor"></path></svg>
             </animated.div>
             <animated.div onClick={onBioClickEventHandler} className="buttidybutt" style={{ ...styleMiddle, marginTop: "100px" }}>

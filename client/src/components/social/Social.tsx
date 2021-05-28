@@ -1,5 +1,5 @@
 import { useSpring } from '@react-spring/core';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { animated } from 'react-spring';
 import useSound from 'use-sound';
 import { PageContext } from '../../contexts/pageContext';
@@ -11,7 +11,9 @@ const Social: React.FC = () => {
   const [playClick] = useSound("/click.wav");
   const [playPop] = useSound("/pop.wav");
   const [page, setPage] = useContext(PageContext);
+  const [closeIt, setCloseIt] = useState(false);
   const style1 = useSpring({
+    reverse: closeIt,
     to: { transform: "scale(1)" },
     from: { transform: "scale(0)" },
     config: {
@@ -23,6 +25,7 @@ const Social: React.FC = () => {
     onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
   const style2 = useSpring({
+    reverse: closeIt,
     to: { transform: "scale(1)" },
     from: { transform: "scale(0)" },
     delay: 800,
@@ -34,6 +37,7 @@ const Social: React.FC = () => {
     onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
   const style3 = useSpring({
+    reverse: closeIt,
     to: { transform: "scale(1)" },
     from: { transform: "scale(0)" },
     delay: 100,
@@ -45,13 +49,21 @@ const Social: React.FC = () => {
     onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
   })
 
+  let timeout;
   const onClickEventHandler = (e) => {
     playClose();
     e.stopPropagation();
-    setTimeout(() => {
+    setCloseIt(true);
+    timeout = setTimeout(() => {
       setPage(prev => ({ ...prev, currentPage: "main", slowMo: false }));
-    }, 300)
+    }, 1000)
   }
+
+  useEffect(() => {
+    return () => { clearTimeout(timeout); }
+  }, []);
+
+
   return (
     <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "absolute", display: "flex", justifyContent: "center", alignItems: "center", userSelect: "none", }}>
       <div onClick={(e) => { playClick(); e.stopPropagation(); }} style={{ display: "flex", flexDirection: width < 600 ? "column" : "row", alignItems: "center", width: "30%", minWidth: "250px", justifyContent: "space-between", marginTop: "-200px" }}>

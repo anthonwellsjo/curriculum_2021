@@ -10,14 +10,16 @@ import useSound from 'use-sound';
 import FullProject from '../src/components/fullProject/FullProject';
 import Bio from '../src/components/bio/Bio';
 import Social from '../src/components/social/Social';
+import Work from '../src/components/work/Work';
 
 
 
 interface props {
-  data: AllProjectData
+  projects: AllProjectData,
+  tech: allTechData
 }
 
-export default function Home({ data: projects }: props) {
+export default function Home({ projects, tech }: props) {
   const [page, setPage] = useContext(PageContext);
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
@@ -71,6 +73,7 @@ export default function Home({ data: projects }: props) {
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
+      {page.currentPage == "work" && <Work tech={tech}/>}
       <footer>
 
       </footer>
@@ -80,7 +83,7 @@ export default function Home({ data: projects }: props) {
 
 
 export async function getStaticProps(context) {
-  const { data } = await client.query({
+  const { data: projects } = await client.query({
     query: gql`
       query project{
         allProject {
@@ -95,7 +98,23 @@ export async function getStaticProps(context) {
     `,
   });
 
+  const { data: tech } = await client.query({
+    query: gql`
+      query tech{
+        allTech {
+          title
+          description
+          techlogo {
+            asset {
+              url
+            }   
+          }
+        }
+      }
+    `,
+  });
+
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { projects, tech }, // will be passed to the page component as props
   }
 }

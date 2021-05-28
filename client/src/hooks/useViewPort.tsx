@@ -16,8 +16,8 @@ const ViewportContext = createContext<IViewport>({
   height: 768
 })
 
-export const ViewportProvider: FC = ({ children }) => {
-  if (typeof window === 'undefined') return null;
+export const ViewportProvider = ({ children }) => {
+  if (typeof window === 'undefined') return children;
 
   const [width, setWidth] = useState(window.innerWidth)
   const [height, setHeight] = useState(window.innerHeight)

@@ -9,7 +9,7 @@ interface PageContextData {
   showProjects: boolean,
   currentProject: Project | null,
   showBalls: boolean,
-  currentPage: "bio" | "main" | "projects",
+  currentPage: "bio" | "main" | "work",
   showHeaderButtons: boolean,
   renderHeaderButtons: boolean
 }
@@ -59,3 +59,28 @@ interface ProjectPlus {
 interface AllProjectData {
   allProject: Project[];
 }
+
+
+
+
+interface TechLogoAsset {
+  __typename: string;
+  url: string;
+}
+
+interface Techlogo {
+  __typename: string;
+  asset: TechLogoAsset;
+}
+
+interface tech {
+  __typename: string;
+  title: string;
+  description: string;
+  techlogo: Techlogo;
+}
+
+interface allTechData {
+  allTech: tech[];
+}
+

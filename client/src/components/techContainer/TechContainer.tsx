@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTransition, animated } from 'react-spring'
+import useSound from 'use-sound';
 
 interface props {
   tech: tech[]
@@ -7,8 +8,9 @@ interface props {
 
 const TechContainer = ({ tech }: props) => {
   const [items, setItems] = useState<tech[]>([]);
-
+  const [playClick] = useSound("/pop.wav");
   let x = 0;
+  const [sound, setSound] = useState(0.5);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -28,20 +30,21 @@ const TechContainer = ({ tech }: props) => {
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
+    config: { mass: 1, tension:200 },
+    onStart: () => { playClick({ playbackRate: sound }); setSound(sound + 0.2) }
   })
 
 
   return (
     <div style={{
       display: "grid",
-      maxWidth:"80%",
-      minWidth:"300px",
+      maxWidth: "80%",
+      minWidth: "300px",
       width: "400px",
       gridColumnGap: "10px",
       gridRowGap: "10px",
       gridTemplateColumns: "repeat(5, 1fr)",
       padding: "10px",
-      // backgroundColor: "yellow"
     }}>
       { transitions(({ opacity, transform }, items) => (
         <animated.div

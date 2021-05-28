@@ -43,7 +43,7 @@ export default function Work({ tech }: props) {
   })
   const [page, setPage] = useContext(PageContext);
   const onClickEventHandler = (e) => {
-    playClose();
+    if (page.audio) playClose();
     e.stopPropagation();
     setPage(prev => ({ ...prev, currentPage: "main", slowMo: false }));
   }

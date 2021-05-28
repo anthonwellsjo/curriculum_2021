@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTransition, animated } from 'react-spring'
 import useSound from 'use-sound';
+import { PageContext } from '../../contexts/pageContext';
 
 interface props {
   tech: tech[],
@@ -9,6 +10,7 @@ interface props {
 
 const TechContainer = ({ tech, onFinishedAnimation }: props) => {
   const [items, setItems] = useState<tech[]>([]);
+  const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/pop.wav");
   let x = 0;
   const [sound, setSound] = useState(0.5);
@@ -35,7 +37,7 @@ const TechContainer = ({ tech, onFinishedAnimation }: props) => {
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
     config: { mass: 1, tension: 200 },
-    onStart: () => { playClick({ playbackRate: sound }); setSound(sound + 0.2) }
+    onStart: () => { if (page.audio) { playClick({ playbackRate: sound }); setSound(sound + 0.2) } }
   })
 
 

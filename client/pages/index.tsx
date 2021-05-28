@@ -11,6 +11,7 @@ import FullProject from '../src/components/fullProject/FullProject';
 import Bio from '../src/components/bio/Bio';
 import Social from '../src/components/social/Social';
 import Work from '../src/components/work/Work';
+import SoundBtn from '../src/components/soundBtn/SoundBtn';
 
 
 
@@ -56,7 +57,8 @@ export default function Home({ projects, tech }: props) {
 
   const onClickEventHandler = () => {
     setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
-    playClick();
+    if (page.audio) playClick();
+
   }
 
 
@@ -69,11 +71,12 @@ export default function Home({ projects, tech }: props) {
         <link rel="icon" href="/ball.png" />
       </Head>
       <PageHeader />
+      <SoundBtn />
       {page.showProjects && <FullProject />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
-      {page.currentPage == "work" && <Work tech={tech}/>}
+      {page.currentPage == "work" && <Work tech={tech} />}
       <footer>
 
       </footer>

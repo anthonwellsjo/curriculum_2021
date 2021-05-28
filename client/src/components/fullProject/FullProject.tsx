@@ -23,7 +23,7 @@ const FullProject = () => {
   })
   const onClickEventHandler = (event) => {
     event.stopPropagation();
-    playClick();
+    if (page.audio) playClick();
     setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false }));
   }
 

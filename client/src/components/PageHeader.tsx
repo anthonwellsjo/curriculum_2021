@@ -49,33 +49,33 @@ const PageHeader = () => {
   const onBioClickEventHandler = (e) => {
     e.stopPropagation();
     if (page.currentPage === "bio") {
-      playClose({ playbackRate: 1.8 });
+      if (page.audio) playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
     }
     if (page.currentPage !== "bio") {
-      playOpen();
+      if (page.audio) playOpen();
       setPage(prev => ({ ...prev, currentPage: "bio" }))
     }
   }
   const onSocialClickEventHandler = (e) => {
     e.stopPropagation();
     if (page.currentPage === "social") {
-      playClose({ playbackRate: 1.8 });
+      if (page.audio) playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
     }
     if (page.currentPage !== "social") {
-      playOpen();
+      if (page.audio) playOpen();
       setPage(prev => ({ ...prev, currentPage: "social" }))
     }
   }
   const onWorkClickEventHandler = (e) => {
     e.stopPropagation();
     if (page.currentPage === "work") {
-      playClose({ playbackRate: 1.8 });
+      if (page.audio) playClose({ playbackRate: 1.8 });
       setPage(prev => ({ ...prev, currentPage: "main" }))
     }
     if (page.currentPage !== "work") {
-      playOpen();
+      if (page.audio) playOpen();
       setPage(prev => ({ ...prev, currentPage: "work" }))
     }
   }
@@ -83,7 +83,7 @@ const PageHeader = () => {
   const onClickHeaderEventHandler = () => {
     if (page.currentPage === "main") {
       clearInterval(unrenderTimer);
-      playOpen();
+      if (page.audio) playOpen();
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
   }

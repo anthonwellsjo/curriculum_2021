@@ -25,7 +25,7 @@ const Knapp = ({ children }: props) => {
 
   const onClickEventHandler = () => {
     setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
-    playClick();
+    if (page.audio) playClick();
   }
 
   return (

@@ -21,10 +21,7 @@ const styles: CSS.Properties = {
 const PageHeader = () => {
   const [playClose] = useSound("/closepage.wav");
   const [playOpen] = useSound("/click.wav");
-  const [showHoverStuff, setShowHoverStuff] = useState(false);
-  const headerRef = useRef(null);
   const [page, setPage] = useContext(PageContext);
-  let closeTimer;
 
   const style = useSpring({
     to: { transform: page.showHeaderButtons ? "translateY(-100px)" : "translateY(0px)" },
@@ -117,7 +114,6 @@ const PageHeader = () => {
   return (
     <div onClick={(e) => e.stopPropagation()} style={styles}>
       <div
-        ref={headerRef}
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
         <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-30px" }}>Anthon Wellsjö</animated.h4>

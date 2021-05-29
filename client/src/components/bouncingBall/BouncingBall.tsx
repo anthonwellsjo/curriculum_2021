@@ -38,9 +38,9 @@ const BouncingBall = ({ project }: props) => {
     config: {
       mass: 1,
       friction: 20,
-      tension: page.slowMo || hovering ? 50 : 300,
+      tension: page.slowMo || hovering ? 100 : 300,
     },
-    delay: Math.floor(Math.random() * 4000),
+    delay: !page.slowMo ? Math.floor(Math.random() * 4000) : 0,
     onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })) },
   })
 

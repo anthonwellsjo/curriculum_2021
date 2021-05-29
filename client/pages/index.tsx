@@ -12,6 +12,7 @@ import Bio from '../src/components/bio/Bio';
 import Social from '../src/components/social/Social';
 import Work from '../src/components/work/Work';
 import SoundBtn from '../src/components/soundBtn/SoundBtn';
+import ProjectsButton from '../src/components/projectsButton/ProjectsButton';
 
 
 
@@ -97,6 +98,7 @@ export default function Home({ projects, tech }: props) {
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
+      {page.currentPage == "main" && <ProjectsButton />}
       <footer>
 
       </footer>

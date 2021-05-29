@@ -86,6 +86,8 @@ export default function Home({ projects, tech }: props) {
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="HandheldFriendly" content="true" />
         <link rel="icon" href="/ball.png" />
       </Head>
       <PageHeader />

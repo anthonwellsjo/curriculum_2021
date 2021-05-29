@@ -1,6 +1,6 @@
 
 import { useSpring } from '@react-spring/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { animated } from 'react-spring';
 import { PageContext } from '../../contexts/pageContext';
 import useGetRandomPosition from '../../hooks/useGetRandomPosition';
@@ -38,47 +38,51 @@ const BouncingBall = ({ project }: props) => {
     config: {
       mass: 1,
       friction: 20,
-      tension: page.slowMo || hovering ? 2 : 300,
+      tension: page.slowMo || hovering ? 50 : 300,
     },
     delay: Math.floor(Math.random() * 4000),
-      onRest: () => setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })),
+    onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })) },
   })
 
-const onMouseEnterEventHandler = () => {
-  setHovering(true);
-  setPage(prev => ({ ...prev, somethingHovering: true }));
-}
-const onMouseLeaveEventHandler = () => {
-  setHovering(false);
-  setPage(prev => ({ ...prev, somethingHovering: false }));
-}
+  const onMouseEnterEventHandler = () => {
+    setHovering(true);
+    setPage(prev => ({ ...prev, somethingHovering: true }));
+  }
+  const onMouseLeaveEventHandler = () => {
+    setHovering(false);
+    setPage(prev => ({ ...prev, somethingHovering: false }));
+  }
 
-const onClickEventHandler = (event) => {
-  event.stopPropagation();
-  setPage(prev => ({ ...prev, currentProject: project }));
-  setShowProject(true);
-}
+  const onClickEventHandler = (event) => {
+    event.stopPropagation();
+    setPage(prev => ({ ...prev, currentProject: project }));
+    setShowProject(true);
+  }
 
-return (
-  <animated.div style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
-    <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
-      <div>
-        <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
-          style={{
-            backgroundColor: page.slowMo || hovering ? project.projectColor : "black",
-            transform: page.slowMo || hovering ? "scale(7)" : "scale(1)",
-            cursor: "pointer"
-          }}
-          className={classes.ball} >
-          {showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
+  useEffect(() => {
+    if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } }))
+  }, [page.slowMo])
+
+  return (
+    <animated.div style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+        <div>
+          <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
+            style={{
+              backgroundColor: page.slowMo || hovering ? project.projectColor : "black",
+              transform: page.slowMo || hovering ? "scale(7)" : "scale(1)",
+              cursor: "pointer"
+            }}
+            className={classes.ball} >
+            {showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
+          </animated.div>
+        </div>
+        <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
+          <span >{project.title}</span>
         </animated.div>
       </div>
-      <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
-        <span >{project.title}</span>
-      </animated.div>
-    </div>
-  </animated.div>
-)
+    </animated.div>
+  )
 }
 
 

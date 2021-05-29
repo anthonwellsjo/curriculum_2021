@@ -58,10 +58,28 @@ export default function Home({ projects, tech }: props) {
   const onClickEventHandler = () => {
     setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
     if (page.audio) playClick();
-
+    organizeProjects();
   }
 
+  const organizeProjects = () => {
+    let projects: ProjectPlus[] = { ...page.projects };
+    const length = Object.keys(projects).length;
+    Object.keys(projects).forEach((k, i) => {
+      setPage(prev => ({
+        ...prev,
+        projects: {
+          ...prev.projects,
+          [`${k}`]: {
+            ...prev.projects[`${k}`],
+            left: "50%",
+            top: `${80 / length * i + 30}%`
+          }
+        }
+      }))
+    })
+    console.log("currently this many projects", Object.keys(projects).length);
 
+  }
 
   return (
     <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer" }}>

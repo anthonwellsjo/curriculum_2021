@@ -29,7 +29,7 @@ const Social: React.FC = () => {
     to: { opacity: 1 },
     from: { opacity: 0 },
     config: { mass: 1 },
-    delay: closeIt ? 300 : 2000
+    delay: closeIt ? 300 : 1000
   })
   const style2 = useSpring({
     reverse: closeIt,

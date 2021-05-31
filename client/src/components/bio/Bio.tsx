@@ -13,7 +13,7 @@ const Bio: React.FC = () => {
   const [playClose] = useSound("/closepage.wav", { volume: 0.4 });
   const [showImage, setShowImage] = useState(false);
   const { width: viewWidth, height: viewHeight } = useViewport();
-  const vwLimit = 565;
+  const vwLimit = 750;
   const styles: CSS.Properties = {
     position: "absolute",
     width: viewWidth > vwLimit ? "60vw" : "100%",
@@ -46,7 +46,7 @@ const Bio: React.FC = () => {
     to: { opacity: showContent ? 1 : 0 },
     from: { opacity: 0 },
     config: { mass: 1 },
-    delay: 2000
+    delay: 1000
   })
   const onClickEventHandler = (e) => {
     if (page.audio) playClose();

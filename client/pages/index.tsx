@@ -98,7 +98,7 @@ export default function Home({ projects, tech }: props) {
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
-      {page.currentPage == "main" && <ProjectsButton />}
+      {/* {page.currentPage == "main" && <ProjectsButton />} */}
       <footer>
 
       </footer>

@@ -90,7 +90,7 @@ const PageHeader = () => {
       clearTimeout(unrenderTimer);
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
-    if (e.clientY > 160 && page.currentPage === "main" && page.showHeaderButtons) {
+    if (e.clientY > 160 && page.currentPage == "main" && page.showHeaderButtons) {
       setPage(prev => ({ ...prev, showHeaderButtons: false }));
     }
   }

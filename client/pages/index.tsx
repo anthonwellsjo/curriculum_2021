@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Head from 'next/head';
-import { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
 import PageHeader from '../src/components/PageHeader';
@@ -8,11 +8,13 @@ import { PageContext } from '../src/contexts/pageContext';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
 import FullProject from '../src/components/fullProject/FullProject';
+import FullProjectMobile from '../src/components/fullProject/FullProjectMobile';
 import Bio from '../src/components/bio/Bio';
 import Social from '../src/components/social/Social';
 import Work from '../src/components/work/Work';
 import SoundBtn from '../src/components/soundBtn/SoundBtn';
 import ProjectsButton from '../src/components/projectsButton/ProjectsButton';
+import { useViewport } from '../src/hooks/useViewPort';
 
 
 
@@ -23,6 +25,7 @@ interface props {
 
 export default function Home({ projects, tech }: props) {
   const [page, setPage] = useContext(PageContext);
+  const { width, height } = useViewport();
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
   useEffect(() => {
@@ -93,12 +96,13 @@ export default function Home({ projects, tech }: props) {
       </Head>
       <PageHeader />
       <SoundBtn />
-      {page.showProjects && <FullProject />}
+      {page.showProjects && width > 500 && <FullProject />}
+      {page.showProjects && width <= 500 && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
-      {/* {page.currentPage == "main" && <ProjectsButton />} */}
+      {page.currentPage == "main" && <ProjectsButton />}
       <footer>
 
       </footer>
@@ -118,6 +122,13 @@ export async function getStaticProps(context) {
           descriptionRaw
           slug{current}
           deployUrl
+          gifLinkDesktop
+          gifLinkMobile
+          tech {
+            title
+            description
+            techlogo{asset{url}}
+          }
         }
       }
     `,

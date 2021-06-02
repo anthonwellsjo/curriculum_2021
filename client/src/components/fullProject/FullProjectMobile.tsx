@@ -3,10 +3,9 @@ import { animated, useSpring } from 'react-spring';
 import { PageContext } from '../../contexts/pageContext';
 import useSound from 'use-sound';
 import { useViewport } from '../../hooks/useViewPort';
-import TechContainer from '../techContainer/TechContainer';
 
 
-const FullProject = () => {
+const FullProjectMobile = () => {
   const { width, height } = useViewport();
   const [playClick] = useSound("/click.wav");
   const [page, setPage] = useContext(PageContext);
@@ -14,11 +13,6 @@ const FullProject = () => {
   const style = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 }
-  })
-  const deskGifStyle = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
-    delay: 800
   })
   const titleStyle = useSpring({
     to: { transform: "translateY(0px)", opacity: 1 },
@@ -29,6 +23,11 @@ const FullProject = () => {
     to: { transform: "translateY(0px)", opacity: 1 },
     from: { transform: "translateY(100px)", opacity: 0 },
     delay: 500
+  })
+  const deskGifStyle = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    delay: 800
   })
   const onClickEventHandler = (event) => {
     event.stopPropagation();
@@ -43,15 +42,9 @@ const FullProject = () => {
       <animated.div style={{ ...titleStyle, textAlign: "center" }}>
         <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>
       </animated.div>
-      <div style={{position:"absolute", left: "30px", top:"30px"}}>
-        <TechContainer itemsPerRow={1} onFinishedAnimation={() => { return }} tech={currentProject.tech} />
-      </div>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center", paddingTop:"40px" }}>
-        <animated.div style={{ ...deskGifStyle, display: "flex", justifyContent: "space-around", alignItems: "center", paddingTop: "20px", width: "80%" }}>
-          <iframe src={currentProject.gifLinkDesktop} style={{ userSelect: "none" }} width="480" height="288" frameBorder="0" ></iframe>
-          <iframe src={currentProject.gifLinkMobile} style={{ userSelect: "none" }} width="268" height="480" frameBorder="0" ></iframe>
-        </animated.div >
-      </div>
+      <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+        <iframe src={currentProject.gifLinkDesktop} style={{ userSelect: "none" }} width="480" height="288" frameBorder="0" ></iframe>
+      </animated.div >
       <animated.div style={{ ...descStyle, textAlign: "justify" }}>
         {currentProject.descriptionRaw.map((b: BlockText) => {
           // console.log(b.children[0]._type, b.children[0].text);
@@ -59,12 +52,11 @@ const FullProject = () => {
           // return React.createElement("h1",null, "apa");
         })}
       </animated.div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+        <iframe src={currentProject.gifLinkMobile} style={{ userSelect: "none" }} width="268" height="480" frameBorder="0" ></iframe>
+      </animated.div >
     </animated.div >
   )
 }
 
-export default FullProject;
+export default FullProjectMobile;

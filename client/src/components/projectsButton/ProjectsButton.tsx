@@ -6,14 +6,14 @@ const ProjectsButton: React.FC = () => {
   const { width, height } = useViewport();
   const [clicked, setClicked] = useState(false);
   const style = useSpring({
-    from: { transform: "scale(0)" },
-    to: { transform: "scale(1)" },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
     config: {
       mass: 1,
-      tension: 300,
-      friction: 30
+      tension: 500,
+      friction: 40
     },
-    delay: 2000
+    delay: 1000
   }
   )
   const clickEventHandler = (e) => {
@@ -21,8 +21,8 @@ const ProjectsButton: React.FC = () => {
   }
   if (clicked) return null;
   return (
-    <div onClick={clickEventHandler} style={{ width: "100vw", height: `${height - 100}px`, position: "absolute", display: "flex", justifyContent: "center", alignItems: "center", userSelect: "none", top: "100px", backdropFilter: "blur(2px)" }}>
-      <animated.h1 style={{ ...style, fontFamily: "Trochut, cursive", fontSize: "1em", textTransform: "uppercase", marginTop: "-100px", color: "grey" }}>Click To See Projects</animated.h1>
+    <div onClick={clickEventHandler} style={{ width: "100vw", height: `${height - 100}px`, position: "absolute", display: "flex", alignItems: "center", justifyContent: "center",  userSelect: "none", top: "100px", backdropFilter: "blur(1px)" }}>
+      <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: width > 588 ? "10em" : "5em", textTransform: "lowercase", marginTop: "-100px", color: "lightgrey" }}>Projects</animated.h1>
     </div>
   )
 }

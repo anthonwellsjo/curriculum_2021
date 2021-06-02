@@ -53,7 +53,7 @@ export default function Work({ tech }: props) {
         <animated.div style={{ ...lineStyle, position: "fixed", top: "158px", height: "2px", backgroundColor: "black" }} />
       </div>
       <animated.h1 style={firstStyle}>Skills</animated.h1>
-      <TechContainer tech={tech.allTech} onFinishedAnimation={() => { setTechFin(true) }} />
+      <TechContainer itemsPerRow={5} tech={tech.allTech} onFinishedAnimation={() => { setTechFin(true) }} />
       <animated.h1 style={{ ...headStyle, marginTop: "120px" }}>Currently at</animated.h1>
       <animated.div style={{ ...logoStyle, padding: "10px" }}>
         <img style={{ width: "250px", fill: "black", opacity: .8 }} src="/varnamo.svg"></img>

@@ -43,6 +43,9 @@ interface Project {
   descriptionRaw: BlockText[];
   slug: Slug;
   deployUrl?: any;
+  gifLinkDesktop: string;
+  gifLinkMobile: string;
+  tech: Tech[];
 }
 
 interface ProjectPlus {
@@ -53,6 +56,9 @@ interface ProjectPlus {
   descriptionRaw: BlockText[];
   slug: Slug;
   deployUrl?: any;
+  gifLinkDesktop: string;
+  gifLinkMobile: string;
+  tech: Tech[];
   left: string;
   top: string;
 }

@@ -5,10 +5,11 @@ import { PageContext } from '../../contexts/pageContext';
 
 interface props {
   tech: tech[],
-  onFinishedAnimation: () => void
+  onFinishedAnimation: () => void,
+  itemsPerRow: number
 }
 
-const TechContainer = ({ tech, onFinishedAnimation }: props) => {
+const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
   const [items, setItems] = useState<tech[]>([]);
   const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/pop.wav");
@@ -44,14 +45,14 @@ const TechContainer = ({ tech, onFinishedAnimation }: props) => {
   return (
     <div style={{
       display: "grid",
-      height: `${Math.ceil(tech.length / 5) * 60}px`,
+      height: `${Math.ceil(tech.length / itemsPerRow) * 60}px`,
       maxWidth: "80%",
-      minWidth: "300px",
-      width: "400px",
+      
+      width: "auto",
       gridColumnGap: "10px",
       gridRowGap: "10px",
-      gridTemplateColumns: "repeat(5, 1fr)",
-      gridTemplateRows: `repeat(${Math.ceil(tech.length / 5)}, 1fr)`,
+      gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
+      gridTemplateRows: `repeat(${Math.ceil(tech.length / itemsPerRow)}, 1fr)`,
       padding: "10px",
     }}>
       { transitions(({ opacity, transform }, items) => (

@@ -26,9 +26,14 @@ export default {
       },
     },
     {
-      name: 'video',
-      title: 'Video',
-      type: 'file',
+      name: 'gifLinkDesktop',
+      title: 'Gif Link Desktop',
+      type: 'url',
+    },
+    {
+      name: 'gifLinkMobile',
+      title: 'Gif Link Mobile',
+      type: 'url',
     },
     {
       name: 'projectColor',

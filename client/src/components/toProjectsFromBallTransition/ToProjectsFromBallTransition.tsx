@@ -17,7 +17,7 @@ const ToProjectsFromBallTransition = ({ color }: props) => {
     to: [{ transform: "scale(100)" },],
     from: { transform: "scale(1)" },
     config: {
-      mass: 5
+      mass: 50
     }
   })
 

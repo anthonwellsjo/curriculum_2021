@@ -47,7 +47,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
       display: "grid",
       height: `${Math.ceil(tech.length / itemsPerRow) * 60}px`,
       maxWidth: "80%",
-      
+
       width: "auto",
       gridColumnGap: "10px",
       gridRowGap: "10px",

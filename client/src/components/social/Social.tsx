@@ -22,7 +22,7 @@ const Social: React.FC = () => {
       tension: 100
     },
     delay: 500,
-    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
+    onStart: () => { page.audio ? playPop({ playbackRate: (Math.random() + 0.5) }) : null }
   })
   const hobbyStyle = useSpring({
     reverse: closeIt,
@@ -41,7 +41,7 @@ const Social: React.FC = () => {
       friction: 15,
       tension: 100
     },
-    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
+    onStart: () => { page.audio ? playPop({ playbackRate: (Math.random() + 0.5) }) : null }
   })
   const style3 = useSpring({
     reverse: closeIt,
@@ -53,12 +53,12 @@ const Social: React.FC = () => {
       friction: 15,
       tension: 100
     },
-    onStart: () => playPop({ playbackRate: (Math.random() + 0.5) })
+    onStart: () => { page.audio ? playPop({ playbackRate: (Math.random() + 0.5) }) : null }
   })
 
   let timeout;
   const onClickEventHandler = (e) => {
-    playClose();
+    if (page.audio) playClose();
     e.stopPropagation();
     setCloseIt(true);
     timeout = setTimeout(() => {

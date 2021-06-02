@@ -79,28 +79,35 @@ const PageHeader = () => {
 
   const onClickHeaderEventHandler = () => {
     if (page.currentPage === "main") {
-      clearInterval(unrenderTimer);
       if (page.audio) playOpen();
       setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
     }
   }
 
+  const [flag, setFlag] = useState(true);
+  let repeat;
+  let unrenderTimeout;
+
   const mouseHoveringOnHeaderEventHandler = (e: MouseEvent) => {
-    if (e.clientY < 150 && !page.showHeaderButtons) {
-      clearTimeout(unrenderTimer);
-      setPage(prev => ({ ...prev, showHeaderButtons: true, renderHeaderButtons: true }))
-    }
-    if (e.clientY > 160 && page.currentPage == "main" && page.showHeaderButtons) {
-      setPage(prev => ({ ...prev, showHeaderButtons: false }));
-    }
+
+    clearInterval(repeat);
+    clearTimeout(unrenderTimeout);
+
+    repeat = setTimeout(() => {
+      if (e.clientY < 160) {
+        setPage(prev => ({ ...prev, renderHeaderButtons: true, showHeaderButtons: true }));
+      }
+      if (e.clientY > 160) {
+        setPage(prev => ({ ...prev, showHeaderButtons: false }));
+      }
+    }, 10)
   }
 
-  let unrenderTimer;
   useEffect(() => {
     if (!page.showHeaderButtons) {
-      unrenderTimer = setTimeout(() => {
+      unrenderTimeout = setTimeout(() => {
         setPage(prev => ({ ...prev, renderHeaderButtons: false }))
-      }, 300)
+      }, 500)
     }
   }, [page.showHeaderButtons])
 
@@ -108,6 +115,7 @@ const PageHeader = () => {
     document.addEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
     return () => {
       document.removeEventListener("mousemove", mouseHoveringOnHeaderEventHandler);
+      clearInterval(repeat);
     }
   }, [])
 

@@ -26,6 +26,11 @@ const FullProjectMobile = () => {
     from: { opacity: 0 },
     delay: 300
   })
+  const desktopStyle = useSpring({
+    to: { opacity: techAnimDone ? 1 : 0 },
+    from: { opacity: 0 },
+    delay: 100
+  })
   const deskGifStyle = useSpring({
     to: { opacity: techAnimDone ? 1 : 0 },
     from: { opacity: 0 },
@@ -83,8 +88,11 @@ const FullProjectMobile = () => {
           </div>
         </div>
       }
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "80px", height: "288px" }}>
-        <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+      <animated.div style={{ ...desktopStyle, marginTop: "50px" }}>
+        <h2 style={{ textAlign: "center" }}>Desktop</h2>
+      </animated.div>
+      <div style={{ display: "flex", justifyContent: "center",  marginBottom: "80px", height: "288px" }}>
+        <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center" }}>
           <iframe src={currentProject.gifLinkDesktop} style={{ position: "absolute" }} width="480" height="288" frameBorder="0" ></iframe>
           <div style={{ width: "480px", height: "288px", position: "absolute", outline: "solid 5px black" }} />
         </animated.div >
@@ -97,8 +105,11 @@ const FullProjectMobile = () => {
 
         })}
       </animated.div>
+      <animated.div style={{ ...desktopStyle, marginTop: "50px" }}>
+        <h2 style={{ textAlign: "center" }}>Mobile</h2>
+      </animated.div>
       <div style={{ display: "flex", justifyContent: "center", }}>
-        <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "50px", marginBottom: "80px", display: "flex", justifyContent: "center" }}>
+        <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "0px", marginBottom: "80px", display: "flex", justifyContent: "center" }}>
           <iframe src={currentProject.gifLinkMobile} style={{ position: "absolute" }} width="268" height="480" frameBorder="0" ></iframe>
           <div style={{ width: "268px", height: "480px", position: "absolute", outline: "solid 5px black" }} />
         </animated.div>

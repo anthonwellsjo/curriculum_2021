@@ -20,7 +20,7 @@ const ProjectsButton: React.FC = () => {
 
 
   return (
-    <div style={{ position: "absolute", top: "100px", left: "8px", right: 0, bottom: "3px", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none" }}>
+    <div style={{ position: "fixed", top: "100px", left: "8px", right: 0, bottom: "3px", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none" }}>
       <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: `2.5em`, textTransform: "lowercase", marginTop: "-100px" }}>Proiects</animated.h1>
       <div style={{ position: "absolute", width: "10px", height: "10px", marginBottom: "145px", marginRight: "8px", backgroundColor: "white", zIndex: 1 }} />
     </div>

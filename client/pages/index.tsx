@@ -28,11 +28,14 @@ export default function Home({ projects, tech }: props) {
   const { width, height } = useViewport();
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
+
   useEffect(() => {
-    projects.allProject.forEach((p: Project) => {
-      setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, ...useGetRandomPosition() } } }))
-    })
-  }, [])
+    if (page.showBalls && !page.slowMo) {
+      projects.allProject.forEach((p: Project) => {
+        setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: page.bounceBalls ? { ...p, ...useGetRandomPosition() } : { ...p, left: "50%", top: "50%" } } }))
+      })
+    }
+  }, [page.showBalls, page.slowMo])
 
   useEffect(() => {
     if (page.currentProject && page.showBalls) {
@@ -96,7 +99,7 @@ export default function Home({ projects, tech }: props) {
       </Head>
       <PageHeader />
       <SoundBtn />
-      {/* {page.currentPage == "main" && <ProjectsButton />} */}
+      {page.currentPage == "main" && <ProjectsButton />}
       {page.showProjects && width > 800 && <FullProject />}
       {page.showProjects && width <= 800 && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}

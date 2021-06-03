@@ -8,7 +8,7 @@ const BouncingBalls: React.FC = () => {
   if (page.projects == null) { return null };
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position:"absolute", zIndex:1 }}>
       {page.splashASprut && !page.slowMo && <SplashingSpruts />}
       {Object.keys(page.projects).map((p) => {
         const project: Project = page.projects[p] as Project;

@@ -17,7 +17,8 @@ const PageProvider: React.FC = ({ children }) => {
     currentPage: "main",
     showHeaderButtons: false,
     renderHeaderButtons: false,
-    audio: true
+    audio: true,
+    bounceBalls: false
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

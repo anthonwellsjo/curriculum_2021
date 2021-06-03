@@ -18,7 +18,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      console.log("interval");
       if (tech[x] !== undefined) {
         setItems(prev => ([...prev, tech[x]]));
         x++;
@@ -30,7 +29,9 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
       }
     }, 100);
 
-    return () => { clearInterval(interval) };
+    return () => { 
+      clearInterval(interval) 
+    };
   }, [])
 
   const transitions = useTransition(items, {

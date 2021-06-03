@@ -12,7 +12,8 @@ interface PageContextData {
   currentPage: "bio" | "main" | "work",
   showHeaderButtons: boolean,
   renderHeaderButtons: boolean,
-  audio: boolean
+  audio: boolean,
+  bounceBalls: boolean
 }
 
 interface BlockTextChild {

@@ -86,7 +86,7 @@ const FullProjectMobile = () => {
       <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", marginBottom: "80px", height: "288px" }}>
         <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", paddingTop: "20px" }}>
           <iframe src={currentProject.gifLinkDesktop} style={{ position: "absolute" }} width="480" height="288" frameBorder="0" ></iframe>
-          <div style={{ width: "480px", height: "288px", position: "absolute", outline: "solid 10px black" }} />
+          <div style={{ width: "480px", height: "288px", position: "absolute", outline: "solid 5px black" }} />
         </animated.div >
       </div>
       <animated.div style={{ ...descStyle, textAlign: "justify" }}>
@@ -100,7 +100,7 @@ const FullProjectMobile = () => {
       <div style={{ display: "flex", justifyContent: "center", }}>
         <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "50px", marginBottom: "80px", display: "flex", justifyContent: "center" }}>
           <iframe src={currentProject.gifLinkMobile} style={{ position: "absolute" }} width="268" height="480" frameBorder="0" ></iframe>
-          <div style={{ width: "268px", height: "480px", position: "absolute", outline: "solid 10px black" }} />
+          <div style={{ width: "268px", height: "480px", position: "absolute", outline: "solid 5px black" }} />
         </animated.div>
       </div>
       {currentProject.deployUrl ?

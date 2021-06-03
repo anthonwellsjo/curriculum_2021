@@ -89,7 +89,7 @@ export default function Home({ projects, tech }: props) {
   }
 
   return (
-    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer" }}>
+    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY:"hidden" }}>
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />

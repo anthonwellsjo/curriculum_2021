@@ -54,7 +54,7 @@ const FullProject = () => {
         right: 0,
         bottom: 0,
         backgroundColor: "white",
-        zIndex: 1,
+        zIndex: 3,
         userSelect: "none",
         width: "100%",
         display: "flex",

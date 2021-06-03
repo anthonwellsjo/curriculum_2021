@@ -68,7 +68,7 @@ const FullProjectMobile = () => {
         right: 0,
         bottom: 0,
         backgroundColor: page.currentProject.projectColor,
-        zIndex: 1,
+        zIndex: 3,
         userSelect: "none",
         paddingLeft: "10%",
         paddingRight: "10%",

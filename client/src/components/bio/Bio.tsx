@@ -65,7 +65,7 @@ const Bio: React.FC = () => {
   }, []);
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100%", height: `${viewHeight - 100}px`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none" }}>
+    <div onClick={onClickEventHandler} style={{ width: "100%", height: `${viewHeight - 100}px`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", overflowY:"hidden" }}>
       <animated.div className="noScrollBar" style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", overflowY: "scroll" }}>
         {showContent &&
           <>

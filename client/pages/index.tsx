@@ -96,13 +96,13 @@ export default function Home({ projects, tech }: props) {
       </Head>
       <PageHeader />
       <SoundBtn />
+      {page.currentPage == "main" && <ProjectsButton />}
       {page.showProjects && width > 800 && <FullProject />}
       {page.showProjects && width <= 800 && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
-      {page.currentPage == "main" && <ProjectsButton />}
       <footer>
 
       </footer>

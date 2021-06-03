@@ -21,8 +21,8 @@ const ProjectsButton: React.FC = () => {
   }
   if (clicked) return null;
   return (
-    <div onClick={clickEventHandler} style={{ width: "100vw", height: `${height - 100}px`, position: "absolute", display: "flex", alignItems: "center", justifyContent: "center",  userSelect: "none", top: "100px", backdropFilter: "blur(1px)" }}>
-      <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: width > 588 ? "10em" : "5em", textTransform: "lowercase", marginTop: "-100px", color: "lightgrey" }}>Projects</animated.h1>
+    <div onClick={clickEventHandler} style={{ width: "100vw", height: `${height - 100}px`, position: "absolute", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", top: "100px" }}>
+      <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: `${Math.floor(width / 5)}px `, textTransform: "lowercase", marginTop: "-100px", color: "lightgrey" }}>Projects</animated.h1>
     </div>
   )
 }

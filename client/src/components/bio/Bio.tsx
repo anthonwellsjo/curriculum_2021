@@ -69,7 +69,7 @@ const Bio: React.FC = () => {
       <animated.div className="noScrollBar" style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", overflowY: "scroll" }}>
         {showContent &&
           <>
-            <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", fontFamily: "Roboto", marginTop: "50px" }}>
+            <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", marginTop: "50px" }}>
               <h1 style={{ fontFamily: "Trochut, cursive", fontSize: "2em", marginBottom: "0" }}>Hej,</h1>
               <p>my name is Anthon and I'm a swedish <strong>full stack web developer.</strong> Nowadays I live in Perugia, Italy with my wife and three kids.</p>
               <p><strong>I speak four languages </strong> fluently (swedish, french, italian and english) and other than passionately developing the web, I love garden work, kite surfing and playing the guitar.</p>

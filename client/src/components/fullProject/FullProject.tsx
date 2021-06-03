@@ -45,6 +45,7 @@ const FullProject = () => {
 
   return (
     <animated.div
+      onClick={e => e.stopPropagation()}
       style={{
         ...style,
         position: "absolute",
@@ -108,7 +109,7 @@ const FullProject = () => {
             {currentProject.descriptionRaw.map((b: BlockText) => {
               // console.log(b.children[0]._type, b.children[0].text);
               if (b.style == "h2") return React.createElement(b.style, { key: b._key, style: { textAlign: "center" } }, b.children[0].text);
-              return React.createElement(b.style, { key: b._key }, b.children[0].text);
+              if (b.style == "normal") return React.createElement("p", { key: b._key }, b.children[0].text);
               // return React.createElement("h1",null, "apa");
             })}
           </animated.div>

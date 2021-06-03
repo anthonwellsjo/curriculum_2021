@@ -14,7 +14,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
   const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/pop.wav");
   let x = 0;
-  const [sound, setSound] = useState(0.5);
+  const [sound, setSound] = useState(0.1);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -38,7 +38,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
     config: { mass: 1, tension: 200 },
-    onStart: () => { if (page.audio) { playClick({ playbackRate: sound }); setSound(sound + 0.2) } }
+    onStart: () => { if (page.audio) { playClick({ playbackRate: sound }); setSound(sound + (3 / tech.length)) } }
   })
 
 

@@ -47,7 +47,23 @@ const FullProjectMobile = () => {
   }
 
   return (
-    <animated.div className="noScrollBar" onClick={onClickEventHandler} style={{ ...style, position: "absolute", left: 0, top: 0, right: 0, bottom: 0, backgroundColor: page.currentProject.projectColor, zIndex: 1, userSelect: "none", paddingLeft: "10%", paddingRight: "10%", overflowY: "scroll" }}>
+    <animated.div className="noScrollBar"
+      onClick={onClickEventHandler}
+      style={{
+        ...style,
+        position: "absolute",
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: page.currentProject.projectColor,
+        zIndex: 1,
+        userSelect: "none",
+        paddingLeft: "10%",
+        paddingRight: "10%",
+        overflowY: "scroll",
+        overflowX: "hidden"
+      }}>
       <animated.div style={{ ...titleStyle, textAlign: "center" }}>
         <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>
       </animated.div>

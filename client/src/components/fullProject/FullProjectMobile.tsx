@@ -88,13 +88,16 @@ const FullProjectMobile = () => {
           </div>
         </div>
       }
-      <animated.div style={{ ...desktopStyle, marginTop: "50px" }}>
+      <animated.div style={{ ...desktopStyle, marginTop: "80px" }}>
         <h2 style={{ textAlign: "center" }}>Desktop</h2>
       </animated.div>
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "80px", height: "288px" }}>
-        <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center" }}>
-          <iframe src={currentProject.gifLinkDesktop} style={{ position: "absolute" }} width="480" height="288" frameBorder="0" ></iframe>
-          <div style={{ width: "480px", height: "288px", position: "absolute", outline: "solid 5px black" }} />
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: "30px" }}>
+        <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", position: "relative" }}>
+          <video width={width} height="auto" autoPlay loop>
+            <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
+          </video>
+          <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "8%", width: "100%" }} />
+          <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: "-5px", height: "9%", width: "100%" }} />
         </animated.div >
       </div>
       <animated.div style={{ ...descStyle, textAlign: "justify" }}>
@@ -105,13 +108,18 @@ const FullProjectMobile = () => {
 
         })}
       </animated.div>
-      <animated.div style={{ ...desktopStyle, marginTop: "50px" }}>
+      <animated.div style={{ ...desktopStyle, marginTop: "50px", position:"relative", zIndex:1 }}>
         <h2 style={{ textAlign: "center" }}>Mobile</h2>
       </animated.div>
       <div style={{ display: "flex", justifyContent: "center", }}>
-        <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "0px", marginBottom: "80px", display: "flex", justifyContent: "center" }}>
-          <iframe src={currentProject.gifLinkMobile} style={{ position: "absolute" }} width="268" height="480" frameBorder="0" ></iframe>
-          <div style={{ width: "268px", height: "480px", position: "absolute", outline: "solid 5px black" }} />
+        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop:"-80px", display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "80%", maxWidth: "300px" }}>
+            <video width={"100%"} height="auto" autoPlay loop>
+              <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
+            </video>
+            <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "100%" }} />
+            <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "100%" }} />
+          </div>
         </animated.div>
       </div>
       {currentProject.deployUrl ?

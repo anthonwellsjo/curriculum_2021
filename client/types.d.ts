@@ -47,6 +47,16 @@ interface Project {
   gifLinkDesktop: string;
   gifLinkMobile: string;
   tech: Tech[];
+  videoDesktop: {
+    asset: {
+      url: string
+    }
+  }
+  videoMobile: {
+    asset: {
+      url: string
+    }
+  }
 }
 
 interface ProjectPlus {
@@ -60,6 +70,16 @@ interface ProjectPlus {
   gifLinkDesktop: string;
   gifLinkMobile: string;
   tech: Tech[];
+  videoDesktop: {
+    asset: {
+      url: string
+    }
+  }
+  videoMobile: {
+    asset: {
+      url: string
+    }
+  }
   left: string;
   top: string;
 }

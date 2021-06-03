@@ -26,6 +26,16 @@ export default {
       },
     },
     {
+      name: 'videoDesktop',
+      title: 'Video Desktop',
+      type: 'file',
+    },
+    {
+      name: 'videoMobile',
+      title: 'Video Mobile',
+      type: 'file',
+    },
+    {
       name: 'gifLinkDesktop',
       title: 'Gif Link Desktop',
       type: 'url',

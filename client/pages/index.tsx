@@ -24,6 +24,7 @@ interface props {
 }
 
 export default function Home({ projects, tech }: props) {
+  console.log(projects);
   const [page, setPage] = useContext(PageContext);
   const { width, height } = useViewport();
   const focusMe = useRef(null);
@@ -89,7 +90,7 @@ export default function Home({ projects, tech }: props) {
   }
 
   return (
-    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY:"hidden" }}>
+    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
       <Head>
         <title>Anthon Wellsjö</title>
         <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
@@ -131,6 +132,16 @@ export async function getStaticProps(context) {
             title
             description
             techlogo{asset{url}}
+          }
+          videoDesktop {
+            asset {
+              url
+            }
+          }
+          videoMobile {
+            asset {
+              url
+            }
           }
         }
       }

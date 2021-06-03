@@ -64,7 +64,7 @@ const FullProject = () => {
       <div style={{
         position: "absolute",
         left: 0,
-        top: "-150px",
+        top: "-100px",
         right: 0,
         bottom: 0,
         display: "flex",
@@ -86,14 +86,20 @@ const FullProject = () => {
           display: "flex",
           justifyContent: "center"
         }}>
-        <div style={{ position: "absolute", left: "50px", top: "100px" }}>
+        <div style={{ position: "absolute", left: "-30px", height: `${height}px`, display:"flex",alignItems:"center" }}>
           <TechContainer itemsPerRow={1} onFinishedAnimation={() => { return }} tech={currentProject.tech} />
         </div>
 
-        <div style={{}}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <animated.div style={{ ...titleStyle, textAlign: "center", }}>
             <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>
           </animated.div>
+          <div style={{ display: "flex", justifyContent: "center", }}>
+            <animated.div style={{ ...mobileGifStyle, position: "relative", width: "480px", height: "288px", marginBottom: "20px" }}>
+              <iframe src={currentProject.gifLinkDesktop} style={{ position: "absolute" }} width="480" height="288" frameBorder="0" ></iframe>
+              <div style={{ width: "480px", height: "288px", position: "absolute", outline: "solid 10px black" }} />
+            </animated.div >
+          </div>
           <animated.div style={{ ...descStyle, textAlign: "justify", width: "600px" }}>
             {currentProject.descriptionRaw.map((b: BlockText) => {
               // console.log(b.children[0]._type, b.children[0].text);
@@ -102,16 +108,13 @@ const FullProject = () => {
               // return React.createElement("h1",null, "apa");
             })}
           </animated.div>
+
           <div style={{ display: "flex", justifyContent: "center", }}>
-            <animated.div style={{ ...mobileGifStyle, position: "relative", width: "480px", height: "288px", marginTop: "80px" }}>
-              <iframe src={currentProject.gifLinkDesktop} style={{ position: "absolute" }} width="480" height="288" frameBorder="0" ></iframe>
-              <div style={{ width: "480px", height: "288px", position: "absolute", border: "solid 5px black" }} />
-            </animated.div >
+            <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "50px", display: "flex", justifyContent: "center" }}>
+              <iframe src={currentProject.gifLinkMobile} style={{ position: "absolute" }} width="268" height="480" frameBorder="0" ></iframe>
+              <div style={{ width: "268px", height: "480px", position: "absolute", outline: "solid 10px black" }} />
+            </animated.div>
           </div>
-          <animated.div style={{ ...deskGifStyle, position: "relative", width: "480px", height: "480px", marginTop: "50px" }}>
-            <iframe src={currentProject.gifLinkMobile} style={{ position: "absolute" }} width="268" height="480" frameBorder="0" ></iframe>
-            <div style={{ width: "268px", height: "480px", position: "absolute", border: "solid 5px black" }} />
-          </animated.div>
         </div>
 
 

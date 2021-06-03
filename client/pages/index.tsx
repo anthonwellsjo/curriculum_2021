@@ -96,8 +96,8 @@ export default function Home({ projects, tech }: props) {
       </Head>
       <PageHeader />
       <SoundBtn />
-      {page.showProjects && width > 500 && <FullProject />}
-      {page.showProjects && width <= 500 && <FullProjectMobile />}
+      {page.showProjects && width > 800 && <FullProject />}
+      {page.showProjects && width <= 800 && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}

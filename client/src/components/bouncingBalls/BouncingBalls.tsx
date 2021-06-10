@@ -10,12 +10,12 @@ const BouncingBalls: React.FC = () => {
   return (
     <div style={{
       width: "100%",
-      height: "100%",
+      height: "70%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       position: "fixed",
-      zIndex: 1
+      bottom:0,
     }}>
       {page.splashASprut && !page.slowMo && <SplashingSpruts />}
       {Object.keys(page.projects).map((p) => {

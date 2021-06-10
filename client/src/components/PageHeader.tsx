@@ -12,10 +12,18 @@ const styles: CSS.Properties = {
   marginTop: "0",
   userSelect: "none",
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
+  justifyContent: "center",
   width: "100%",
-  height: "100px"
+  height: "150px",
+  flexDirection: "column"
+}
+
+const stickStyle: CSS.Properties = {
+  height: "3px",
+  width: "40px",
+  backgroundColor: "black",
+  marginBottom: "5px"
 }
 
 const PageHeader = () => {
@@ -41,6 +49,22 @@ const PageHeader = () => {
     reverse: !page.showHeaderButtons,
     to: { opacity: page.showHeaderButtons ? 1 : 0, transform: page.showHeaderButtons ? "translateX(-100px)" : "translateX(0px)" },
     from: { opacity: 0, transform: "translateX(0px)" }
+  })
+  const styleBurger1 = useSpring({
+    to: { transform: page.showHeaderButtons ? "translateY(-150px)" : "translateY(0px)", opacity: page.showHeaderButtons ? 0 : 1 },
+    from: { transform: "translateY(0px)" },
+    delay: page.showHeaderButtons ?  0 : 200
+    
+  })
+  const styleBurger2 = useSpring({
+    to: { transform: page.showHeaderButtons ? "translateY(-150px)" : "translateY(0px)", opacity: page.showHeaderButtons ? 0 : 1 },
+    from: { transform: "translateY(0px)" },
+    delay: page.showHeaderButtons ?  0 : 100
+  })
+  const styleBurger3 = useSpring({
+    to: { transform: page.showHeaderButtons ? "translateY(-150px)" : "translateY(0px)", opacity: page.showHeaderButtons ? 0 : 1 },
+    from: { transform: "translateY(0px)" },
+    
   })
 
   const onBioClickEventHandler = (e) => {
@@ -139,6 +163,9 @@ const PageHeader = () => {
           </div>
         }
       </div>
+      <animated.div style={{ ...stickStyle, ...styleBurger1, marginTop: "10px" }} />
+      <animated.div style={{ ...stickStyle, ...styleBurger2 }} />
+      <animated.div style={{ ...stickStyle, ...styleBurger3 }} />
     </div>
   )
 }

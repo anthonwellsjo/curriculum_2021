@@ -14,6 +14,7 @@ const ProjectsButton: React.FC = () => {
       tension: 500,
       friction: 40
     },
+    delay: page.slowMo && page.showBalls ? 0 : 1000
   }
   )
 

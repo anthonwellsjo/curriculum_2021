@@ -36,7 +36,7 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: 3,
+      mass: 2,
       friction: 40,
       tension: page.slowMo || hovering ? 100 : 500,
     },
@@ -75,7 +75,7 @@ const BouncingBall = ({ project }: props) => {
           </animated.div>
         </div>
         <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
-          <span style={{fontFamily:"Roboto", fontWeight:"bold", textTransform:"lowercase"}}>{project.title}</span>
+          <span style={{ fontFamily: "Roboto", fontWeight: "bold", textTransform: "lowercase" }}>{project.title}</span>
         </animated.div>
       </div>
     </animated.div>

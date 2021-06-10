@@ -49,12 +49,17 @@ interface Project {
   tech: Tech[];
   videoDesktop: {
     asset: {
-      url: string
+      url: string;
     }
   }
   videoMobile: {
     asset: {
-      url: string
+      url: string;
+    }
+  }
+  mainImage: {
+    asset: {
+      url: string;
     }
   }
 }
@@ -72,12 +77,17 @@ interface ProjectPlus {
   tech: Tech[];
   videoDesktop: {
     asset: {
-      url: string
+      url: string;
     }
   }
   videoMobile: {
     asset: {
-      url: string
+      url: string;
+    }
+  }
+  mainImage: {
+    asset: {
+      url: string;
     }
   }
   left: string;

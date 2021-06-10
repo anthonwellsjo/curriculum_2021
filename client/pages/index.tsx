@@ -104,6 +104,7 @@ export default function Home({ projects, tech }: props) {
       {page.showProjects && width > 800 && <FullProject />}
       {page.showProjects && width <= 800 && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
+      {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
@@ -139,6 +140,11 @@ export async function getStaticProps(context) {
             }
           }
           videoMobile {
+            asset {
+              url
+            }
+          }
+          mainImage {
             asset {
               url
             }

@@ -19,6 +19,12 @@ p{
   font-family: 'Roboto';
 }
 
+@media only screen and (max-width: 425px){
+	p{
+    font-size: 0.9em;
+  }
+}
+
 button,
 input[type='submit'],
 input[type='reset'] {

@@ -36,11 +36,11 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: 2,
-      friction: 40,
-      tension: page.slowMo || hovering ? 100 : 500,
+      mass: 3,
+      friction: 80,
+      tension: hovering ? 100 : 500,
     },
-    delay: !page.slowMo ? Math.floor((Math.random() * 500) + 200) : 0,
+    delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 500) : 0,
     onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })) },
   })
 
@@ -55,8 +55,10 @@ const BouncingBall = ({ project }: props) => {
 
   const onClickEventHandler = (event) => {
     event.stopPropagation();
-    setPage(prev => ({ ...prev, currentProject: project }));
-    setShowProject(true);
+    if (page.slowMo) {
+      setPage(prev => ({ ...prev, currentProject: project }));
+      setShowProject(true);
+    }
   }
 
 

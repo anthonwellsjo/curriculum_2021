@@ -23,6 +23,7 @@ const Bio: React.FC = () => {
     borderRadius: "20px",
     boxShadow: "10px 10px 100px lightgrey",
     top: viewWidth > vwLimit ? "50px" : "100px",
+    marginTop:"120px"
   }
   const [page, setPage] = useContext(PageContext);
   const [closing, setClosing] = useState(false);
@@ -65,7 +66,7 @@ const Bio: React.FC = () => {
   }, []);
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100%", height: `${viewHeight - 100}px`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", overflowY:"hidden" }}>
+    <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "absolute", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", overflowY:"hidden", top:"0", zIndex:0 }}>
       <animated.div className="noScrollBar" style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", overflowY: "scroll" }}>
         {showContent &&
           <>
@@ -83,7 +84,7 @@ const Bio: React.FC = () => {
           </>
         }
       </animated.div>
-      <animated.div style={{ ...logoStyle, width: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", height: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", minHeight: "100px", borderRadius: "100%", top: "0px", position: "absolute", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey" }}>
+      <animated.div style={{ ...logoStyle, width: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", height: viewWidth > vwLimit || viewHeight > 570 ? "150px" : "120px", minHeight: "100px", borderRadius: "100%", top: "0px", position: "absolute", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey", marginTop: "120px" }}>
         <img onLoad={() => { setShowImage(true); }} src={"/profile.jpg"} style={{ height: "180px", width: "180px", marginTop: "20px" }} alt="Image of Anthon" />
       </animated.div>
     </div >

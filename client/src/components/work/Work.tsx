@@ -48,9 +48,9 @@ export default function Work({ tech }: props) {
     setPage(prev => ({ ...prev, currentPage: "main", slowMo: false }));
   }
   return (
-    <div className="noScrollBar" onClick={onClickEventHandler} style={{ width: "100%", height: `${height - 60}px`, position: "relative", display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none", marginTop: "60px", overflowY: "scroll", paddingBottom: "100px" }}>
+    <div className="noScrollBar" onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", userSelect: "none", marginTop: "127px", overflowY: "scroll", paddingBottom: "100px" }}>
       <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <animated.div style={{ ...lineStyle, position: "fixed", top: "158px", height: "2px", backgroundColor: "black" }} />
+        <animated.div style={{ ...lineStyle, position: "fixed", top: "125px", height: "2px", backgroundColor: "black" }} />
       </div>
       <animated.h1 style={firstStyle}>Skills</animated.h1>
       <TechContainer itemsPerRow={5} tech={tech.allTech} onFinishedAnimation={() => { setTechFin(true) }} />

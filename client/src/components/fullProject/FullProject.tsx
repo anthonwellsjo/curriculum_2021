@@ -99,16 +99,17 @@ const FullProject = () => {
           <animated.div style={{ ...titleStyle, textAlign: "center", }}>
             <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>
           </animated.div>
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "50px", marginBottom: "50px" }}>
-          <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "-80px", display: "flex", justifyContent: "center" }}>
-              <div style={{ width: "80%", maxWidth: "900px" }}>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
+            <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "-75px", display: "flex", justifyContent: "center", marginBottom: "100px" }}>
+              <div style={{ width: `${width / 4 * 3 - 380}px`, maxWidth: "900px" }}>
                 <video width={"100%"} height="auto" autoPlay loop>
                   <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
                 </video>
-                <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%" }} />
-                <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "80%" }} />
+                {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%" }} />
+                <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "80%" }} /> */}
               </div>
             </animated.div>
+            <img src="./computerFrame.svg" style={{ position: "absolute", width: `${width / 4 * 3}px`, maxWidth: "900px", marginTop: "-100px" }} alt="screen" />
           </div>
           <animated.div style={{ ...descStyle, textAlign: "justify", width: "600px" }}>
             {currentProject.descriptionRaw.map((b: BlockText) => {

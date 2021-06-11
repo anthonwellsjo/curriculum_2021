@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Head from 'next/head';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
 import PageHeaderMobile from '../src/components/PageHeaderMobile';
@@ -27,6 +27,7 @@ interface props {
 export default function Home({ projects, tech }: props) {
   console.log(projects);
   const [page, setPage] = useContext(PageContext);
+  const [isMobile, setIsMobile] = useState(false);
   const { width, height } = useViewport();
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
@@ -62,6 +63,12 @@ export default function Home({ projects, tech }: props) {
       }, 400)
     }
   }, [page.currentPage])
+
+  useEffect(() => {
+    if (width <= 800) {
+      setIsMobile(true);
+    } else { setIsMobile(false); }
+  }, [width])
 
 
   const onClickEventHandler = () => {
@@ -99,19 +106,19 @@ export default function Home({ projects, tech }: props) {
         <meta name="HandheldFriendly" content="true" />
         <link rel="icon" href="/ball.png" />
       </Head>
-      {width <= 800 && <PageHeaderMobile />}
-      {width > 800 && <PageHeaderDesktop />}
+      {isMobile && <PageHeaderMobile />}
+      {!isMobile && <PageHeaderDesktop />}
       <SoundBtn />
       {page.currentPage == "main" && <ProjectsButton />}
-      {page.showProjects && width > 800 && <FullProject />}
-      {page.showProjects && width <= 800 && <FullProjectMobile />}
+      {page.showProjects && !isMobile && <FullProject />}
+      {page.showProjects && isMobile && <FullProjectMobile />}
       {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
       {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
-      <footer>
-
+      <footer style={{ position: "absolute", bottom: 0, width:"100%", textAlign:"center" }}>
+        <p>all rightydyrights reseverliserved.</p>
       </footer>
     </div>
   )
@@ -129,8 +136,6 @@ export async function getStaticProps(context) {
           descriptionRaw
           slug{current}
           deployUrl
-          gifLinkDesktop
-          gifLinkMobile
           tech {
             title
             description
@@ -151,6 +156,7 @@ export async function getStaticProps(context) {
               url
             }
           }
+          githubRepositoryLink
         }
       }
     `,

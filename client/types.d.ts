@@ -44,8 +44,7 @@ interface Project {
   descriptionRaw: BlockText[];
   slug: Slug;
   deployUrl?: any;
-  gifLinkDesktop: string;
-  gifLinkMobile: string;
+
   tech: Tech[];
   videoDesktop: {
     asset: {
@@ -62,6 +61,7 @@ interface Project {
       url: string;
     }
   }
+  githubRepositoryLink: string;
 }
 
 interface ProjectPlus {
@@ -72,8 +72,6 @@ interface ProjectPlus {
   descriptionRaw: BlockText[];
   slug: Slug;
   deployUrl?: any;
-  gifLinkDesktop: string;
-  gifLinkMobile: string;
   tech: Tech[];
   videoDesktop: {
     asset: {
@@ -92,6 +90,7 @@ interface ProjectPlus {
   }
   left: string;
   top: string;
+  githubRepositoryLink: string;
 }
 
 interface AllProjectData {

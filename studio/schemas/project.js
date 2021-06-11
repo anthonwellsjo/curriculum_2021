@@ -36,13 +36,8 @@ export default {
       type: 'file',
     },
     {
-      name: 'gifLinkDesktop',
-      title: 'Gif Link Desktop',
-      type: 'url',
-    },
-    {
-      name: 'gifLinkMobile',
-      title: 'Gif Link Mobile',
+      name: 'githubRepositoryLink',
+      title: 'Github Repository Link',
       type: 'url',
     },
     {

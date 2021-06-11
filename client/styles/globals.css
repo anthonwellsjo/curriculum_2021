@@ -19,6 +19,7 @@ p{
   font-family: 'Roboto';
 }
 
+
 @media only screen and (max-width: 425px){
 	p{
     font-size: 0.9em;
@@ -44,6 +45,7 @@ a {
   font-size: 1.5em;
 }
 
+
 * {
   box-sizing: border-box;
 }
@@ -53,7 +55,7 @@ a {
   height: 1em;
 }
 .buttidybutt:hover {
-  color: coral;
+  color: orange;
 }
 
 .noScrollBar::-webkit-scrollbar {

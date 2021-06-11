@@ -58,8 +58,8 @@ export default function Work({ tech }: props) {
       <animated.div style={{ ...logoStyle, padding: "10px" }}>
         <img style={{ width: "250px", fill: "black", opacity: .8 }} src="/varnamo.svg"></img>
       </animated.div>
-      <div style={{ width: "80%", textAlign: "justify", maxWidth:"350px" }}>
-        <animated.p style={{ ...doingStyle, fontSize: "1.2em" }}>Studying Web developer .Net at Jönköping University, Sweden.</animated.p>
+      <div style={{ width: "80%", textAlign: "justify", maxWidth: "350px" }}>
+        <animated.p style={{ ...doingStyle }}>Studying Web developer .Net at Jönköping University, Sweden.</animated.p>
       </div>
       <br></br>
       <br></br>

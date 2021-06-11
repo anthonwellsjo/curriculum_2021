@@ -21,7 +21,7 @@ const styles: CSS.Properties = {
   top: 0,
   backgroundColor: "transparent",
   zIndex: 1,
-  position:"absolute"
+  position: "absolute"
 }
 
 const stickStyle: CSS.Properties = {
@@ -31,7 +31,7 @@ const stickStyle: CSS.Properties = {
   marginBottom: "5px"
 }
 
-const PageHeader = () => {
+const PageHeaderMobile = () => {
   const [playClose] = useSound("/closepage.wav");
   const [playOpen] = useSound("/click.wav");
   const [page, setPage] = useContext(PageContext);
@@ -154,7 +154,7 @@ const PageHeader = () => {
       <div
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
-        {/* <animated.h4 style={{ ...style, position: "absolute", width: "400px", top: "-70px" }}>Anthon Wellsjö</animated.h4> */}
+        <animated.h4 style={{ position: "fixed", height:"10px", width:"100px",fontSize:".7em", left: "0px", top:"-20px", transform:"rotate(-30deg)" }}>Anthon Wellsjö</animated.h4>
         <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute" }}>
           <animated.div style={{ ...stickStyle, ...styleBurger1, }} />
           <animated.div style={{ ...stickStyle, ...styleBurger2 }} />
@@ -178,4 +178,4 @@ const PageHeader = () => {
   )
 }
 
-export default PageHeader;
+export default PageHeaderMobile;

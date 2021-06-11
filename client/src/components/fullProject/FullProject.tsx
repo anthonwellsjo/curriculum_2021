@@ -38,7 +38,7 @@ const FullProject = () => {
   const onCloseClickedEvent = (event) => {
     event.stopPropagation();
     if (page.audio) playClick();
-    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false }));
+    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, showHeaderButtons: false }));
   }
 
   const currentProject: Project = page.currentProject;

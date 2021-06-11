@@ -89,7 +89,7 @@ const FullProjectMobile = () => {
           </div>
         </div>
       }
-      <animated.div style={{ ...descStyle, textAlign: "justify", marginTop:"50px" }}>
+      <animated.div style={{ ...descStyle, textAlign: "justify", marginTop: "50px" }}>
         {currentProject.descriptionRaw.map((b: BlockText) => {
 
           if (b.style == "h2") return React.createElement(b.style, { key: b._key, style: { textAlign: "center" } }, b.children[0].text);
@@ -97,29 +97,31 @@ const FullProjectMobile = () => {
 
         })}
       </animated.div>
-      <animated.div style={{ ...desktopStyle, marginTop: "50px" }}>
-        <h2 style={{ textAlign: "center" }}>Desktop</h2>
-      </animated.div>
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "30px" }}>
-        <animated.div style={{ ...deskGifStyle, textAlign: "justify", display: "flex", justifyContent: "center", position: "relative" }}>
-          <video width={width} height="auto" autoPlay loop>
-            <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
-          </video>
-          <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "8%", width: "100%" }} />
-          <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: "-5px", height: "8%", width: "100%" }} />
-        </animated.div >
+
+      <div style={{ position: "relative", display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
+        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: width < 555 ? "-85px" : "-75px", display: "flex", justifyContent: "center", marginBottom: "100px" }}>
+          <div style={{ position: "relative", width: `${width - (width * 0.11)}px`, maxWidth: "620px" }}>
+            <video width={"100%"} height="auto" autoPlay loop>
+              <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
+            </video>
+
+            <div style={{ position: "absolute", bottom: "-15px", height: "10px", backgroundColor: "black", width: "100%" }} />
+            <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
+          </div>
+        </animated.div>
+        <img src="./computerFrame.svg" style={{ position: "absolute", width: `${width}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
       </div>
-      <animated.div style={{ ...desktopStyle, marginTop: "50px", position: "relative", zIndex: 1 }}>
-        <h2 style={{ textAlign: "center" }}>Mobile</h2>
-      </animated.div>
-      <div style={{ display: "flex", justifyContent: "center", }}>
-        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "0px", display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "80%", maxWidth: "300px" }}>
+
+
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "-40px", }}>
+        <img src="./mobileFrame.svg" style={{ position: "absolute", width: `${width * 0.56}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
+        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
+          <div style={{ width: `${width *0.5}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
             <video width={"100%"} height="auto" autoPlay loop>
               <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
             </video>
-            {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "100%" }} />
-            <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "8%", width: "100%" }} /> */}
+            {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%", maxWidth: "350px" }} />
+                <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "80%", maxWidth: "350px" }} /> */}
           </div>
         </animated.div>
       </div>

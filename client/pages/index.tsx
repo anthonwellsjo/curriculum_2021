@@ -3,7 +3,8 @@ import Head from 'next/head';
 import React, { useContext, useEffect, useRef } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
-import PageHeader from '../src/components/PageHeader';
+import PageHeaderMobile from '../src/components/PageHeaderMobile';
+import PageHeaderDesktop from '../src/components/PageHeaderDesktop';
 import { PageContext } from '../src/contexts/pageContext';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
@@ -98,7 +99,8 @@ export default function Home({ projects, tech }: props) {
         <meta name="HandheldFriendly" content="true" />
         <link rel="icon" href="/ball.png" />
       </Head>
-      <PageHeader />
+      {width <= 800 && <PageHeaderMobile />}
+      {width > 800 && <PageHeaderDesktop />}
       <SoundBtn />
       {page.currentPage == "main" && <ProjectsButton />}
       {page.showProjects && width > 800 && <FullProject />}

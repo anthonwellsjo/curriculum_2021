@@ -44,7 +44,7 @@ const FullProjectMobile = () => {
   const onClickEventHandler = (event) => {
     event.stopPropagation();
     if (page.audio) playClick();
-    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false }));
+    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, currentPage: "main" }));
   }
 
   const currentProject: Project = page.currentProject;
@@ -76,7 +76,7 @@ const FullProjectMobile = () => {
         overflowX: "hidden",
       }}>
       <animated.div style={{ ...titleStyle, textAlign: "center" }}>
-        {currentProject.mainImage != null ? <img src={currentProject.mainImage.asset.url} style={{ backgroundColor: "transparent", maxWidth: "100px" }} /> :
+        {currentProject.mainImage != null ? <img src={currentProject.mainImage.asset.url} style={{ backgroundColor: "transparent", maxHeight: "100px", marginTop: "25px" }} /> :
           <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>}
       </animated.div>
       {currentProject.tech != null &&
@@ -109,12 +109,12 @@ const FullProjectMobile = () => {
             <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
           </div>
         </animated.div>
-        <img src="./computerFrame.svg" style={{ position: "absolute", width: `${width}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
+        <img src="../../computerFrame.svg" style={{ position: "absolute", width: `${width}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
       </div> : null}
 
 
       {currentProject.videoMobile ? <div style={{ display: "flex", justifyContent: "center", marginTop: "-40px", }}>
-        <img src="./mobileFrame.svg" style={{ position: "absolute", width: `${width * 0.56}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
+        <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width * 0.56}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
         <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
           <div style={{ width: `${width * 0.5}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
             <video width={"100%"} height="auto" autoPlay loop>

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { useSpring } from '@react-spring/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { animated } from 'react-spring';
 import useSound from 'use-sound';
 import client from '../../apollo/apolloClient';
@@ -16,6 +16,7 @@ export default function Work({ tech }: props) {
   const { width, height } = useViewport()
   const [playClose] = useSound("/closepage.wav", { volume: 0.4 });
   const [techFin, setTechFin] = useState(false);
+
   const lineStyle = useSpring({
     to: { width: "60%", opacity: 1 },
     from: { width: "0%", opacity: 0 },

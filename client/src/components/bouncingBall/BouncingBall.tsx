@@ -56,7 +56,7 @@ const BouncingBall = ({ project }: props) => {
   const onClickEventHandler = (event) => {
     event.stopPropagation();
     if (page.slowMo) {
-      setPage(prev => ({ ...prev, currentProject: project }));
+      setPage(prev => ({ ...prev, currentProject: project, currentPage: `project/${project.slug.current}` }));
       setShowProject(true);
     }
   }

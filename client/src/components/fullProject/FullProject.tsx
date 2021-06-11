@@ -38,7 +38,7 @@ const FullProject = () => {
   const onCloseClickedEvent = (event) => {
     event.stopPropagation();
     if (page.audio) playClick();
-    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, showHeaderButtons: false }));
+    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, showHeaderButtons: false, currentPage:"main" }));
   }
 
   const currentProject: Project = page.currentProject;
@@ -122,11 +122,11 @@ const FullProject = () => {
                 <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
               </div>
             </animated.div>
-            <img src="./computerFrame.svg" style={{ position: "absolute", width: `${width / 4 * 3}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
+            <img src="../../computerFrame.svg" style={{ position: "absolute", width: `${width / 4 * 3}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
           </div> : null}
 
           {currentProject.videoMobile ? <div style={{ display: "flex", justifyContent: "center", marginTop: "80px", }}>
-            <img src="./mobileFrame.svg" style={{ position: "absolute", width: `${width / 3.5}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
+            <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width / 3.5}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
             <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
               <div style={{ width: `${width / 3.9}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
                 <video width={"100%"} height="auto" autoPlay loop>
@@ -141,7 +141,7 @@ const FullProject = () => {
             <div style={{ marginTop: "60px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <a href={currentProject.githubRepositoryLink} target="_blank" >
                 <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", }}>
-                  <img style={{ position: "relative", width: ".6em", right: "-56px", bottom: "-42px" }} src={"./github.png"} alt="Github logo" />
+                  <img style={{ position: "relative", width: ".6em", right: "-56px", bottom: "-42px" }} src={"../../github.png"} alt="Github logo" />
                   <h3 className="buttidybutt" style={{ position: "absolute" }}>Visit Rep</h3>
                 </div>
               </a>

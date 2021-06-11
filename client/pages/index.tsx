@@ -33,6 +33,13 @@ export default function Home({ projects, tech }: props) {
   const [playClick] = useSound("/click.wav");
 
   useEffect(() => {
+    history.pushState({ pageContext: { ...page } }, "main page", "/");
+  }, [])
+  useEffect(() => {
+    history.pushState({ pageContext: { ...page } }, page.currentPage, `/${page.currentPage}`);
+  }, [page.currentPage])
+
+  useEffect(() => {
     if (page.showBalls && !page.slowMo) {
       projects.allProject.forEach((p: Project) => {
         setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: page.bounceBalls ? { ...p, ...useGetRandomPosition() } : { ...p, left: "50%", top: "50%" } } }))
@@ -117,7 +124,7 @@ export default function Home({ projects, tech }: props) {
       {page.currentPage == "bio" && <Bio />}
       {page.currentPage == "social" && <Social />}
       {page.currentPage == "work" && <Work tech={tech} />}
-      <footer style={{ position: "absolute", bottom: 0, width:"100%", textAlign:"center" }}>
+      <footer style={{ position: "absolute", bottom: 0, width: "100%", textAlign: "center" }}>
         <p>all rightydyrights reseverliserved.</p>
       </footer>
     </div>

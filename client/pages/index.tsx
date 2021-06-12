@@ -136,20 +136,23 @@ export default function Home({ projects, tech }: props) {
         <Route path="/">
           <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
             <Head>
-              <meta name="twitter:card" content="summary" />
-              <meta name="twitter:site" content="@nytimesbits" />
-              <meta name="twitter:creator" content="@nickbilton" />
-              <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-              <meta property="og:title" content="A Twitter for My Sister" />
-              <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
-              <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+              <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+              <meta name="twitter:site" content="@Anthon_Wellsjo" />
+              <meta name="twitter:title" content={title} />
+              <meta name="twitter:description" content={description} />
+              <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg" />
 
+              <meta property="og:url" content={"https://curriculum-2021.vercel.app/"} key="ogurl" />
+              <meta property="og:image" content={"https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg"} key="ogimage" />
+              <meta property="og:site_name" content={title} key="ogsitename" />
+              <meta property="og:title" content={"main"} key="ogtitle" />
+              <meta property="og:description" content={description} key="ogdesc" />
+            </Head>
+            <Head>
               <title>{title}</title>
               <meta name="description" content={description} />
               <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
               <meta name="HandheldFriendly" content="true" />
-
-
               <link rel="icon" href="/laptop.png" />
             </Head>
 

@@ -13,6 +13,7 @@ interface PageContextData {
   showHeaderButtons: boolean,
   renderHeaderButtons: boolean,
   audio: boolean,
+  firstStartDone: boolean
 }
 
 interface BlockTextChild {

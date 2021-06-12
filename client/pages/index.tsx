@@ -41,16 +41,13 @@ export default function Home({ projects, tech }: props) {
     setPage({ ...history.state });
   }
 
-  // useEffect(() => {
-  //   if (window.history.state.currentPage !== page.currentPage ||
-  //     window.history.state.currentProject !== page.currentProject ||
-  //     window.history.state.showBalls !== page.showBalls ||
-  //     window.history.state.showProjects !== page.showProjects ||
-  //     window.history.state.slowMo !== page.slowMo) {
-  //     console.log("window state", window.history.state, "page state", page);
-  //     window.history.pushState({ ...page }, page.currentPage, `/${page.currentPage}`);
-  //   }
-  // }, [page.slowMo, page.currentPage])
+  useEffect(() => {
+    if (!page.firstStartDone) {
+      console.log("setting first state");
+      window.history.pushState({ ...page }, "main", `/main`);
+      setPage(prev => ({ ...prev, firstStartDone: true }))
+    }
+  }, [])
 
   useEffect(() => {
     window.addEventListener('popstate', popState);

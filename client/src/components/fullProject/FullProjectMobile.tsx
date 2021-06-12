@@ -46,8 +46,10 @@ const FullProjectMobile = () => {
   const onClickEventHandler = (event) => {
     event.stopPropagation();
     if (pageDone) {
+      const newState = { ...page, currentProject: null, showProjects: false, currentPage: "main", showHeaderButtons: false };
+      setPage(prev => ({ ...newState }));
+      window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
       if (page.audio) playClick();
-      setPage(prev => ({ ...prev, currentProject: null, showProjects: false, currentPage: "main", showHeaderButtons: false }));
     }
   }
 

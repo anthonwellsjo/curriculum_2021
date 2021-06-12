@@ -18,6 +18,7 @@ const PageProvider: React.FC = ({ children }) => {
     showHeaderButtons: false,
     renderHeaderButtons: false,
     audio: false,
+    firstStartDone: false
   });
   return (
     <PageContext.Provider value={[page, setPage]}>

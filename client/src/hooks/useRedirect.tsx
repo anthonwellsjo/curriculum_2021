@@ -5,7 +5,6 @@ const useRedirect = () => {
   const [page, setPage] = useContext(PageContext);
   const url: string = history.state.as;
   if (url != null) {
-    console.log("url", url.split("/")[1], url.split("/")[2]);
     const uv1 = url.split("/")[1];
 
 

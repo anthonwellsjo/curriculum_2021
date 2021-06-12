@@ -37,29 +37,26 @@ export default function Home({ projects, tech }: props) {
 
   const popState = () => {
     console.log("pop state!")
+    if (page.audio) { playClick() }
     setPage({ ...history.state });
   }
+
+  // useEffect(() => {
+  //   if (window.history.state.currentPage !== page.currentPage ||
+  //     window.history.state.currentProject !== page.currentProject ||
+  //     window.history.state.showBalls !== page.showBalls ||
+  //     window.history.state.showProjects !== page.showProjects ||
+  //     window.history.state.slowMo !== page.slowMo) {
+  //     console.log("window state", window.history.state, "page state", page);
+  //     window.history.pushState({ ...page }, page.currentPage, `/${page.currentPage}`);
+  //   }
+  // }, [page.slowMo, page.currentPage])
 
   useEffect(() => {
     window.addEventListener('popstate', popState);
     return () => {
       window.removeEventListener('popstate', popState);
     }
-  }, [])
-
-  useEffect(() => {
-    if (page.currentProject != null) {
-      // setPage(prev => ({...prev, currentPage: "project"}))
-      window.history.pushState({ ...page }, page.currentPage, `/project/${page.currentProject.slug.current}`);
-    } else {
-      console.log("current state", history.state, "next state", { ...page });
-      console.log("pushing state!");
-      window.history.pushState({ ...page }, page.currentPage, `/${page.currentPage}`);
-    }
-  }, [page.currentPage, page.currentProject])
-
-  useEffect(() => {
-    window.history.pushState({ ...page }, page.currentPage, `/main`);
   }, [])
 
   useEffect(() => {
@@ -102,30 +99,30 @@ export default function Home({ projects, tech }: props) {
 
 
   const onClickEventHandler = () => {
-    setPage(prev => ({ ...prev, slowMo: !prev.slowMo }));
-    if (page.audio) playClick();
-    organizeProjects();
+    const newState = { ...page, slowMo: !page.slowMo, projects: getOrganizedProjects() };
+    setPage(prev => ({ ...newState }));
+    window.history.pushState({ ...newState }, page.currentPage, `/${page.currentPage}`);
+    console.log("state pushed", window.history.state);
+    if (page.audio) { playClick(); }
   }
 
-  const organizeProjects = () => {
+  const getOrganizedProjects = () => {
     let projects: ProjectPlus[] = { ...page.projects };
     const length = Object.keys(projects).length;
-    Object.keys(projects).forEach((k, i) => {
-      setPage(prev => ({
-        ...prev,
-        projects: {
-          ...prev.projects,
-          [`${k}`]: {
-            ...prev.projects[`${k}`],
-            left: "50%",
-            top: `${80 / length * i + 30}%`
-          }
-        }
-      }))
-    })
-    console.log("currently this many projects", Object.keys(projects).length);
 
+    let orderedProjects = {};
+
+    Object.keys(projects).forEach((k, i) => {
+      orderedProjects[`${k}`] = {
+        ...page.projects[`${k}`],
+        left: "50%",
+        top: `${80 / length * i + 30}%`
+      }
+    });
+    return orderedProjects;
   }
+
+
 
   const title = "Anthon Wellsjö Portfolio";
   const description = "Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy.";
@@ -149,6 +146,7 @@ export default function Home({ projects, tech }: props) {
               <meta property="og:description" content={description} key="ogdesc" />
             </Head>
             <Head>
+
               <title>{title}</title>
               <meta name="description" content={description} />
               <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />

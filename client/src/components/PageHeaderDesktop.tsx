@@ -5,6 +5,7 @@ import { animated } from 'react-spring';
 import useSound from 'use-sound';
 import { PageContext } from '../contexts/pageContext';
 import { useViewport } from '../hooks/useViewPort';
+import useMenuButtons from '../hooks/useMenuButtons';
 
 const styles: CSS.Properties = {
   fontFamily: "Trochut, cursive",
@@ -36,6 +37,7 @@ const PageHeaderDesktop = () => {
   const [playOpen] = useSound("/click.wav");
   const [hoveredButton, setHoveredButton] = useState<"bio" | "work" | "social" | null>(null);
   const [page, setPage] = useContext(PageContext);
+  const { clickBio, clickSocial, clickWork } = useMenuButtons();
   const { width, height } = useViewport()
   const style = useSpring({
     to: { transform: page.showHeaderButtons || page.currentPage !== "main" ? "translateY(-100px)" : "translateY(0px)" },
@@ -61,36 +63,16 @@ const PageHeaderDesktop = () => {
 
   const onBioClickEventHandler = (e) => {
     e.stopPropagation();
-    if (page.currentPage === "bio") {
-      if (page.audio) playClose({ playbackRate: 1.8 });
-      setPage(prev => ({ ...prev, currentPage: "main" }))
-    }
-    if (page.currentPage !== "bio") {
-      if (page.audio) playOpen();
-      setPage(prev => ({ ...prev, currentPage: "bio" }))
-    }
+    clickBio();
+
   }
   const onSocialClickEventHandler = (e) => {
     e.stopPropagation();
-    if (page.currentPage === "social") {
-      if (page.audio) playClose({ playbackRate: 1.8 });
-      setPage(prev => ({ ...prev, currentPage: "main" }))
-    }
-    if (page.currentPage !== "social") {
-      if (page.audio) playOpen();
-      setPage(prev => ({ ...prev, currentPage: "social" }))
-    }
+    clickSocial();
   }
   const onWorkClickEventHandler = (e) => {
     e.stopPropagation();
-    if (page.currentPage === "work") {
-      if (page.audio) playClose({ playbackRate: 1.8 });
-      setPage(prev => ({ ...prev, currentPage: "main" }))
-    }
-    if (page.currentPage !== "work") {
-      if (page.audio) playOpen();
-      setPage(prev => ({ ...prev, currentPage: "work" }))
-    }
+    clickWork();
   }
 
   const onClickHeaderEventHandler = (e) => {

@@ -47,7 +47,7 @@ const FullProjectMobile = () => {
     event.stopPropagation();
     if (pageDone) {
       if (page.audio) playClick();
-      setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, currentPage: "main", showHeaderButtons: false }));
+      setPage(prev => ({ ...prev, currentProject: null, showProjects: false, currentPage: "main", showHeaderButtons: false }));
     }
   }
 

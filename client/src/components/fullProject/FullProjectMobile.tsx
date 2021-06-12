@@ -11,6 +11,7 @@ const FullProjectMobile = () => {
   const [playClick] = useSound("/click.wav");
   const [techAnimDone, setTechAnimDone] = useState(false);
   const [page, setPage] = useContext(PageContext);
+  const [pageDone, setPageDone] = useState(false);
 
   const style = useSpring({
     to: { opacity: 1 },
@@ -39,12 +40,15 @@ const FullProjectMobile = () => {
   const descStyle = useSpring({
     to: { opacity: techAnimDone ? 1 : 0 },
     from: { opacity: 0 },
-    delay: 500
+    delay: 500,
+    onRest: () => setPageDone(true)
   })
   const onClickEventHandler = (event) => {
     event.stopPropagation();
-    if (page.audio) playClick();
-    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, currentPage: "main" }));
+    if (pageDone) {
+      if (page.audio) playClick();
+      setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, currentPage: "main", showHeaderButtons: false }));
+    }
   }
 
   const currentProject: Project = page.currentProject;
@@ -129,7 +133,7 @@ const FullProjectMobile = () => {
         <div style={{ marginTop: "60px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <a href={currentProject.githubRepositoryLink} target="_blank" >
             <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", }}>
-              <img style={{ position: "relative", width: ".7em", right: "-58px", bottom: "-40px" }} src={"./github.png"} alt="Github logo" />
+              <img style={{ position: "relative", width: ".7em", right: "-58px", bottom: "-40px" }} src={"../../github.png"} alt="Github logo" />
               <h3 className="buttidybutt" style={{ position: "absolute" }}>Visit Rep</h3>
             </div>
           </a>

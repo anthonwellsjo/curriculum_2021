@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { PageContext } from '../../contexts/pageContext';
 import useSound from 'use-sound';
@@ -10,6 +10,7 @@ const FullProject = () => {
   const { width, height } = useViewport();
   const [playClick] = useSound("/click.wav");
   const [page, setPage] = useContext(PageContext);
+  const [pageDone, setPageDone] = useState(false);
 
   const style = useSpring({
     to: { opacity: 1 },
@@ -33,13 +34,21 @@ const FullProject = () => {
   const descStyle = useSpring({
     to: { transform: "translateY(0px)", opacity: 1 },
     from: { transform: "translateY(100px)", opacity: 0 },
-    delay: 500
+    delay: 500,
+    onRest: () => setPageDone(true)
   })
   const onCloseClickedEvent = (event) => {
     event.stopPropagation();
-    if (page.audio) playClick();
-    setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, showHeaderButtons: false, currentPage:"main" }));
+    if (pageDone) {
+      if (page.audio) playClick();
+      setPage(prev => ({ ...prev, currentProject: null, showProjects: false, slowMo: false, currentPage: "main", showHeaderButtons: false }));
+    }
   }
+
+  useEffect(() => {
+    console.log("mounted")
+
+  }, [])
 
   const currentProject: Project = page.currentProject;
 
@@ -100,8 +109,8 @@ const FullProject = () => {
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <animated.div style={{ ...titleStyle, textAlign: "center", }}>
-          {currentProject.mainImage != null ? <img src={currentProject.mainImage.asset.url} style={{ backgroundColor: "transparent", maxHeight: "150px", marginTop:"20px" }} /> :
-          <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>}
+            {currentProject.mainImage != null ? <img src={currentProject.mainImage.asset.url} style={{ backgroundColor: "transparent", maxHeight: "150px", marginTop: "20px" }} /> :
+              <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>}
           </animated.div>
           <animated.div style={{ ...descStyle, textAlign: "justify", width: "600px" }}>
             {currentProject.descriptionRaw.map((b: BlockText) => {

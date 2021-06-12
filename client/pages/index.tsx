@@ -16,6 +16,8 @@ import Work from '../src/components/work/Work';
 import SoundBtn from '../src/components/soundBtn/SoundBtn';
 import ProjectsButton from '../src/components/projectsButton/ProjectsButton';
 import { useViewport } from '../src/hooks/useViewPort';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import useRedirect from '../src/hooks/useRedirect';
 
 
 
@@ -25,19 +27,22 @@ interface props {
 }
 
 export default function Home({ projects, tech }: props) {
-  console.log(projects);
   const [page, setPage] = useContext(PageContext);
   const [isMobile, setIsMobile] = useState(false);
   const { width, height } = useViewport();
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
 
+  useRedirect(history.state.as);
+
   useEffect(() => {
-    history.pushState({ pageContext: { ...page } }, "main page", "/");
-  }, [])
-  useEffect(() => {
-    history.pushState({ pageContext: { ...page } }, page.currentPage, `/${page.currentPage}`);
-  }, [page.currentPage])
+    if (page.currentProject != null) {
+      // setPage(prev => ({...prev, currentPage: "project"}))
+      history.pushState({ pageContext: { ...page } }, page.currentPage, `/project/${page.currentProject.slug.current}`);
+    } else {
+      history.pushState({ pageContext: { ...page } }, page.currentPage, `/${page.currentPage}`);
+    }
+  }, [page.currentPage, page.currentProject])
 
   useEffect(() => {
     if (page.showBalls && !page.slowMo) {
@@ -105,29 +110,34 @@ export default function Home({ projects, tech }: props) {
   }
 
   return (
-    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
-      <Head>
-        <title>Anthon Wellsjö</title>
-        <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta name="HandheldFriendly" content="true" />
-        <link rel="icon" href="/ball.png" />
-      </Head>
-      {isMobile && <PageHeaderMobile />}
-      {!isMobile && <PageHeaderDesktop />}
-      <SoundBtn />
-      {page.currentPage == "main" && <ProjectsButton />}
-      {page.showProjects && !isMobile && <FullProject />}
-      {page.showProjects && isMobile && <FullProjectMobile />}
-      {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
-      {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
-      {page.currentPage == "bio" && <Bio />}
-      {page.currentPage == "social" && <Social />}
-      {page.currentPage == "work" && <Work tech={tech} />}
-      <footer style={{ position: "absolute", bottom: 0, width: "100%", textAlign: "center" }}>
-        <p>all rightydyrights reseverliserved.</p>
-      </footer>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/">
+          <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
+            <Head>
+              <title>Anthon Wellsjö</title>
+              <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+              <meta name="HandheldFriendly" content="true" />
+              <link rel="icon" href="/ball.png" />
+            </Head>
+
+            {isMobile && <PageHeaderMobile />}
+            {!isMobile && <PageHeaderDesktop />}
+            <SoundBtn />
+            {page.currentPage == "main" && <ProjectsButton />}
+            {page.showProjects && !isMobile && <FullProject />}
+            {page.showProjects && isMobile && <FullProjectMobile />}
+            {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
+            {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
+            {page.currentPage == "bio" && <Bio />}
+            {page.currentPage == "social" && <Social />}
+            {page.currentPage == "work" && <Work tech={tech} />}
+
+          </div>
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 

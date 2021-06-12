@@ -136,11 +136,6 @@ export default function Home({ projects, tech }: props) {
         <Route path="/">
           <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
             <Head>
-              <title>{title}</title>
-              <meta name="description" content={description} />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-              <meta name="HandheldFriendly" content="true" />
-
               <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
               <meta name="twitter:site" content="@Anthon_Wellsjo" />
               <meta name="twitter:title" content={title} />
@@ -152,6 +147,12 @@ export default function Home({ projects, tech }: props) {
               <meta property="og:site_name" content={title} key="ogsitename" />
               <meta property="og:title" content={"main"} key="ogtitle" />
               <meta property="og:description" content={description} key="ogdesc" />
+
+              <title>{title}</title>
+              <meta name="description" content={description} />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+              <meta name="HandheldFriendly" content="true" />
+
 
               <link rel="icon" href="/laptop.png" />
             </Head>

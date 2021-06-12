@@ -12,23 +12,14 @@ const useRedirect = () => {
     if (uv1 === "bio" || uv1 === "work" || uv1 === "social") {
       if (page.currentPage != uv1) {
         setPage(prev => ({ ...prev, currentPage: uv1 }));
-        console.log("setting page", uv1);
       }
     }
     if (uv1 === "main") {
       if (page.currentPage != uv1) {
         setPage(prev => ({ ...prev, currentPage: uv1 }));
-        console.log("setting main page");
       }
     }
 
-    // const uv2 = url.split("/")[2];
-    // if (uv1 === "project" && uv2 != null) {
-    //   if (page.currentPage != `project/${uv2}`) {
-    //     setPage(prev => ({ ...prev, currentPage: `project/${uv2}`, currentProject: [`${uv2}`] }));
-    //     console.log("setting main page");
-    //   }
-    // }
   }
 
   return null;

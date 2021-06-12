@@ -133,15 +133,15 @@ export default function Home({ projects, tech }: props) {
         <Route path="/">
           <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
             <Head>
-              <title>Anthon Wellsjö</title>
+              <title>Anthon Wellsjö Portfolio</title>
               <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
               <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
               <meta name="HandheldFriendly" content="true" />
               <link rel="icon" href="/ball.png" />
             </Head>
 
-            {isMobile && <PageHeaderMobile />}
-            {!isMobile && <PageHeaderDesktop />}
+            {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
+            {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}
             <SoundBtn />
             {page.currentPage == "main" && <ProjectsButton />}
             {page.showProjects && !isMobile && <FullProject />}

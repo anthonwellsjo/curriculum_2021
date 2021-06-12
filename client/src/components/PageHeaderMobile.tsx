@@ -69,7 +69,9 @@ const PageHeaderMobile = () => {
   const styleBurger3 = useSpring({
     to: { transform: page.showHeaderButtons ? "translateY(-150px)" : "translateY(0px)", opacity: page.showHeaderButtons ? 0 : 1 },
     from: { transform: "translateY(0px)" },
-
+  })
+  const styleName = useSpring({
+    to: { opacity: page.showHeaderButtons ? 0 : 1 },
   })
 
   const onBioClickEventHandler = (e) => {
@@ -154,7 +156,10 @@ const PageHeaderMobile = () => {
       <div
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
-        <h4 style={{ position: "fixed", height:"10px", width:"100px",fontSize:".7em", left: "0px", top:"-20px", transform:"rotate(-30deg)" }}>Anthon Wellsjö</h4>
+        {width > 515 && <h4 style={{ position: "fixed", height: "10px", width: "100px", fontSize: ".7em", left: "0px", top: "-20px", transform: "rotate(-30deg)", color: "grey"  }}>Anthon Wellsjö</h4>}
+        {width <= 515 && <animated.div style={{ ...styleName, position: "fixed", height: "10px", width: "100px", fontSize: ".7em", top: "-10px", color: "grey" }}>
+          <h4 >Anthon Wellsjö</h4>
+        </animated.div>}
         <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute" }}>
           <animated.div style={{ ...stickStyle, ...styleBurger1, }} />
           <animated.div style={{ ...stickStyle, ...styleBurger2 }} />

@@ -71,7 +71,7 @@ const PageHeaderMobile = () => {
     from: { transform: "translateY(0px)" },
   })
   const styleName = useSpring({
-    to: { opacity: page.showHeaderButtons ? 0 : 1 },
+    to: { opacity: page.showHeaderButtons || page.slowMo ? 0 : 1 },
   })
 
   const onBioClickEventHandler = (e) => {

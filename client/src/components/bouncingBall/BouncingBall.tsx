@@ -3,7 +3,6 @@ import { useSpring } from '@react-spring/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { animated } from 'react-spring';
 import { PageContext } from '../../contexts/pageContext';
-import useGetRandomPosition from '../../hooks/useGetRandomPosition';
 import classes from './BouncingBall.module.scss';
 import useMaybe from '../../hooks/useMaybe';
 import ToProjectsFromBallTransition from '../toProjectsFromBallTransition/ToProjectsFromBallTransition';
@@ -24,7 +23,6 @@ const BouncingBall = ({ project }: props) => {
   const [page, setPage] = useContext(PageContext);
   const splashStrut = useMaybe();
   const firstPosition = { left: "50%", top: "50%" };
-  const randomPosition = () => page.bounceBalls ? useGetRandomPosition() : firstPosition;
   const spanStyle = useSpring({
     to: { opacity: page.slowMo || hovering ? 1 : 0 },
     from: { opacity: 0 }
@@ -41,7 +39,7 @@ const BouncingBall = ({ project }: props) => {
       tension: hovering ? 100 : 500,
     },
     delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 500) : 0,
-    onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: randomPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...randomPosition } } })) },
+    onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: firstPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...firstPosition } } })) },
   })
 
   const onMouseEnterEventHandler = () => {

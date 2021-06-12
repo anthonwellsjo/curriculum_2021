@@ -6,7 +6,6 @@ import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
 import PageHeaderMobile from '../src/components/PageHeaderMobile';
 import PageHeaderDesktop from '../src/components/PageHeaderDesktop';
 import { PageContext } from '../src/contexts/pageContext';
-import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import useSound from 'use-sound';
 import FullProject from '../src/components/fullProject/FullProject';
 import FullProjectMobile from '../src/components/fullProject/FullProjectMobile';
@@ -33,21 +32,40 @@ export default function Home({ projects, tech }: props) {
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
 
-  useRedirect(history.state.as);
+
+  useRedirect();
+
+  const popState = () => {
+    console.log("pop state!")
+    setPage({ ...history.state });
+  }
+
+  useEffect(() => {
+    window.addEventListener('popstate', popState);
+    return () => {
+      window.removeEventListener('popstate', popState);
+    }
+  }, [])
 
   useEffect(() => {
     if (page.currentProject != null) {
       // setPage(prev => ({...prev, currentPage: "project"}))
-      history.pushState({ pageContext: { ...page } }, page.currentPage, `/project/${page.currentProject.slug.current}`);
+      window.history.pushState({ ...page }, page.currentPage, `/project/${page.currentProject.slug.current}`);
     } else {
-      history.pushState({ pageContext: { ...page } }, page.currentPage, `/${page.currentPage}`);
+      console.log("current state", history.state, "next state", { ...page });
+      console.log("pushing state!");
+      window.history.pushState({ ...page }, page.currentPage, `/${page.currentPage}`);
     }
   }, [page.currentPage, page.currentProject])
+
+  useEffect(()=>{
+    window.history.pushState({ ...page }, page.currentPage, `/main`);
+  },[])
 
   useEffect(() => {
     if (page.showBalls && !page.slowMo) {
       projects.allProject.forEach((p: Project) => {
-        setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: page.bounceBalls ? { ...p, ...useGetRandomPosition() } : { ...p, left: "50%", top: "50%" } } }))
+        setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, left: "50%", top: "50%" } } }))
       })
     }
   }, [page.showBalls, page.slowMo])

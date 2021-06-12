@@ -13,7 +13,6 @@ interface PageContextData {
   showHeaderButtons: boolean,
   renderHeaderButtons: boolean,
   audio: boolean,
-  bounceBalls: boolean
 }
 
 interface BlockTextChild {

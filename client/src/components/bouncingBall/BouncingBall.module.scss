@@ -1,7 +1,6 @@
 .ball {
   width: 6px;
   height: 6px;
-  border-radius: 6px;
   transition: all .5s;
   transform: rotate(10deg);
 }
@@ -9,9 +8,8 @@
 .ball:hover{
   width: 11px;
   height: 11px;
-  border-radius: 11px;
   border: 2px dotted white;
   transition: all .5s;
-  box-shadow: 1px 1px 15px 1px black;
+  box-shadow: 1px 1px 5px 10px lightgrey;
   transform: rotate(0deg);
 }

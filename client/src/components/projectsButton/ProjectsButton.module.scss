@@ -1,3 +1,8 @@
 .text {
-  color: 'orange';
+  color: black;
+  font-size: 5em;
+  margin-top: -100px;
+}
+.text:hover{
+  color: orange;
 }

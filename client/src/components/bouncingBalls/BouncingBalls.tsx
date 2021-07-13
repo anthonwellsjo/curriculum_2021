@@ -17,7 +17,7 @@ const BouncingBalls: React.FC = () => {
       position: "fixed",
       bottom:0,
     }}>
-      {page.splashASprut && !page.slowMo && <SplashingSpruts />}
+      {page.splashASprut && <SplashingSpruts />}
       {Object.keys(page.projects).map((p) => {
         const project: Project = page.projects[p] as Project;
         return <BouncingBall key={project._id} project={project} />

@@ -23,7 +23,7 @@ const ProjectsButton: React.FC = () => {
   return (
     <>
       <div style={{ position: "fixed", top: "100px", left: "8px", right: 0, bottom: "3px", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", backgroundColor: "transparent" }}>
-        <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: `2.5em`, textTransform: "lowercase", marginTop: "-99px", marginLeft: "-1px" }}>Proiects</animated.h1>
+        <animated.h1 style={{ ...style, fontFamily: "Trochut", fontSize: `2.5em`, textTransform: "lowercase", marginTop: "-99px", marginLeft: "-1px" }}>See my projects!</animated.h1>
       </div>
     </>
   )

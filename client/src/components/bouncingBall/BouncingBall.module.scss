@@ -3,6 +3,7 @@
   height: 6px;
   border-radius: 7px;
   transition: all .5s;
+  transform: rotate(10deg);
 }
 
 .ball:hover{
@@ -11,4 +12,6 @@
   border-radius: 11px;
   border: 2px dotted white;
   transition: all .5s;
+  box-shadow: 1px 1px 15px 1px black;
+  transform: rotate(0deg);
 }

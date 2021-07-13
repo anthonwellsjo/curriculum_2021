@@ -6,6 +6,7 @@ import { PageContext } from '../../contexts/pageContext';
 import classes from './BouncingBall.module.scss';
 import useMaybe from '../../hooks/useMaybe';
 import ToProjectsFromBallTransition from '../toProjectsFromBallTransition/ToProjectsFromBallTransition';
+import useGetRandomPosition from '../../hooks/useGetRandomPosition';
 
 
 interface state {
@@ -34,12 +35,12 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: 3,
+      mass: page.slowMo ? 2 : 20,
       friction: 80,
       tension: hovering ? 100 : 500,
     },
-    delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 500) : 0,
-    onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: firstPosition }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...firstPosition } } })) },
+    delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 300) : 0,
+    onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: useGetRandomPosition() }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...useGetRandomPosition() } } })) },
   })
 
   const onMouseEnterEventHandler = () => {
@@ -63,22 +64,23 @@ const BouncingBall = ({ project }: props) => {
 
 
   return (
-    <animated.div style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <div style={{ position: "absolute", width: "100px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+    <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ position: "absolute", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <div>
-          <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler}
+          <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, transform: hovering? "rotate(0deg)" : "rotate(10deg)", zIndex: 2, marginLeft: hovering? "0":"20px", marginBottom: hovering? "20px":"0px", transition:"all .3s"}}>
+            <span style={{ fontFamily: "Roboto", textTransform: "lowercase", }}>{project.title}</span>
+          </animated.div>
+          <animated.div 
             style={{
-              backgroundColor: page.slowMo || hovering ? project.projectColor : "black",
-              transform: page.slowMo || hovering ? "scale(7)" : "scale(1)",
+              backgroundColor: page.slowMo || hovering ? project.projectColor : "orange",
+              height: page.slowMo ? "50px" : "5px",
+              width: page.slowMo ? "50px" : "5px",
               cursor: "pointer"
             }}
             className={classes.ball} >
             {showProject && <ToProjectsFromBallTransition color={project.projectColor} />}
           </animated.div>
         </div>
-        <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, zIndex: 2, marginTop: "30px" }}>
-          <span style={{ fontFamily: "Roboto", fontWeight: "bold", textTransform: "lowercase" }}>{project.title}</span>
-        </animated.div>
       </div>
     </animated.div>
   )

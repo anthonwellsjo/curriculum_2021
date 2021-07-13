@@ -18,6 +18,7 @@ const useRedirect = () => {
         setPage(prev => ({ ...prev, currentPage: uv1 }));
       }
     }
+    console.log("url", uv1);
 
   }
 

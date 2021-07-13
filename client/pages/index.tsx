@@ -17,6 +17,7 @@ import ProjectsButton from '../src/components/projectsButton/ProjectsButton';
 import { useViewport } from '../src/hooks/useViewPort';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import useRedirect from '../src/hooks/useRedirect';
+import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 
 
 
@@ -59,7 +60,7 @@ export default function Home({ projects, tech }: props) {
   useEffect(() => {
     if (page.showBalls && !page.slowMo) {
       projects.allProject.forEach((p: Project) => {
-        setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, left: "50%", top: "50%" } } }))
+        setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${p._id}`]: { ...p, ...useGetRandomPosition() } } }))
       })
     }
   }, [page.showBalls, page.slowMo])

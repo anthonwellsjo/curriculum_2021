@@ -14,7 +14,7 @@ const ToProjectsFromBallTransition = ({ color }: props) => {
   }, []);
 
   const styles = useSpring({
-    to: [{ transform: "scale(100)" },],
+    to: [{ transform: "scale(500)" },],
     from: { transform: "scale(1)" },
     config: {
       mass: 50
@@ -25,6 +25,9 @@ const ToProjectsFromBallTransition = ({ color }: props) => {
     < animated.div
       style={{
         ...styles,
+        position:"absolute",
+        left:"50%",
+        marginTop:"20px",
         height: "5px",
         width: "5px",
         borderRadius: "5px",

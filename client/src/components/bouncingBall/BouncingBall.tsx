@@ -24,6 +24,7 @@ const BouncingBall = ({ project }: props) => {
   const [page, setPage] = useContext(PageContext);
   const splashStrut = useMaybe();
   const firstPosition = { left: "50%", top: "50%" };
+  let timerPositioner = null;
   const spanStyle = useSpring({
     to: { opacity: page.slowMo || hovering ? 1 : 0 },
     from: { opacity: 0 }
@@ -35,9 +36,9 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: page.slowMo ? 2 : 100,
-      friction: !page.slowMo? 2 : 100,
-      tension: !page.slowMo ? 100 : 500,
+      mass: page.slowMo ? 2 : 1,
+      friction: page.slowMo ? 100 : 20,
+      tension: page.slowMo ? 500 : 100,
     },
     delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 300) : 0,
     onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: useGetRandomPosition() }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...useGetRandomPosition() } } })) },
@@ -66,6 +67,14 @@ const BouncingBall = ({ project }: props) => {
     }
   }
 
+  useEffect(() => {
+    timerPositioner = () => {
+      setInterval(()=>{
+        
+      })
+    }
+  })
+
 
   return (
     <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ ...styles, width: "100px", height: "100px", marginTop: "-50px", marginLeft: "-50px", position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -77,7 +86,6 @@ const BouncingBall = ({ project }: props) => {
           <animated.div
             style={{
               backgroundColor: project.projectColor,
-              border: !page.slowMo ? "1px double grey" : "none",
               height: page.slowMo ? "50px" : "5px",
               width: page.slowMo ? "50px" : "5px",
               cursor: "pointer"

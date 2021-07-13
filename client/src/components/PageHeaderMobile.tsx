@@ -137,10 +137,9 @@ const PageHeaderMobile = () => {
       <div
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
-        {width > 515 && <h4 style={{ position: "fixed", height: "10px", width: "100px", fontSize: ".7em", left: "0px", top: "-20px", transform: "rotate(-30deg)", color: "grey" }}>Anthon Wellsjö</h4>}
-        {width <= 515 && <animated.div style={{ ...styleName, position: "fixed", height: "10px", width: "100px", fontSize: ".7em", top: "-10px", color: "grey" }}>
+        <animated.div style={{ ...styleName, position: "fixed", height: "10px", width: "100%", fontSize: ".7em", top: "-10px"}}>
           <h4 >Anthon Wellsjö</h4>
-        </animated.div>}
+        </animated.div>
         <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute" }}>
           <animated.div style={{ ...stickStyle, ...styleBurger1, }} />
           <animated.div style={{ ...stickStyle, ...styleBurger2 }} />

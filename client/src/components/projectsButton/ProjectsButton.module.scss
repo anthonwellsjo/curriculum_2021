@@ -1,7 +1,10 @@
 .text {
-  color: black;
-  font-size: 5em;
+  color: lightgrey;
+  font-size: 10em;
   margin-top: -100px;
+  @media (max-width: 600px) {
+    font-size: 5em;
+  }
 }
 .text:hover{
   color: orange;

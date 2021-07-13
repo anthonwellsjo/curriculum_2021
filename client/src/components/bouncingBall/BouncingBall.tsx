@@ -35,17 +35,21 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: page.slowMo ? 2 : 20,
-      friction: 80,
-      tension: hovering ? 100 : 500,
+      mass: page.slowMo ? 2 : 100,
+      friction: !page.slowMo? 2 : 100,
+      tension: !page.slowMo ? 100 : 500,
     },
     delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 300) : 0,
     onRest: () => { if (!page.slowMo) setPage(prev => ({ ...prev, splashASprut: { letsDoIt: splashStrut, position: useGetRandomPosition() }, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...useGetRandomPosition() } } })) },
   })
 
   const onMouseEnterEventHandler = () => {
-    setHovering(true);
-    setPage(prev => ({ ...prev, somethingHovering: true }));
+    if (page.slowMo) {
+      setHovering(true);
+      setPage(prev => ({ ...prev, somethingHovering: true }));
+    } else {
+      setPage(prev => ({ ...prev, projects: { ...prev.projects, [`${project._id}`]: hovering ? prev.projects[`${project._id}`] : { ...project, ...useGetRandomPosition() } } }))
+    }
   }
   const onMouseLeaveEventHandler = () => {
     setHovering(false);
@@ -64,15 +68,16 @@ const BouncingBall = ({ project }: props) => {
 
 
   return (
-    <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ ...styles, position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <animated.div onClick={onClickEventHandler} onMouseEnter={onMouseEnterEventHandler} onMouseLeave={onMouseLeaveEventHandler} style={{ ...styles, width: "100px", height: "100px", marginTop: "-50px", marginLeft: "-50px", position: "fixed", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div style={{ position: "absolute", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <div>
-          <animated.div style={{ overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, transform: hovering? "rotate(0deg)" : "rotate(10deg)", zIndex: 2, marginLeft: hovering? "0":"20px", marginBottom: hovering? "20px":"0px", transition:"all .3s"}}>
-            <span style={{ fontFamily: "Roboto", textTransform: "lowercase", }}>{project.title}</span>
+          <animated.div style={{ position: "absolute", overflow: "hidden", whiteSpace: "nowrap", ...spanStyle, transform: hovering ? "rotate(0deg)" : "rotate(10deg)", zIndex: 2, marginLeft: hovering ? "0" : "20px", bottom: hovering ? "60px" : "50px", transition: "all .3s" }}>
+            <span style={{ fontFamily: "'Lato', sans-serif", textTransform: "lowercase", }}>{project.title}</span>
           </animated.div>
-          <animated.div 
+          <animated.div
             style={{
-              backgroundColor: page.slowMo || hovering ? project.projectColor : "orange",
+              backgroundColor: project.projectColor,
+              border: !page.slowMo ? "1px double grey" : "none",
               height: page.slowMo ? "50px" : "5px",
               width: page.slowMo ? "50px" : "5px",
               cursor: "pointer"

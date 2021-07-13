@@ -66,12 +66,12 @@ const Bio: React.FC = () => {
   }, []);
 
   return (
-    <div onClick={onClickEventHandler} style={{ width: "100%", height: "100%", position: "absolute", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", overflowY: "hidden", top: "0", zIndex: 0 }}>
+    <div onClick={onClickEventHandler} style={{width: "100%", height: "100%", position: "absolute", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", overflowY: "hidden", top: "0", zIndex: 0 }}>
       <animated.div className="noScrollBar" style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", overflowY: "scroll" }}>
         {showContent &&
           <>
             <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", marginTop: viewWidth < 750 ? "-20px" :"50px" }}>
-              <h1 style={{ fontFamily: "Trochut, cursive", fontSize: "2em", marginBottom: "0" }}>Hej,</h1>
+              <h1 style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: "1.2em", marginBottom: "0" }}>Hej,</h1>
               <p>my name is Anthon and I'm a swedish <strong>full stack web developer.</strong> Nowadays I live in Perugia, Italy with my wife and three kids.</p>
               <p><strong>I speak four languages </strong> fluently (swedish, french, italian and english) and other than passionately developing the web, I love garden work, kite surfing and playing the guitar.</p>
               <p>If you consider hiring me, then you can count on <strong>an effective and open minded cooworker</strong>. I love learning, and arriving at the best solutions, no matter who hade the idea.</p>

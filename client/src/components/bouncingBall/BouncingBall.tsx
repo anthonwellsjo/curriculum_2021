@@ -85,7 +85,7 @@ const BouncingBall = ({ project }: props) => {
           </animated.div>
           <animated.div
             style={{
-              backgroundColor: project.projectColor,
+              backgroundColor: page.slowMo?  project.projectColor : "black",
               height: page.slowMo ? "50px" : "5px",
               width: page.slowMo ? "50px" : "5px",
               cursor: "pointer"

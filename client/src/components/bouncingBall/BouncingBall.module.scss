@@ -8,8 +8,8 @@
 .ball:hover{
   width: 11px;
   height: 11px;
-  border: 2px dotted white;
+  border: 2px dotted black;
   transition: all .5s;
-  box-shadow: 1px 1px 5px 10px lightgrey;
+  box-shadow: 1px 1px 5px black;
   transform: rotate(0deg);
 }

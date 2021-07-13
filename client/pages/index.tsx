@@ -18,6 +18,7 @@ import { useViewport } from '../src/hooks/useViewPort';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import useRedirect from '../src/hooks/useRedirect';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
+import Background from '../src/components/background/Background';
 
 
 
@@ -151,6 +152,7 @@ export default function Home({ projects, tech }: props) {
               <meta name="HandheldFriendly" content="true" />
               <link rel="icon" href="/laptop.png" />
             </Head>
+            <Background/>
 
             {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
             {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}

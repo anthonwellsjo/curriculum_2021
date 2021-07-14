@@ -126,42 +126,42 @@ export default function Home({ projects, tech }: props) {
   const description = "Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy.";
 
   return (
-    
-          <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
-            <Head>
-              <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
-              <meta name="twitter:site" content="@Anthon_Wellsjo" />
-              <meta name="twitter:title" content={title} />
-              <meta name="twitter:description" content={description} />
-              <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg" />
 
-              <meta property="og:url" content={"https://curriculum-2021.vercel.app/"} key="ogurl" />
-              <meta property="og:image" content={"https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg"} key="ogimage" />
-              <meta property="og:site_name" content={title} key="ogsitename" />
-              <meta property="og:title" content={"main"} key="ogtitle" />
-              <meta property="og:description" content={description} key="ogdesc" />
+    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
+      <Head>
+        <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+        <meta name="twitter:site" content="@Anthon_Wellsjo" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg" />
 
-              <title>{title}</title>
-              <meta name="description" content={description} />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-              <meta name="HandheldFriendly" content="true" />
-              <link rel="icon" href="/laptop.png" />
-            </Head>
-            <Background/>
+        <meta property="og:url" content={"https://curriculum-2021.vercel.app/"} key="ogurl" />
+        <meta property="og:image" content={"https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg"} key="ogimage" />
+        <meta property="og:site_name" content={title} key="ogsitename" />
+        <meta name="title" property="og:title" content={"main"} key="ogtitle" />
+        <meta property="og:description" content={description} key="ogdesc" />
 
-            {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
-            {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}
-            <SoundBtn />
-            {page.currentPage == "main" && <ProjectsButton />}
-            {page.showProjects && !isMobile && <FullProject />}
-            {page.showProjects && isMobile && <FullProjectMobile />}
-            {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
-            {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
-            {page.currentPage == "bio" && <Bio />}
-            {page.currentPage == "social" && <Social />}
-            {page.currentPage == "work" && <Work tech={tech} />}
-          </div>
-       
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="HandheldFriendly" content="true" />
+        <link rel="icon" href="/laptop.png" />
+      </Head>
+      <Background />
+
+      {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
+      {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}
+      <SoundBtn />
+      {page.currentPage == "main" && <ProjectsButton />}
+      {page.showProjects && !isMobile && <FullProject />}
+      {page.showProjects && isMobile && <FullProjectMobile />}
+      {page.showBalls && page.currentPage == "main" && <BouncingBalls />}
+      {page.showBalls && page.currentPage == "main" && <div style={{ position: "absolute", width: "10px", height: "10px", left: `${(width / 2) - 4}px`, top: `${(height / 2) - 30}px`, zIndex: 2 }} />}
+      {page.currentPage == "bio" && <Bio />}
+      {page.currentPage == "social" && <Social />}
+      {page.currentPage == "work" && <Work tech={tech} />}
+    </div>
+
   )
 }
 

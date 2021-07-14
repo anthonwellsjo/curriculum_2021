@@ -15,7 +15,6 @@ import Work from '../src/components/work/Work';
 import SoundBtn from '../src/components/soundBtn/SoundBtn';
 import ProjectsButton from '../src/components/projectsButton/ProjectsButton';
 import { useViewport } from '../src/hooks/useViewPort';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import useRedirect from '../src/hooks/useRedirect';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import Background from '../src/components/background/Background';
@@ -127,9 +126,7 @@ export default function Home({ projects, tech }: props) {
   const description = "Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy.";
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
+    
           <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
             <Head>
               <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
@@ -143,8 +140,6 @@ export default function Home({ projects, tech }: props) {
               <meta property="og:site_name" content={title} key="ogsitename" />
               <meta property="og:title" content={"main"} key="ogtitle" />
               <meta property="og:description" content={description} key="ogdesc" />
-            </Head>
-            <Head>
 
               <title>{title}</title>
               <meta name="description" content={description} />
@@ -165,11 +160,8 @@ export default function Home({ projects, tech }: props) {
             {page.currentPage == "bio" && <Bio />}
             {page.currentPage == "social" && <Social />}
             {page.currentPage == "work" && <Work tech={tech} />}
-
           </div>
-        </Route>
-      </Switch>
-    </Router>
+       
   )
 }
 

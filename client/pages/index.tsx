@@ -122,11 +122,8 @@ export default function Home({ projects, tech }: props) {
 
   return (
 
-    <div ref={focusMe} onClick={onClickEventHandler} style={{ width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
-      <Head>
-        
-      </Head>
-      {/* <Background /> */}
+    <div ref={focusMe} onClick={onClickEventHandler} style={{position:"relative", width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
+      <Background />
 
       {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
       {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}

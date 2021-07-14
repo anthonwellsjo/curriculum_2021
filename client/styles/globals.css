@@ -14,6 +14,12 @@ h4,
 h5 {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
+  
+}
+
+h1{
+  text-shadow: -1px -1px 0 #55868c, 1px -1px 0 #55868c, -1px 1px 0 #55868c, 1px 1px 0 #55868c;
+  color: white;
 }
 
 p{
@@ -64,7 +70,6 @@ a {
   cursor: pointer;
   height: 1em;
   font-family: 'Lato', sans-serif;
- 
   font-size: 5em;
 }
 .buttidybuttbutt:hover {

@@ -36,8 +36,8 @@ const BouncingBall = ({ project }: props) => {
       top: page.projects[`${project._id}`].top,
     },
     config: {
-      mass: page.slowMo ? 2 : 1,
-      friction: page.slowMo ? 100 : 20,
+      mass: page.slowMo ? 2 : 20,
+      friction: page.slowMo ? 100 : 40,
       tension: page.slowMo ? 500 : 100,
     },
     delay: !page.slowMo ? Math.floor((Math.random() * 1000) + 300) : 0,

@@ -123,10 +123,10 @@ const PageHeaderDesktop = () => {
       <div
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
-        <animated.h4 style={{ ...style, position: "absolute", top: "-70px", whiteSpace:"nowrap" }}>Anthon Wellsjö</animated.h4>
-        <animated.h4 style={{ ...styleWork, position: "absolute", width: "400px", top: "-70px" }}>Work</animated.h4>
-        <animated.h4 style={{ ...styleBio, position: "absolute", width: "400px", top: "-70px" }}>Bio</animated.h4>
-        <animated.h4 style={{ ...styleSocial, position: "absolute", width: "400px", top: "-70px" }}>Social</animated.h4>
+        <animated.h1 style={{ ...style, position: "absolute", top: "-35px", whiteSpace:"nowrap", fontSize: "1em"}}>Anthon Wellsjö</animated.h1>
+        <animated.h3 style={{ ...styleWork, position: "absolute", width: "400px", top: "-70px" }}>Work</animated.h3>
+        <animated.h3 style={{ ...styleBio, position: "absolute", width: "400px", top: "-70px" }}>Bio</animated.h3>
+        <animated.h3 style={{ ...styleSocial, position: "absolute", width: "400px", top: "-70px" }}>Social</animated.h3>
         {/* <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute" }}>
           <animated.div style={{ ...stickStyle, ...styleBurger1, }} />
           <animated.div style={{ ...stickStyle, ...styleBurger2 }} />

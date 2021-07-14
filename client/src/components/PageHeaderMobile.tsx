@@ -25,11 +25,31 @@ const styles: CSS.Properties = {
   position: "absolute"
 }
 
-const stickStyle: CSS.Properties = {
+const stickStyle1: CSS.Properties = {
   height: "3px",
   width: "40px",
-  backgroundColor: "black",
-  marginBottom: "5px"
+  backgroundColor: "#55868c",
+  marginBottom: "4px",
+  borderTopLeftRadius: "50px",
+  borderTopRightRadius: "50px",
+  border: "8px solid #55868c",
+  borderBottom: 0
+}
+const stickStyle2: CSS.Properties = {
+  height: "3px",
+  width: "40px",
+  backgroundColor: "#55868c",
+  marginBottom: "4px"
+}
+const stickStyle3: CSS.Properties = {
+  height: "3px",
+  width: "40px",
+  backgroundColor: "#55868c",
+  marginBottom: "4px",
+  borderBottomLeftRadius: "50px",
+  borderBottomRightRadius: "50px",
+  border: "6px solid #55868c",
+  borderBottom: 0
 }
 
 const PageHeaderMobile = () => {
@@ -137,13 +157,13 @@ const PageHeaderMobile = () => {
       <div
         onClick={onClickHeaderEventHandler}
         style={{ height: "100px", width: "320px", display: "flex", alignItems: "center", flexDirection: "column", position: "relative" }}>
-        <animated.div style={{ ...styleName, position: "fixed", height: "10px", width: "100%", fontSize: ".7em", top: "-10px"}}>
-          <h4 >Anthon Wellsjö</h4>
-        </animated.div>
-        <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute" }}>
-          <animated.div style={{ ...stickStyle, ...styleBurger1, }} />
-          <animated.div style={{ ...stickStyle, ...styleBurger2 }} />
-          <animated.div style={{ ...stickStyle, ...styleBurger3 }} />
+        {/* <animated.div style={{ ...styleName, position: "fixed", height: "10px", width: "100%", fontSize: ".3em", top: "88px"}}>
+          <h1 >Anthon Wellsjö</h1>
+        </animated.div> */}
+        <div onClick={(e) => { e.stopPropagation(); }} style={{ position: "absolute", top: "14px" }}>
+          <animated.div style={{ ...stickStyle1, ...styleBurger1, }} />
+          <animated.div style={{ ...stickStyle2, ...styleBurger2 }} />
+          <animated.div style={{ ...stickStyle3, ...styleBurger3 }} />
         </div>
         {page.renderHeaderButtons &&
           <div onClick={(e) => { e.stopPropagation(); }} style={{ display: "flex", justifyContent: "space-between", position: "absolute", top: "40px", width: "400px" }}>

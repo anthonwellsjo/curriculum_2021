@@ -23,7 +23,7 @@ const ProjectsButton: React.FC = () => {
 
   return (
     <>
-      <div style={{ position: "fixed", top: "100px", left: "8px", right: 0, bottom: "3px", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", backgroundColor: "transparent",  }}>
+      <div style={{ position: "fixed", top: "0", left: "8px", right: 0, bottom: "3px", display: "flex", alignItems: "center", justifyContent: "center", userSelect: "none", backgroundColor: "transparent",  }}>
         <animated.button className={classes.text} style={{ ...style, fontFamily: "'Lato', sans-serif"}}>See projects</animated.button>
       </div>
     </>

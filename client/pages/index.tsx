@@ -115,7 +115,7 @@ export default function Home({ projects, tech }: props) {
       orderedProjects[`${k}`] = {
         ...page.projects[`${k}`],
         left: "50%",
-        top: `${80 / length * i + 30}%`
+        top: `${50 / length * i + 40}%`
       }
     });
     return orderedProjects;

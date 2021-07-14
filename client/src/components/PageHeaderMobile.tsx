@@ -28,27 +28,27 @@ const styles: CSS.Properties = {
 const stickStyle1: CSS.Properties = {
   height: "3px",
   width: "40px",
-  backgroundColor: "#55868c",
+  backgroundColor: "black",
   marginBottom: "4px",
   borderTopLeftRadius: "50px",
   borderTopRightRadius: "50px",
-  border: "8px solid #55868c",
+  border: "8px solid black",
   borderBottom: 0
 }
 const stickStyle2: CSS.Properties = {
   height: "3px",
   width: "40px",
-  backgroundColor: "#55868c",
+  backgroundColor: "black",
   marginBottom: "4px"
 }
 const stickStyle3: CSS.Properties = {
   height: "3px",
   width: "40px",
-  backgroundColor: "#55868c",
+  backgroundColor: "black",
   marginBottom: "4px",
   borderBottomLeftRadius: "50px",
   borderBottomRightRadius: "50px",
-  border: "6px solid #55868c",
+  border: "6px solid black",
   borderBottom: 0
 }
 

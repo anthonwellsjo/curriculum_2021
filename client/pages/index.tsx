@@ -33,7 +33,6 @@ export default function Home({ projects, tech }: props) {
   const focusMe = useRef(null);
   const [playClick] = useSound("/click.wav");
 
-
   useRedirect();
 
   const popState = () => {

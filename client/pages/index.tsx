@@ -126,7 +126,7 @@ export default function Home({ projects, tech }: props) {
       <Head>
         
       </Head>
-      <Background />
+      {/* <Background /> */}
 
       {page.currentPage != "project" && isMobile && <PageHeaderMobile />}
       {page.currentPage != "project" && !isMobile && <PageHeaderDesktop />}

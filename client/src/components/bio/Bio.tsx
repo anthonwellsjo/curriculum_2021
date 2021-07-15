@@ -72,9 +72,9 @@ const Bio: React.FC = () => {
           <>
             <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", marginTop: viewWidth < 750 ? "-20px" :"50px" }}>
               <p style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: "1.1em", marginBottom: "0" }}>Hej,</p>
-              <p>my name is Anthon and I'm a swedish <strong>full stack web developer.</strong> I live in Perugia, Italy with my wife and three kids.</p>
+              <p>my name is Anthon and I'm a swedish <strong>full stack web developer</strong> based in Perugia, Italy with my wife and three kids.</p>
               <p><strong>I speak four languages </strong> fluently (swedish, french, italian and english) and other than passionately developing the web, I love garden work, kite surfing and playing the guitar.</p>
-              <p>If you consider hiring me, then you can count on <strong>an effective and open minded cooworker</strong>. I love learning, and arriving at the best solutions, no matter who hade the idea.</p>
+              <p>If you consider hiring me, then you can count on <strong>an effective and open minded coworker</strong>. I love learning, and arriving at the best solutions, no matter who had the idea.</p>
             </animated.div>
             <animated.div style={{ ...hobbyStyle, display: "flex", width: "100%", justifyContent: "center", position: "absolute", bottom: "40px" }}>
               <div>

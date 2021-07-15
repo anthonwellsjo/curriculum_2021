@@ -36,16 +36,26 @@ export default function Home({ projects, tech }: props) {
   useRedirect();
 
   const popState = () => {
-    console.log("pop state!")
+    console.log("pop state!", "new state", { ...history.state });
     if (page.audio) { playClick() }
+    const url: string = history.state.as;
+    console.log("this is the page",url);
+    if(url == null){
+      console.log("url is first page and is us undefined");
+    } else if(url=="/main" || url == "/"){
+      console.log("url is first page and is main");
+    }
+  
     setPage({ ...history.state });
   }
 
   useEffect(() => {
     if (!page.firstStartDone) {
-      console.log("setting first state");
-      window.history.pushState({ ...page }, "main", `/main`);
-      setPage(prev => ({ ...prev, firstStartDone: true }))
+      console.log("setting first state", page);
+      const newState = {...page}
+      window.history.pushState({ ...newState }, "main", `/main`);
+      setPage(({ ...newState, firstStartDone: true }))
+      console.log("histoyry", window.history.state)
     }
   }, [])
 

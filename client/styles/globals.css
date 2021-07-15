@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lato:ital,wght@1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 html,
 body {
@@ -14,21 +14,20 @@ h4,
 h5 {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
-  
 }
 
-h1{
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+h1 {
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
   color: white;
 }
 
-p{
+p {
   font-family: 'Roboto';
 }
 
-
-@media only screen and (max-width: 425px){
-	p{
+@media only screen and (max-width: 425px) {
+  p {
     font-size: 0.9em;
   }
 }
@@ -51,7 +50,6 @@ a {
   font-family: 'Trochut', cursive;
   font-size: 1.5em;
 }
-
 
 * {
   box-sizing: border-box;

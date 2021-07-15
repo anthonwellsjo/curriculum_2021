@@ -18,6 +18,7 @@ import useRedirect from '../src/hooks/useRedirect';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import Background from '../src/components/background/Background';
 import * as ga from '../lib/ga';
+import Head from 'next/head'
 
 
 
@@ -140,6 +141,25 @@ export default function Home({ projects, tech }: props) {
   return (
 
     <div ref={focusMe} onClick={onClickEventHandler} style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
+      <Head>
+        <meta name="twitter:card" content="Curriculum/portfolio web site 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+        <meta name="twitter:site" content="@Anthon_Wellsjo" />
+        <meta name="twitter:title" content="Anthon Wellsjö Portfolio" />
+        <meta name="twitter:description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+        <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg" />
+
+        <meta property="og:url" content={"https://curriculum-2021.vercel.app/"} key="ogurl" />
+        <meta property="og:image" content={"https://pbs.twimg.com/profile_images/778947258117152768/LjuuB1T8_400x400.jpg"} key="ogimage" />
+        <meta property="og:site_name" content="Anthon Wellsjö Portfolio" key="ogsitename" />
+        <meta name="title" property="og:title" content={"main"} key="ogtitle" />
+        <meta property="og:description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." key="ogdesc" />
+
+        <title>Anthon Wellsjö Portfolio</title>
+        <meta name="description" content="Curriculum 2021 for Carl Anthon Wellsjö, swedish web developer, working remote from Perugia, Italy." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="HandheldFriendly" content="true" />
+        <link rel="icon" href="/laptop.png" />
+      </Head>
       <Background />
 
       {page.currentPage != "project" && isMobile && <PageHeaderMobile />}

@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import Head from 'next/head';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import client from '../src/apollo/apolloClient';
 import BouncingBalls from '../src/components/bouncingBalls/BouncingBalls';
@@ -18,6 +17,7 @@ import { useViewport } from '../src/hooks/useViewPort';
 import useRedirect from '../src/hooks/useRedirect';
 import useGetRandomPosition from '../src/hooks/useGetRandomPosition';
 import Background from '../src/components/background/Background';
+import * as ga from '../lib/ga';
 
 
 
@@ -39,20 +39,27 @@ export default function Home({ projects, tech }: props) {
     console.log("pop state!", "new state", { ...history.state });
     if (page.audio) { playClick() }
     const url: string = history.state.as;
-    console.log("this is the page",url);
-    if(url == null){
+    console.log("this is the page", url);
+    if (url == null) {
       console.log("url is first page and is us undefined");
-    } else if(url=="/main" || url == "/"){
+    } else if (url == "/main" || url == "/") {
       console.log("url is first page and is main");
     }
-  
+
     setPage({ ...history.state });
   }
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log("logging to ga");
+      ga.pageview("main");
+    }
+  }, [])
+
+  useEffect(() => {
     if (!page.firstStartDone) {
       console.log("setting first state", page);
-      const newState = {...page}
+      const newState = { ...page }
       window.history.pushState({ ...newState }, "main", `/main`);
       setPage(({ ...newState, firstStartDone: true }))
       console.log("histoyry", window.history.state)
@@ -132,7 +139,7 @@ export default function Home({ projects, tech }: props) {
 
   return (
 
-    <div ref={focusMe} onClick={onClickEventHandler} style={{position:"relative", width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
+    <div ref={focusMe} onClick={onClickEventHandler} style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", cursor: "pointer", overflowY: "hidden" }}>
       <Background />
 
       {page.currentPage != "project" && isMobile && <PageHeaderMobile />}

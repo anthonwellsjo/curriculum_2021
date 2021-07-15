@@ -12,13 +12,11 @@ const useRedirect = () => {
 
     if (uv1 === "bio" || uv1 === "work" || uv1 === "social") {
       if (page.currentPage != uv1) {
-        ga.pageview(uv1);
         setPage(prev => ({ ...prev, currentPage: uv1 }));
       }
     }
     if (uv1 === "main") {
       if (page.currentPage != uv1) {
-        ga.pageview(uv1);
         setPage(prev => ({ ...prev, currentPage: uv1 }));
       }
     }

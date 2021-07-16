@@ -47,7 +47,7 @@ export default function Home({ projects, tech }: props) {
       console.log("url is first page and is main");
     }
 
-    setPage({ ...history.state });
+    setPage(prev=>({ ...history.state, audio: prev.audio }));
   }
 
   useEffect(() => {

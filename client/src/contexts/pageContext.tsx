@@ -17,7 +17,7 @@ const PageProvider: React.FC = ({ children }) => {
     currentPage: "main",
     showHeaderButtons: false,
     renderHeaderButtons: false,
-    audio: false,
+    audio: true,
     firstStartDone: false
   });
   return (

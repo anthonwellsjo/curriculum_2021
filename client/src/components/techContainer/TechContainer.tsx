@@ -134,9 +134,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                     width: "100%", display: "flex",
                     justifyContent: "center",
                   }}>
-                    <a target="_blank" href="www.gp.se">
-                      <img src={modal.tech.logo} style={{ height: "80px", maxWidth: "100px" }} />
-                    </a>
+                    <img src={modal.tech.logo} style={{ height: "80px", maxWidth: "100px" }} />
                   </div>
                   <h3 style={{ textAlign: "center" }}>{modal.tech.title}</h3>
                   <p style={{ textAlign: "justify" }}>{modal.tech.description}</p>

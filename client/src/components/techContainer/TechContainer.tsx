@@ -62,7 +62,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     const title = e.target.getAttribute('data-title');
     const desc = e.target.getAttribute('data-description');
     const techToModal = { description: desc, title: title, logo: logo }
-    console.log("tech to modal", techToModal);
     setModal(prev => ({ open: true, tech: techToModal }))
   }
 
@@ -130,7 +129,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                 borderRadius: "4px",
                 boxShadow: "3px 3px 15px grey"
               }}>
-                <body style={{ boxSizing: "content-box", padding: "25px", paddingRight: "25px" }}>
+                <div style={{ boxSizing: "content-box", padding: "25px", paddingRight: "25px" }}>
                   <div style={{
                     width: "100%", display: "flex",
                     justifyContent: "center",
@@ -141,7 +140,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                   </div>
                   <h3 style={{ textAlign: "center" }}>{modal.tech.title}</h3>
                   <p style={{ textAlign: "justify" }}>{modal.tech.description}</p>
-                </body>
+                </div>
               </div>
             </div>
           </animated.div>

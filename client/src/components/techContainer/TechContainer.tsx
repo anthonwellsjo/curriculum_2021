@@ -107,7 +107,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
       ))}
       {
         modalTrans(
-          (styles, item) => item && <animated.div style={styles}>
+          (styles, item) => item && <animated.div style={{...styles, position: "fixed",zIndex: 10}}>
             <div
               onClick={onModalClickEventHandler}
               style={{
@@ -119,6 +119,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                 display: "flex",
                 justifyContent: "center",
                 backgroundColor: "rgba(256,256,256, 0.5)",
+                zIndex: 10
               }}>
               <div style={{
                 width: modal.tech.description != null ? "90%" : "none",

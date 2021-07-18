@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,MAAM,EAAE,UAAU,EAAE,KAAK;EACvB,AAAA,SAAS,CAAC;IACR,SAAS,EAAE,IAAI;GAChB;;;AAEH,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,SAAS,CAAC;IACR,SAAS,EAAE,IAAI;GAChB",
+    "sources": [
+        "Bio.module.scss"
+    ],
+    "names": [],
+    "file": "Bio.module.css"
+}

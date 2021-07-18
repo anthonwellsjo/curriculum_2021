@@ -1,0 +1,12 @@
+@media (max-height: 590px) {
+  .bodyText {
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 280px) {
+  .bodyText {
+    font-size: .8em;
+  }
+}
+/*# sourceMappingURL=Bio.module.css.map */

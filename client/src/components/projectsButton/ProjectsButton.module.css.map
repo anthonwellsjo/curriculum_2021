@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,OAAO,CAAC,0EAAI;AAEZ,AAAA,KAAK,CAAC;EACJ,WAAW,EAAE,kBAAkB;EAC/B,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,MAAM;CAInB;;AAHC,MAAM,EAAE,SAAS,EAAE,KAAK;EAL1B,AAAA,KAAK,CAAC;IAMF,SAAS,EAAE,GAAG;GAEjB;;;AACD,AAAA,KAAK,AAAA,MAAM,CAAA;EACT,KAAK,EAAE,MAAM;CACd",
+    "sources": [
+        "ProjectsButton.module.scss"
+    ],
+    "names": [],
+    "file": "ProjectsButton.module.css"
+}

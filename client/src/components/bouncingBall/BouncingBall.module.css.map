@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,GAAG;EACX,UAAU,EAAE,OAAO;EACnB,SAAS,EAAE,aAAa;CACzB;;AAED,AAAA,KAAK,AAAA,MAAM,CAAA;EACT,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,MAAM,EAAE,gBAAgB;EACxB,UAAU,EAAE,OAAO;EACnB,UAAU,EAAE,iBAAiB;EAC7B,SAAS,EAAE,YAAY;CACxB",
+    "sources": [
+        "BouncingBall.module.scss"
+    ],
+    "names": [],
+    "file": "BouncingBall.module.css"
+}

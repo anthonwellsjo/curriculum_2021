@@ -1,0 +1,21 @@
+.ball {
+  width: 6px;
+  height: 6px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+}
+
+.ball:hover {
+  width: 11px;
+  height: 11px;
+  border: 2px dotted black;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-box-shadow: 1px 1px 5px black;
+          box-shadow: 1px 1px 5px black;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+/*# sourceMappingURL=BouncingBall.module.css.map */

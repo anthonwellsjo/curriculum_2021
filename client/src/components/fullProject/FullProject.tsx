@@ -163,7 +163,7 @@ const FullProject = () => {
             {currentProject.mainImage != null ? <img src={currentProject.mainImage.asset.url} style={{ backgroundColor: "transparent", maxHeight: "150px", marginTop: "20px" }} /> :
               <h1 style={{ fontSize: width > 400 ? "3em" : "2em" }}>{currentProject.title}</h1>}
           </animated.div>
-          <animated.div style={{ ...descStyle, textAlign: "justify", width: "600px", marginTop:"50px" }}>
+          <animated.div style={{ ...descStyle, textAlign: "justify", width: "600px", marginTop: "50px" }}>
             {currentProject.descriptionRaw.map((b: BlockText) => {
               // console.log(b.children[0]._type, b.children[0].text);
               if (b.style == "h2") return React.createElement(b.style, { key: b._key, style: { textAlign: "center" } }, b.children[0].text);
@@ -172,34 +172,38 @@ const FullProject = () => {
             })}
           </animated.div>
           {currentProject.videoDesktop ? <div style={{ display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
-            <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "-75px", display: "flex", justifyContent: "center", marginBottom: "100px" }}>
-              <div style={{ width: `${(width / 4 * 3) - (width / 18 * 3)}px`, maxWidth: "620px" }}>
-                <video muted width={"100%"} height="auto" autoPlay playsInline loop>
-                  <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
-                </video>
-                {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%" }} />*/}
-                <div style={{ position: "absolute", bottom: "-25px", height: "30px", backgroundColor: "black", width: "100%" }} />
-                <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
-              </div>
-            </animated.div>
             <img src="../../computerFrame.svg" style={{ position: "absolute", width: `${width / 4 * 3}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
+            <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "-75px", display: "flex", justifyContent: "center", marginBottom: "100px", }}>
+              <a href={currentProject.deployUrl ? currentProject.deployUrl : null} target="_blank">
+                <div style={{ width: `${(width / 4 * 3) - (width / 18 * 3)}px`, maxWidth: "620px" }}>
+                  <video muted width={"100%"} height="auto" autoPlay playsInline loop>
+                    <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
+                  </video>
+                  {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%" }} />*/}
+                  <div style={{ position: "absolute", bottom: "-25px", height: "30px", backgroundColor: "black", width: "100%" }} />
+                  <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
+                </div>
+              </a>
+            </animated.div>
           </div> : null}
 
           {currentProject.videoMobile ? <div style={{ display: "flex", justifyContent: "center", marginTop: "80px", }}>
             <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width / 3.5}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
             <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
-              <div style={{ width: `${width / 3.9}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
-                <video muted width={"100%"} height="auto" autoPlay playsInline loop>
-                  <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
-                </video>
-                {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%", maxWidth: "350px" }} />
+              <a href={currentProject.deployUrl ? currentProject.deployUrl : null} target="_blank">
+                <div style={{ width: `${width / 3.9}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
+                  <video muted width={"100%"} height="auto" autoPlay playsInline loop>
+                    <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
+                  </video>
+                  {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%", maxWidth: "350px" }} />
                 <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "80%", maxWidth: "350px" }} /> */}
-              </div>
+                </div>
+              </a>
             </animated.div>
           </div> : null}
           {currentProject.githubRepositoryLink ?
-            <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", marginTop:"150px" }}>
-              <a className="buttidybuttbutt" onClick={(e)=>{e.stopPropagation()}} href={currentProject.githubRepositoryLink} target="_blank" >
+            <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", marginTop: "150px" }}>
+              <a className="buttidybuttbutt" onClick={(e) => { e.stopPropagation() }} href={currentProject.githubRepositoryLink} target="_blank" >
                 Go to github repo
               </a>
             </div>

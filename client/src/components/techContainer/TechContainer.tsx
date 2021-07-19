@@ -94,13 +94,18 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
           onClick={e => { e.stopPropagation(); }}
           style={{
             opacity: opacity.to(y => y),
-            transform: transform.to(z => z)
+            transform: transform.to(z => z),
+            display: "flex",
+            alignItems:"center",
+            justifyContent:"center",
+            width:"50px",
+            height:"50px"
           }}>
           <div
             style={{
-              // backgroundColor: "red",
               width: "50px",
-              display: "inline"
+              display: "inline",
+              cursor:"pointer"
             }}>
             {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{items.techlogo.asset.url}</p> */}
             <img onClick={onClickEventHandler} data-link={items.link} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}`} style={{ width: "50px" }} />

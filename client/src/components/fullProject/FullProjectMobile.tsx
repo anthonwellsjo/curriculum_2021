@@ -104,43 +104,47 @@ const FullProjectMobile = () => {
         })}
       </animated.div>
 
-      {currentProject.videoDesktop ? <div style={{ position: "relative", display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
-        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: width < 555 ? "-85px" : "-75px", display: "flex", justifyContent: "center", marginBottom: "100px" }}>
-          <div style={{ position: "relative", width: `${width - (width * 0.11)}px`, maxWidth: "620px" }}>
-            <video muted width={"100%"} height="auto" autoPlay playsInline loop>
-              <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
-            </video>
+      {currentProject.videoDesktop ? <a onClick={e => { e.stopPropagation() }} href={currentProject.deployUrl ? currentProject.deployUrl : null} target="_blank">
+        <div style={{ position: "relative", display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
+          <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: width < 555 ? "-85px" : "-75px", display: "flex", justifyContent: "center", marginBottom: "100px" }}>
+            <div style={{ position: "relative", width: `${width - (width * 0.11)}px`, maxWidth: "620px" }}>
+              <video muted width={"100%"} height="auto" autoPlay playsInline loop>
+                <source src={currentProject.videoDesktop.asset.url} type="video/mp4" />
+              </video>
 
-            <div style={{ position: "absolute", bottom: "-15px", height: "10px", backgroundColor: "black", width: "100%" }} />
-            <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
-          </div>
-        </animated.div>
-        <img src="../../computerFrame.svg" style={{ position: "absolute", width: `${width}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
-      </div> : null}
+              {/* <div style={{ position: "absolute", bottom: "-15px", height: "10px", backgroundColor: "black", width: "100%" }} /> */}
+              <div style={{ position: "absolute", top: "-10px", height: "10px", backgroundColor: "black", width: "100%" }} />
+            </div>
+          </animated.div>
+
+          <img src="../../computerFrame.svg" style={{ position: "absolute", width: `${width}px`, maxWidth: "800px", marginTop: "-100px" }} alt="screen" />
+        </div> </a> : null}
 
 
-      {currentProject.videoMobile ? <div style={{ display: "flex", justifyContent: "center", marginTop: "-40px", }}>
-        <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width * 0.56}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
-        <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
-          <div style={{ width: `${width * 0.5}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
-            <video muted width={"100%"} height="auto" autoPlay playsInline loop>
-              <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
-            </video>
-            {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%", maxWidth: "350px" }} />
+      {currentProject.videoMobile ? <a onClick={e => { e.stopPropagation() }} href={currentProject.deployUrl ? currentProject.deployUrl : null} target="_blank">
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "-40px", }}>
+          <animated.div style={{ ...deskGifStyle, position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
+            <div style={{ width: `${width * 0.5}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
+              <video muted width={"100%"} height="auto" autoPlay playsInline loop>
+                <source src={currentProject.videoMobile.asset.url} type="video/mp4" />
+              </video>
+              {/* <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, top: 0, height: "16%", width: "80%", maxWidth: "350px" }} />
                 <div style={{ position: "absolute", backgroundColor: currentProject.projectColor, bottom: 0, height: "12%", width: "80%", maxWidth: "350px" }} /> */}
-          </div>
-        </animated.div>
-      </div> : null}
+            </div>
+          </animated.div>
+          <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width * 0.56}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
+        </div>
+      </a> : null}
       {currentProject.githubRepositoryLink ?
         <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", marginTop: "80px" }}>
-          <a style={{ fontSize: width < 440 ? "2em":"3em" }} onClick={(e) => { e.stopPropagation() }} className="buttidybuttbutt" href={currentProject.githubRepositoryLink} target="_blank" >
+          <a style={{ fontSize: width < 440 ? "2em" : "3em" }} onClick={(e) => { e.stopPropagation() }} className="buttidybuttbutt" href={currentProject.githubRepositoryLink} target="_blank" >
             Go to github repo
           </a>
         </div>
         : null}
       {currentProject.deployUrl ?
         <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <a onClick={(e) => { e.stopPropagation() }} style={{ fontSize: width < 440 ? "2em":"3em" }} className="buttidybuttbutt" target="_blank" href={currentProject.deployUrl}>
+          <a onClick={(e) => { e.stopPropagation() }} style={{ fontSize: width < 440 ? "2em" : "3em" }} className="buttidybuttbutt" target="_blank" href={currentProject.deployUrl}>
             Go to live build </a>
         </div> : null}
       <div style={{ textAlign: "center", marginTop: "100px" }}>

@@ -12,7 +12,8 @@ interface props {
 interface modalInfo {
   title: string,
   description: string,
-  logo: string
+  logo: string,
+  link: string
 }
 
 const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
@@ -61,7 +62,8 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     const logo = e.target.src
     const title = e.target.getAttribute('data-title');
     const desc = e.target.getAttribute('data-description');
-    const techToModal = { description: desc, title: title, logo: logo }
+    const link = e.target.getAttribute('data-link');
+    const techToModal = { description: desc, title: title, logo: logo, link: link }
     setModal(prev => ({ open: true, tech: techToModal }))
   }
 
@@ -101,13 +103,13 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
               display: "inline"
             }}>
             {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{items.techlogo.asset.url}</p> */}
-            <img onClick={onClickEventHandler} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}`} style={{ width: "50px" }} />
+            <img onClick={onClickEventHandler} data-link={items.link} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}`} style={{ width: "50px" }} />
           </div>
         </animated.div>
       ))}
       {
         modalTrans(
-          (styles, item) => item && <animated.div style={{...styles, position: "fixed",zIndex: 10}}>
+          (styles, item) => item && <animated.div style={{ ...styles, position: "fixed", zIndex: 10 }}>
             <div
               onClick={onModalClickEventHandler}
               style={{
@@ -139,6 +141,9 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                   </div>
                   <h3 style={{ textAlign: "center" }}>{modal.tech.title}</h3>
                   <p style={{ textAlign: "justify" }}>{modal.tech.description}</p>
+                  <div style={{ width: "100%", textAlign: "center", marginTop: "50px" }}>
+                    <a className="buttidybuttbutt" style={{ fontSize: "2em" }} href={modal.tech.link} target={"_blanc"}>Learn more..</a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -115,6 +115,7 @@ interface tech {
   title: string;
   description: string;
   techlogo: Techlogo;
+  link: string;
 }
 
 interface allTechData {

@@ -18,5 +18,10 @@ export default {
       title: 'Tech Logo',
       type: 'image',
     },
+    {
+      name: 'link',
+      title: 'Link',
+      type: 'string',
+    },
   ],
 }

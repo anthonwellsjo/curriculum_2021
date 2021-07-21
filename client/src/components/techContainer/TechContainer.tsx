@@ -62,7 +62,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     const logo = e.target.src
     const title = e.target.getAttribute('data-title');
     const desc = e.target.getAttribute('data-description');
-    const link = e.target.getAttribute('data-link');
+    const link = e.target.getAttribute('data-linkPath');
     const techToModal = { description: desc, title: title, logo: logo, link: link }
     setModal(prev => ({ open: true, tech: techToModal }))
   }
@@ -96,19 +96,19 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
             opacity: opacity.to(y => y),
             transform: transform.to(z => z),
             display: "flex",
-            alignItems:"center",
-            justifyContent:"center",
-            width:"50px",
-            height:"50px"
+            alignItems: "center",
+            justifyContent: "center",
+            width: "50px",
+            height: "50px"
           }}>
           <div
             style={{
               width: "50px",
               display: "inline",
-              cursor:"pointer"
+              cursor: "pointer"
             }}>
             {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{items.techlogo.asset.url}</p> */}
-            <img onClick={onClickEventHandler} data-link={items.link} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}`} style={{ width: "50px" }} />
+            <img onClick={onClickEventHandler} data-linkPath={items.link} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}`} style={{ width: "50px" }} />
           </div>
         </animated.div>
       ))}
@@ -147,7 +147,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                   <h3 style={{ textAlign: "center" }}>{modal.tech.title}</h3>
                   <p style={{ textAlign: "justify" }}>{modal.tech.description}</p>
                   <div style={{ width: "100%", textAlign: "center", marginTop: "50px" }}>
-                    <a className="buttidybuttbutt" style={{ fontSize: "2em" }} href={modal.tech.link} target={"_blanc"}>Learn more..</a>
+                    <a onClick={e => { e.stopPropagation(); }} className="buttidybuttbutt" style={{ fontSize: "2em" }} href={modal.tech.link} target={"_blanc"}>Learn more..</a>
                   </div>
                 </div>
               </div>

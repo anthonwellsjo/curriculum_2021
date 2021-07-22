@@ -9,18 +9,11 @@ interface props {
   itemsPerRow: number
 }
 
-interface modalInfo {
-  title: string,
-  description: string,
-  logo: string,
-  link: string
-}
 
 const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
   const [items, setItems] = useState<tech[]>([]);
   const [page, setPage] = useContext(PageContext);
   const [playClick] = useSound("/pop.wav");
-  const [modal, setModal] = useState<{ open: boolean, tech: modalInfo | null }>({ open: false, tech: null });
   let x = 0;
   const [sound, setSound] = useState(0.1);
 
@@ -42,11 +35,11 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     };
   }, [])
 
-  const modalTrans = useTransition(modal.open, {
+  const modalTrans = useTransition(page.techModal.open, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    reverse: modal.open,
+    reverse: page.techModal.open,
   })
 
   const transitions = useTransition(items, {
@@ -64,12 +57,17 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     const desc = e.target.getAttribute('data-description');
     const link = e.target.getAttribute('data-linkPath');
     const techToModal = { description: desc, title: title, logo: logo, link: link }
-    setModal(prev => ({ open: true, tech: techToModal }))
+    const newState = { ...page, techModal: { ...page.techModal, open: true, tech: techToModal } };
+    setPage(prev => ({ ...newState }));
+    window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
   }
 
   const onModalClickEventHandler = (e) => {
     e.stopPropagation();
-    setModal(prev => ({ ...prev, open: false }))
+    const newState = { ...page, techModal: { ...page.techModal, open: false } }
+    setPage(prev => ({ ...newState }));
+    window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
+
   }
 
 
@@ -129,7 +127,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                 zIndex: 10
               }}>
               <div style={{
-                width: modal.tech.description != null ? "90%" : "none",
+                width: page.techModal.tech.description != null ? "90%" : "none",
                 maxWidth: "500px",
                 position: "absolute",
                 top: "20%",
@@ -142,12 +140,12 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
                     width: "100%", display: "flex",
                     justifyContent: "center",
                   }}>
-                    <img src={modal.tech.logo} style={{ height: "80px", maxWidth: "100px" }} />
+                    <img src={page.techModal.tech.logo} style={{ height: "80px", maxWidth: "100px" }} />
                   </div>
-                  <h3 style={{ textAlign: "center" }}>{modal.tech.title}</h3>
-                  <p style={{ textAlign: "justify" }}>{modal.tech.description}</p>
+                  <h3 style={{ textAlign: "center" }}>{page.techModal.tech.title}</h3>
+                  <p style={{ textAlign: "justify" }}>{page.techModal.tech.description}</p>
                   <div style={{ width: "100%", textAlign: "center", marginTop: "50px" }}>
-                    <a onClick={e => { e.stopPropagation(); }} className="buttidybuttbutt" style={{ fontSize: "2em" }} href={modal.tech.link} target={"_blanc"}>Learn more..</a>
+                    <a onClick={e => { e.stopPropagation(); }} className="buttidybuttbutt" style={{ fontSize: "2em" }} href={page.techModal.tech.link} target={"_blanc"}>Learn more..</a>
                   </div>
                 </div>
               </div>

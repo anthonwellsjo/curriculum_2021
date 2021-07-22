@@ -1,3 +1,10 @@
+interface TechModalInfo {
+  title: string,
+  description: string,
+  logo: string,
+  link: string
+}
+
 interface PageContextData {
   slowMo: boolean,
   projects: ProjectPlus[],
@@ -13,7 +20,8 @@ interface PageContextData {
   showHeaderButtons: boolean,
   renderHeaderButtons: boolean,
   audio: boolean,
-  firstStartDone: boolean
+  firstStartDone: boolean,
+  techModal: { open: boolean, tech: TechModalInfo | null }
 }
 
 interface BlockTextChild {

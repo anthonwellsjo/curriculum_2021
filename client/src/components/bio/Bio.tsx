@@ -71,9 +71,9 @@ const Bio: React.FC = () => {
       <animated.div className="noScrollBar" style={{ ...styles, ...animStyle, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly", overflowY: "scroll" }}>
         {showContent &&
             <animated.div style={{ ...textStyle, textAlign: "justify", borderRadius: "5px", width: "80%", marginTop: viewWidth < 750 ? "-20px" : "50px" }}>
-              <p className={classes.bodyText} style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: "1.1em", marginBottom: "0" }}>Hej,</p>
-              <p className={classes.bodyText}>my name is Anthon and I'm a swedish <strong>full stack web developer</strong> based in Perugia, Italy with my wife and three kids.</p>
-              <p className={classes.bodyText}><strong>I speak four languages </strong> fluently (swedish, french, italian and english) and other than passionately developing the web, I love garden work, kite surfing and playing the guitar.</p>
+              <p className={classes.bodyText} style={{ fontFamily: "'Archivo Black', sans-serif", fontSize: "1.1em", marginBottom: "0" }}>Hey,</p>
+              <p className={classes.bodyText}>My name is Anthon and I'm a Swedish <strong>full-stack web developer</strong> based in Perugia, Italy with my wife and three kids.</p>
+              <p className={classes.bodyText}><strong>I speak four languages </strong> fluently (Swedish, French, Italian, and English) and other than passionately developing websites, I love garden work, kite surfing, and playing the guitar.</p>
               <p className={classes.bodyText}>If you consider hiring me, then you can count on <strong>an effective and open minded coworker</strong>. I love learning, and arriving at the best solutions, no matter who had the idea.</p>
             </animated.div>
         }

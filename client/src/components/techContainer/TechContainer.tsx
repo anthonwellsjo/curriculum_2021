@@ -67,7 +67,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     const newState = { ...page, techModal: { ...page.techModal, open: false } }
     setPage(prev => ({ ...newState }));
     window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
-
   }
 
 

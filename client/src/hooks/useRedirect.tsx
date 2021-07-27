@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PageContext } from '../contexts/pageContext';
-import * as ga from '../../lib/ga';
+
 
 
 const useRedirect = () => {

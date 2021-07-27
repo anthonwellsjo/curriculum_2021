@@ -10,9 +10,9 @@ const useMenuButtons = () => {
   const clickBio = () => {
     console.log("clicked bio");
     if (page.currentPage === "bio") {
-      const newState = { ...page, currentPage: "main" };
-      setPage(prev => ({ ...newState }));
-      window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
+        const newState = { ...page, currentPage: "main" };
+        setPage(prev => ({ ...newState }));
+        window.history.pushState({ ...newState }, newState.currentPage, `/${newState.currentPage}`);
       if (page.audio) playClose({ playbackRate: 1.8 });
     }
     if (page.currentPage !== "bio") {

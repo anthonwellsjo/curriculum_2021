@@ -19,6 +19,12 @@ export default {
       type: 'image',
     },
     {
+      name: 'techType',
+      title: 'Tech Type',
+      type: 'array',
+      of: [{ type: 'reference', to:[{type: 'techType'}] }]
+    },
+    {
       name: 'link',
       title: 'Link',
       type: 'string',
